@@ -1,0 +1,28 @@
+.form-group {
+    margin-top: 0px !important;
+    margin-bottom: 3px !important;
+}
+.form-group input,
+.form-group select {
+    height: 38px !important;
+    border-radius: 3px;
+}
+
+table {
+    font-size: 13px;
+}
+
+table thead th {
+    font-weight: bold !important;
+    font-size: 12px;
+    border-bottom: 1px solid #6f42c1 !important;
+}
+table tr td,
+table tr th {
+    padding: 8px !important;
+}
+
+.modal-div {
+    max-height: 90vh;
+    overflow-y: auto;
+}

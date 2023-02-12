@@ -1,0 +1,620 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app.7c3c19f8.js",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.1732e059.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Apps/SuperAdmin/CreateOrganization.vue",
+      "resources/js/Pages/Apps/SuperAdmin/Dashboard.vue",
+      "resources/js/Pages/Apps/SuperAdmin/Organizations.vue",
+      "resources/js/Pages/Apps/SuperAdmin/ViewOrganization.vue",
+      "resources/js/Pages/Auth/Confirm.vue",
+      "resources/js/Pages/Auth/Lock.vue",
+      "resources/js/Pages/Auth/Login.vue",
+      "resources/js/Pages/Auth/Recover.vue",
+      "resources/js/Pages/Auth/Register.vue",
+      "resources/js/Pages/Components/Accounts/Accounts.vue",
+      "resources/js/Pages/Components/Branches/BranchForm.vue",
+      "resources/js/Pages/Components/Branches/Branches.vue",
+      "resources/js/Pages/Components/Deposits/DepositForm.vue",
+      "resources/js/Pages/Components/Deposits/Deposits.vue",
+      "resources/js/Pages/Components/Leads/LeadForm.vue",
+      "resources/js/Pages/Components/Leads/Leads.vue",
+      "resources/js/Pages/Components/LoanApplications/ApplicationForm.vue",
+      "resources/js/Pages/Components/LoanApplications/CollateralForm.vue",
+      "resources/js/Pages/Components/LoanApplications/Collaterals.vue",
+      "resources/js/Pages/Components/LoanApplications/ConfirmForm.vue",
+      "resources/js/Pages/Components/LoanApplications/DisburseForm.vue",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue",
+      "resources/js/Pages/Components/LoanApplications/EditForm.vue",
+      "resources/js/Pages/Components/LoanApplications/Guarantors.vue",
+      "resources/js/Pages/Components/LoanApplications/GuarantorsForm.vue",
+      "resources/js/Pages/Components/LoanApplications/LoanApplications.vue",
+      "resources/js/Pages/Components/LoanApplications/WitnessForm.vue",
+      "resources/js/Pages/Components/LoanTypes/LoanTypeForm.vue",
+      "resources/js/Pages/Components/LoanTypes/LoanTypes.vue",
+      "resources/js/Pages/Components/Loans/ActiveLoans.vue",
+      "resources/js/Pages/Components/Loans/CollateralForm.vue",
+      "resources/js/Pages/Components/Loans/Collaterals.vue",
+      "resources/js/Pages/Components/Loans/ConfirmForm.vue",
+      "resources/js/Pages/Components/Loans/DisburseForm.vue",
+      "resources/js/Pages/Components/Loans/EditApplication.vue",
+      "resources/js/Pages/Components/Loans/EditForm.vue",
+      "resources/js/Pages/Components/Loans/PaymentForm.vue",
+      "resources/js/Pages/Components/Loans/Payments.vue",
+      "resources/js/Pages/Components/Loans/WitnessForm.vue",
+      "resources/js/Pages/Components/Members/Applications.vue",
+      "resources/js/Pages/Components/Members/AssetForm.vue",
+      "resources/js/Pages/Components/Members/Assets.vue",
+      "resources/js/Pages/Components/Members/Deposits.vue",
+      "resources/js/Pages/Components/Members/Details.vue",
+      "resources/js/Pages/Components/Members/EditMember.vue",
+      "resources/js/Pages/Components/Members/MemberForm.vue",
+      "resources/js/Pages/Components/Members/Members.vue",
+      "resources/js/Pages/Components/Members/Withdrawals.vue",
+      "resources/js/Pages/Components/Withdrawals/WithdrawalForm.vue",
+      "resources/js/Pages/Components/Withdrawals/Withdrawals.vue",
+      "resources/js/Pages/Components/WitnessType/WitnessTypeForm.vue",
+      "resources/js/Pages/Components/WitnessType/WitnessTypes.vue",
+      "resources/js/Pages/Dashboard.vue",
+      "resources/js/Pages/Settings/Edit.vue",
+      "resources/js/Pages/Settings/LoanSettings.vue",
+      "resources/js/Pages/Settings/Profile.vue",
+      "resources/js/Pages/User/Add.vue",
+      "resources/js/Pages/User/Edit.vue",
+      "resources/js/Pages/User/List.vue",
+      "resources/js/Pages/User/Profile.vue"
+    ]
+  },
+  "resources/js/Pages/Apps/SuperAdmin/CreateOrganization.vue": {
+    "file": "assets/CreateOrganization.b0bf5a76.js",
+    "src": "resources/js/Pages/Apps/SuperAdmin/CreateOrganization.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Apps/SuperAdmin/Dashboard.vue": {
+    "file": "assets/Dashboard.3c946f8a.js",
+    "src": "resources/js/Pages/Apps/SuperAdmin/Dashboard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Apps/SuperAdmin/Organizations.vue": {
+    "file": "assets/Organizations.26f17c22.js",
+    "src": "resources/js/Pages/Apps/SuperAdmin/Organizations.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Apps/SuperAdmin/ViewOrganization.vue": {
+    "file": "assets/ViewOrganization.89ce5663.js",
+    "src": "resources/js/Pages/Apps/SuperAdmin/ViewOrganization.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Confirm.vue": {
+    "file": "assets/Confirm.1b47df50.js",
+    "src": "resources/js/Pages/Auth/Confirm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Lock.vue": {
+    "file": "assets/Lock.61e3f032.js",
+    "src": "resources/js/Pages/Auth/Lock.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Login.vue": {
+    "file": "assets/Login.1272186f.js",
+    "src": "resources/js/Pages/Auth/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Recover.vue": {
+    "file": "assets/Recover.488ad893.js",
+    "src": "resources/js/Pages/Auth/Recover.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Register.vue": {
+    "file": "assets/Register.b0252eef.js",
+    "src": "resources/js/Pages/Auth/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Accounts/Accounts.vue": {
+    "file": "assets/Accounts.18d57c8f.js",
+    "src": "resources/js/Pages/Components/Accounts/Accounts.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Branches/BranchForm.vue": {
+    "file": "assets/BranchForm.464dc460.js",
+    "src": "resources/js/Pages/Components/Branches/BranchForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Branches/Branches.vue": {
+    "file": "assets/Branches.49c9c190.js",
+    "src": "resources/js/Pages/Components/Branches/Branches.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Branches/BranchForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "_debounce.b2157bcb.js": {
+    "file": "assets/debounce.b2157bcb.js",
+    "imports": [
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "__baseGetTag.90041363.js": {
+    "file": "assets/_baseGetTag.90041363.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Deposits/DepositForm.vue": {
+    "file": "assets/DepositForm.e382f0ad.js",
+    "src": "resources/js/Pages/Components/Deposits/DepositForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Deposits/Deposits.vue": {
+    "file": "assets/Deposits.42c686c1.js",
+    "src": "resources/js/Pages/Components/Deposits/Deposits.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Deposits/DepositForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/Leads/LeadForm.vue": {
+    "file": "assets/LeadForm.8791f6ad.js",
+    "src": "resources/js/Pages/Components/Leads/LeadForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Leads/Leads.vue": {
+    "file": "assets/Leads.b5ab46fe.js",
+    "src": "resources/js/Pages/Components/Leads/Leads.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Leads/LeadForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/ApplicationForm.vue": {
+    "file": "assets/ApplicationForm.87516948.js",
+    "src": "resources/js/Pages/Components/LoanApplications/ApplicationForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/CollateralForm.vue": {
+    "file": "assets/CollateralForm.00cdc456.js",
+    "src": "resources/js/Pages/Components/LoanApplications/CollateralForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/Collaterals.vue": {
+    "file": "assets/Collaterals.716f9ca6.js",
+    "src": "resources/js/Pages/Components/LoanApplications/Collaterals.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/CollateralForm.vue",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/EditApplication.vue": {
+    "file": "assets/EditApplication.146b0291.js",
+    "src": "resources/js/Pages/Components/LoanApplications/EditApplication.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/ConfirmForm.vue": {
+    "file": "assets/ConfirmForm.20d3771e.js",
+    "src": "resources/js/Pages/Components/LoanApplications/ConfirmForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/DisburseForm.vue": {
+    "file": "assets/DisburseForm.ceb28e61.js",
+    "src": "resources/js/Pages/Components/LoanApplications/DisburseForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/EditForm.vue": {
+    "file": "assets/EditForm.0f4d169f.js",
+    "src": "resources/js/Pages/Components/LoanApplications/EditForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/Guarantors.vue": {
+    "file": "assets/Guarantors.fe7518d2.js",
+    "src": "resources/js/Pages/Components/LoanApplications/Guarantors.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/GuarantorsForm.vue",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/GuarantorsForm.vue": {
+    "file": "assets/GuarantorsForm.9105189b.js",
+    "src": "resources/js/Pages/Components/LoanApplications/GuarantorsForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/LoanApplications.vue": {
+    "file": "assets/LoanApplications.c68e99d5.js",
+    "src": "resources/js/Pages/Components/LoanApplications/LoanApplications.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/ApplicationForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanApplications/WitnessForm.vue": {
+    "file": "assets/WitnessForm.85e7dab6.js",
+    "src": "resources/js/Pages/Components/LoanApplications/WitnessForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanApplications/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/LoanTypes/LoanTypeForm.vue": {
+    "file": "assets/LoanTypeForm.924ee6b1.js",
+    "src": "resources/js/Pages/Components/LoanTypes/LoanTypeForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/LoanTypes/LoanTypes.vue": {
+    "file": "assets/LoanTypes.b53b8a62.js",
+    "src": "resources/js/Pages/Components/LoanTypes/LoanTypes.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/LoanTypes/LoanTypeForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/ActiveLoans.vue": {
+    "file": "assets/ActiveLoans.a652bffe.js",
+    "src": "resources/js/Pages/Components/Loans/ActiveLoans.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/CollateralForm.vue": {
+    "file": "assets/CollateralForm.845083e1.js",
+    "src": "resources/js/Pages/Components/Loans/CollateralForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/Collaterals.vue": {
+    "file": "assets/Collaterals.bcca8451.js",
+    "src": "resources/js/Pages/Components/Loans/Collaterals.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Loans/CollateralForm.vue",
+      "resources/js/Pages/Components/Loans/EditApplication.vue",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/EditApplication.vue": {
+    "file": "assets/EditApplication.4a821af2.js",
+    "src": "resources/js/Pages/Components/Loans/EditApplication.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/ConfirmForm.vue": {
+    "file": "assets/ConfirmForm.419c2240.js",
+    "src": "resources/js/Pages/Components/Loans/ConfirmForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Loans/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/DisburseForm.vue": {
+    "file": "assets/DisburseForm.249a38bd.js",
+    "src": "resources/js/Pages/Components/Loans/DisburseForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Loans/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/EditForm.vue": {
+    "file": "assets/EditForm.e25a4dad.js",
+    "src": "resources/js/Pages/Components/Loans/EditForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Loans/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/PaymentForm.vue": {
+    "file": "assets/PaymentForm.f44623e4.js",
+    "src": "resources/js/Pages/Components/Loans/PaymentForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/Payments.vue": {
+    "file": "assets/Payments.d3119b84.js",
+    "src": "resources/js/Pages/Components/Loans/Payments.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Loans/PaymentForm.vue",
+      "resources/js/Pages/Components/Loans/EditApplication.vue",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/Loans/WitnessForm.vue": {
+    "file": "assets/WitnessForm.609abc6a.js",
+    "src": "resources/js/Pages/Components/Loans/WitnessForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Loans/EditApplication.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Members/Applications.vue": {
+    "file": "assets/Applications.74c5c5d4.js",
+    "src": "resources/js/Pages/Components/Members/Applications.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Members/EditMember.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Members/EditMember.vue": {
+    "file": "assets/EditMember.9e894891.js",
+    "src": "resources/js/Pages/Components/Members/EditMember.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Members/AssetForm.vue": {
+    "file": "assets/AssetForm.336f711d.js",
+    "src": "resources/js/Pages/Components/Members/AssetForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Members/Assets.vue": {
+    "file": "assets/Assets.0cc3194a.js",
+    "src": "resources/js/Pages/Components/Members/Assets.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Members/EditMember.vue",
+      "resources/js/Pages/Components/Members/AssetForm.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Members/Deposits.vue": {
+    "file": "assets/Deposits.e5cb1e46.js",
+    "src": "resources/js/Pages/Components/Members/Deposits.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Members/EditMember.vue",
+      "resources/js/Pages/Components/Deposits/DepositForm.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Members/Details.vue": {
+    "file": "assets/Details.04f7a75e.js",
+    "src": "resources/js/Pages/Components/Members/Details.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Members/EditMember.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Members/MemberForm.vue": {
+    "file": "assets/MemberForm.e8a68bce.js",
+    "src": "resources/js/Pages/Components/Members/MemberForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Members/Members.vue": {
+    "file": "assets/Members.34a0a9d6.js",
+    "src": "resources/js/Pages/Components/Members/Members.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Members/MemberForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/Members/Withdrawals.vue": {
+    "file": "assets/Withdrawals.969fcc89.js",
+    "src": "resources/js/Pages/Components/Members/Withdrawals.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Members/EditMember.vue",
+      "resources/js/Pages/Components/Withdrawals/WithdrawalForm.vue"
+    ]
+  },
+  "resources/js/Pages/Components/Withdrawals/WithdrawalForm.vue": {
+    "file": "assets/WithdrawalForm.a9c3ae1f.js",
+    "src": "resources/js/Pages/Components/Withdrawals/WithdrawalForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/Withdrawals/Withdrawals.vue": {
+    "file": "assets/Withdrawals.66d624a2.js",
+    "src": "resources/js/Pages/Components/Withdrawals/Withdrawals.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/Withdrawals/WithdrawalForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Components/WitnessType/WitnessTypeForm.vue": {
+    "file": "assets/WitnessTypeForm.f6cee281.js",
+    "src": "resources/js/Pages/Components/WitnessType/WitnessTypeForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Components/WitnessType/WitnessTypes.vue": {
+    "file": "assets/WitnessTypes.478579e2.js",
+    "src": "resources/js/Pages/Components/WitnessType/WitnessTypes.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "resources/js/Pages/Components/WitnessType/WitnessTypeForm.vue",
+      "_debounce.b2157bcb.js",
+      "__baseGetTag.90041363.js"
+    ]
+  },
+  "resources/js/Pages/Dashboard.vue": {
+    "file": "assets/Dashboard.3807941f.js",
+    "src": "resources/js/Pages/Dashboard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Settings/Edit.vue": {
+    "file": "assets/Edit.2d344d15.js",
+    "src": "resources/js/Pages/Settings/Edit.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Settings/LoanSettings.vue": {
+    "file": "assets/LoanSettings.66d070ac.js",
+    "src": "resources/js/Pages/Settings/LoanSettings.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Settings/Profile.vue": {
+    "file": "assets/Profile.556fd47f.js",
+    "src": "resources/js/Pages/Settings/Profile.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/User/Add.vue": {
+    "file": "assets/Add.f7023a3c.js",
+    "src": "resources/js/Pages/User/Add.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/User/Edit.vue": {
+    "file": "assets/Edit.0349c41c.js",
+    "src": "resources/js/Pages/User/Edit.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/User/List.vue": {
+    "file": "assets/List.d2e0a1a1.js",
+    "src": "resources/js/Pages/User/List.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/User/Profile.vue": {
+    "file": "assets/Profile.bbe56a58.js",
+    "src": "resources/js/Pages/User/Profile.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  }
+}
