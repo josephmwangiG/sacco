@@ -34,11 +34,11 @@
               ></a>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                :href="route('calculator')"
                 class="nav-link router-link-exact-active router-link-active"
-                ><i class="ri-chat-check-line"></i
-              ></a>
+                ><i class="ri-calculator-fill"></i
+              ></Link>
             </li>
             <li>
               <a href="#" class="nav-link"><i class="ri-inbox-line"></i></a>

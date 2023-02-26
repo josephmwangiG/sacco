@@ -155,6 +155,19 @@ class LoansController extends Controller
         return inertia('Components/Loans/Payments', compact("id", "payments", "activeLoan", "member"));
     }
 
+    public function accrue($id)
+    {
+        $activeLoan = Loan::where("id", $id)->with("paymentFrequency", "payments", "interestType")->first();
+        $payments_sum = $activeLoan->payments->sum('amount');
+        $date_diff = date_diff(date_create($activeLoan->start_date), date_create(date("Y-m-d")));
+
+        $years = $date_diff->format("%r%y%") * 12;
+        $months = $date_diff->format("%r%m%") + $years;
+
+        return inertia('Components/Loans/Accrue', compact("id", "activeLoan", "payments_sum", "months"));
+    }
+
+
     public function createPayments(Request $request, $id)
     {
         $data = $request->validate([
@@ -242,11 +255,6 @@ class LoansController extends Controller
         return back()->with("success", "Loan payment deleted successfully.");
     }
 
-    public function accrue($id)
-    {
-        $activeLoan = Loan::find($id);
-        return inertia('Components/Loans/Accrue', compact("id", "activeLoan"));
-    }
 
     public function deleteGuarantors(Request $request, $id)
     {

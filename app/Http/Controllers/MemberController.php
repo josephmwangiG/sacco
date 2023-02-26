@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\Branch;
+use App\Models\Loan;
+use App\Models\LoanApplication;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -168,6 +170,25 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
+
+
+    public function loans($id)
+    {
+        $member = Member::find($id);
+        $loans = Loan::where("member_id", $member->id)->get();
+        return inertia("Components/Members/Loans", compact('member', "loans"));
+    }
+
+
+    public function applications($id)
+    {
+        $member = Member::find($id);
+        $applications = LoanApplication::where("member_id", $member->id)
+            ->with("LoanType")
+            ->get();
+        return inertia("Components/Members/Applications", compact('member', "applications"));
+    }
+
 
 
     public function assets($id)

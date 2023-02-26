@@ -359,6 +359,9 @@ class LoanApplicationController extends Controller
         $loan_data['amount_approved'] = $data['amount_approved'];
         $loan_data['disburse_amount'] = $data['disburse_amount'];
         $loan_data['start_date'] = $data['start_date'];
+        $loan_data['payment_frequency_id'] = $loanApplication->loanType->payment_frequency_id;
+        $loan_data['penalty_frequency_id'] = $loanApplication->loanType->penalty_frequency_id;
+        $loan_data['penalty_type_id'] = $loanApplication->loanType->penalty_type_id;
 
         $loan = Loan::create($loan_data);
 

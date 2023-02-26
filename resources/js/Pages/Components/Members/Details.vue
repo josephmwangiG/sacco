@@ -1,6 +1,7 @@
 <template>
   <EditMember :member="member" :title="'Member Details'">
     <form @submit.prevent="saveForm()">
+      <hr />
       <div class="new-user-info">
         <div class="row">
           <div class="form-group col-md-4">

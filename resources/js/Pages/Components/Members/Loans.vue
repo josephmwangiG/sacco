@@ -1,5 +1,5 @@
 <template>
-  <EditMember :member="member" :title="'Member Loan Applications'">
+  <EditMember :member="member" :title="'Member loans'">
     <div class="col-sm-12 mb-3">
       <div class="user-list-files d-flex float-right">
         <a class="iq-bg-primary" href="javascript:void();"> Print </a>
@@ -21,19 +21,19 @@
       <table class="table mb-0 table-borderless">
         <thead>
           <tr>
-            <th scope="col">Loan</th>
-            <th scope="col">Date Applied</th>
-            <th scope="col">Amount</th>
+            <th scope="col">Asset No.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Value</th>
             <th scope="col">Val Date</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(obj, index) in applications" :key="index">
-            <td>{{ obj.loan_type.name }}</td>
-            <td>{{ obj.application_date }}</td>
-            <td>{{ obj.amount_applied }}</td>
+          <tr v-for="(obj, index) in loans" :key="index">
+            <td>{{ obj.asset_number }}</td>
+            <td>{{ obj.title }}</td>
+            <td>{{ obj.valuation_amount }}</td>
             <td>{{ obj.valuation_date }}</td>
             <td>
               <div class="badge badge-pill badge-success">Active</div>
@@ -53,7 +53,7 @@
                   class="iq-bg-primary"
                   data-toggle="modal"
                   data-placement="top"
-                  @click="url = route('applications.destroy', obj.id)"
+                  @click="url = route('loans.destroy', obj.id)"
                   data-original-title="Delete"
                   href="#confirm"
                   ><i class="ri-delete-bin-line"></i
@@ -78,7 +78,7 @@ import { ref } from "vue";
 
 const props = defineProps({
   member: Object,
-  applications: Object,
+  loans: Object,
 });
 
 let url = ref();

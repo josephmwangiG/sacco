@@ -15,6 +15,7 @@ use App\Http\Controllers\LoanTypeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SuperAdmin\OrganizationsController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
+use App\Http\Controllers\ToolsController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WitnessController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/calculator', [ToolsController::class, 'calculator'])->name("calculator");
 
 // Super Admin
 Route::group(["middleware" => ['auth', "superadmin"]], function () {

@@ -36,29 +36,13 @@
               </div>
               <div class="col-lg-6">
                 <div
-                  class="
-                    d-flex
-                    align-items-center
-                    justify-content-between
-                    mt-4
-                    position-relative
-                  "
+                  class="d-flex align-items-center justify-content-between mt-4 position-relative"
                 >
                   <div
-                    class="
-                      iq-progress-bar
-                      bg-primary-light
-                      mt-3
-                      iq-progress-bar-icon
-                    "
+                    class="iq-progress-bar bg-primary-light mt-3 iq-progress-bar-icon"
                   >
                     <span
-                      class="
-                        bg-primary
-                        iq-progress
-                        progress-1
-                        position-relative
-                      "
+                      class="bg-primary iq-progress progress-1 position-relative"
                       data-percent="10"
                     >
                       <span class="progress-text text-primary">10%</span>
@@ -103,21 +87,10 @@
               </div>
               <div class="col-lg-6">
                 <div
-                  class="
-                    d-flex
-                    align-items-center
-                    justify-content-between
-                    mt-4
-                    position-relative
-                  "
+                  class="d-flex align-items-center justify-content-between mt-4 position-relative"
                 >
                   <div
-                    class="
-                      iq-progress-bar
-                      bg-info-light
-                      mt-3
-                      iq-progress-bar-icon
-                    "
+                    class="iq-progress-bar bg-info-light mt-3 iq-progress-bar-icon"
                   >
                     <span
                       class="bg-info iq-progress progress-1 position-relative"
@@ -136,7 +109,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">
-              <h4 class="card-title">Status Level</h4>
+              <h4 class="card-title">Schedules</h4>
             </div>
             <div class="iq-card-header-toolbar d-flex align-items-center">
               <div class="dropdown">
@@ -180,12 +153,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body">
             <div
-              class="
-                d-flex
-                align-items-center
-                justify-content-between
-                text-right
-              "
+              class="d-flex align-items-center justify-content-between text-right"
             >
               <div class="icon iq-icon-box rounded-circle dark-icon bg-primary">
                 <i class="ri-home-heart-line"></i>
@@ -205,12 +173,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body">
             <div
-              class="
-                d-flex
-                align-items-center
-                justify-content-between
-                text-right
-              "
+              class="d-flex align-items-center justify-content-between text-right"
             >
               <div class="icon iq-icon-box rounded-circle bg-success">
                 <i class="las la-user-friends" aria-hidden="true"></i>
@@ -230,12 +193,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body">
             <div
-              class="
-                d-flex
-                align-items-center
-                justify-content-between
-                text-right
-              "
+              class="d-flex align-items-center justify-content-between text-right"
             >
               <div class="icon iq-icon-box rounded-circle bg-danger">
                 <i class="las la-user-clock"></i>
@@ -255,12 +213,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body iq-box-relative">
             <div
-              class="
-                d-flex
-                align-items-center
-                justify-content-between
-                text-right
-              "
+              class="d-flex align-items-center justify-content-between text-right"
             >
               <div class="icon iq-icon-box rounded-circle bg-warning">
                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
@@ -280,12 +233,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body iq-box-relative">
             <div
-              class="
-                d-flex
-                align-items-center
-                justify-content-between
-                text-right
-              "
+              class="d-flex align-items-center justify-content-between text-right"
             >
               <div class="icon iq-icon-box rounded-circle bg-info">
                 <i class="ri-building-line" aria-hidden="true"></i>
@@ -304,12 +252,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body iq-box-relative">
             <div
-              class="
-                d-flex
-                align-items-center
-                justify-content-between
-                text-right
-              "
+              class="d-flex align-items-center justify-content-between text-right"
             >
               <div class="icon iq-icon-box rounded-circle bg-secondary">
                 <i class="las la-chalkboard-teacher" aria-hidden="true"></i>
