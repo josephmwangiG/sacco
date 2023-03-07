@@ -110,7 +110,9 @@
       <div class="iq-card-body" v-else>
         <div class="user-list-files text-right">
           <a class="iq-bg-primary" href="#"> Email </a>
-          <a class="iq-bg-primary" href="#"> PDF </a>
+          <a class="iq-bg-primary" @click="downoladPDF" href="#">
+            Download PDF
+          </a>
           <a class="iq-bg-primary" href="#" @click="showCalc"> Calculator </a>
         </div>
         <div class="table-responsive">
@@ -182,6 +184,7 @@
 <script setup>
 import { usePage } from "@inertiajs/inertia-vue3";
 import { ref, reactive } from "vue";
+import axios from "axios";
 
 const props = defineProps({});
 const loanTypes = usePage().props.value.loanTypes;
@@ -220,6 +223,10 @@ const selectLoan = (event) => {
       };
     }
   });
+};
+
+const downoladPDF = () => {
+  axios.get("pdf/downolad-pdf", { params: pays.value }).then(() => {});
 };
 
 const calculateLoan = () => {

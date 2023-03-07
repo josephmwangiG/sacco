@@ -91,11 +91,11 @@
         </ul>
       </li>
 
-      <li>
+      <!-- <li>
         <a href="#" class="iq-waves-effect" aria-expanded="false"
           ><i class="ri-database-line"></i><span>Expenses</span></a
         >
-      </li>
+      </li> -->
       <li class="iq-menu-title">
         <i class="ri-subtract-line"></i><span>Settings</span>
       </li>
@@ -196,9 +196,9 @@
           <li>
             <a href="#"><i class="ri-login-box-line"></i>Withdrawals</a>
           </li>
-          <li>
+          <!-- <li>
             <a href="#"><i class="ri-login-circle-line"></i>Expenses</a>
-          </li>
+          </li> -->
           <li>
             <a href="#"><i class="ri-record-mail-line"></i>Leads</a>
           </li>

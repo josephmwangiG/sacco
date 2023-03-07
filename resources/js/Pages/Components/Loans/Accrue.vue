@@ -173,7 +173,6 @@ const props = defineProps({
 });
 let pays = ref();
 let shows = ref("principle");
-console.log(props.activeLoan);
 
 const calculateLoan = () => {
   let periods = 0;

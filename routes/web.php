@@ -13,6 +13,7 @@ use App\Http\Controllers\LoanApplicationController;
 use App\Http\Controllers\LoansController;
 use App\Http\Controllers\LoanTypeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SuperAdmin\OrganizationsController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\ToolsController;
@@ -36,7 +37,17 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/calculator', [ToolsController::class, 'calculator'])->name("calculator");
+Route::group(["middleware" => ["auth"]], function () {
+    Route::get('/calculator', [ToolsController::class, 'calculator'])->name("calculator");
+    Route::get('/pdf/members', [PDFController::class, 'members'])->name("pdf.members");
+    Route::get('/pdf/leads', [PDFController::class, 'leads'])->name("pdf.leads");
+    Route::get('/pdf/deposits', [PDFController::class, 'deposits'])->name("pdf.deposits");
+    Route::get('/pdf/withdrawals', [PDFController::class, 'withdrawals'])->name("pdf.withdrawals");
+    Route::get('/pdf/loans', [PDFController::class, 'loans'])->name("pdf.loans");
+    Route::get('/pdf/loan-applications', [PDFController::class, 'loansApplications'])->name("pdf.loan.applications");
+    Route::get('/pdf/downolad-pdf', [PDFController::class, 'downloadPDF'])->name("pdf.download");
+});
+
 
 // Super Admin
 Route::group(["middleware" => ['auth', "superadmin"]], function () {

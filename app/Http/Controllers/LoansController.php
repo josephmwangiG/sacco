@@ -37,6 +37,12 @@ class LoansController extends Controller
                 "interestType" => $item->interestType,
                 "branch" => $item->branch,
                 "loanOfficer" => $item->loanOfficer,
+                'loan_reference_number' => $item->loan_reference_number,
+                'repayment_period' => $item->repayment_period,
+                'loan_status_id' => $item->loan_status_id,
+                'penalty_value' => $item->penalty_value,
+                'end_date' => $item->end_date,
+
             ]);
 
         $filters = Request()->only('search');

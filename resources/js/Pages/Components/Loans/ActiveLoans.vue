@@ -28,9 +28,10 @@
               </div>
               <div class="col-sm-12 col-md-7">
                 <div class="user-list-files d-flex float-right">
-                  <a class="iq-bg-primary" href="javascript:void();"> Print </a>
                   <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
-                  <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
+                  <a class="iq-bg-primary" :href="route('pdf.loans')">
+                    Print
+                  </a>
                 </div>
               </div>
             </div>
@@ -70,11 +71,41 @@
                     <td>{{ obj.start_date.substring(0, 10) }}</td>
                     <td>
                       <div class="flex align-items-center list-user-action">
-                        <Link
-                          class="iq-bg-primary"
-                          :href="route('activeLoans.edit', obj.id)"
-                          ><i class="ri-pencil-line"></i
-                        ></Link>
+                        <div class="dropdown">
+                          <span
+                            class=""
+                            id="dropdownMenuButton2"
+                            data-toggle="dropdown"
+                          >
+                            <strong><i class="ri-more-fill"></i></strong>
+                          </span>
+                          <div
+                            class="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="dropdownMenuButton2"
+                            style=""
+                          >
+                            <Link
+                              class="dropdown-item"
+                              :href="route('activeLoans.edit', obj.id)"
+                              ><i class="ri-pencil-fill mr-2"></i> Edit</Link
+                            >
+                            <a
+                              class="dropdown-item"
+                              @click="activeLoan = obj"
+                              href="#formModal"
+                              data-toggle="modal"
+                              ><i class="ri-printer-fill mr-2"></i
+                              >Amortization</a
+                            >
+                            <a
+                              class="dropdown-item"
+                              href="#loanStatement"
+                              data-toggle="modal"
+                              ><i class="ri-file-download-fill mr-2"></i
+                              >Statement</a
+                            >
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -112,11 +143,15 @@
       </div>
     </div>
     <Confirm :url="url" />
+    <Amortization :activeLoan="activeLoan" v-if="activeLoan != ''" />
+    <Statement />
   </Main>
 </template>
 <script setup>
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "@inertiajs/inertia-vue3";
+import Amortization from "./Amortization.vue";
+import Statement from "./Statement.vue";
 import { ref, watch } from "vue";
 import debounce from "lodash/debounce";
 
@@ -126,6 +161,7 @@ const props = defineProps({
 });
 
 let search = ref(props.filters.search);
+let activeLoan = ref("");
 let url = ref("");
 
 let action = ref("Create");
