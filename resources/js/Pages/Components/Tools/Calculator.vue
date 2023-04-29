@@ -2,12 +2,18 @@
   <Main>
     <div class="iq-card">
       <div class="iq-card-header d-flex justify-content-between">
-        <div class="iq-header-title">
-          <h4 class="card-title">Loan Calculator</h4>
+        <h4>Loan Calculator</h4>
+        <div class="user-list-files text-right" v-if="viewRates">
+          <a class="iq-bg-primary" href="#"> Email </a>
+          <a class="iq-bg-primary" @click="downoladPDF" href="#">
+            Download PDF
+          </a>
+          <a class="iq-bg-primary" href="#" @click="showCalc"> Calculator </a>
         </div>
       </div>
-      <div class="iq-card-body" v-if="!viewRates">
-        <form @submit.prevent="calculateLoan()">
+      <div class="iq-card-body">
+        <hr class="mt-0 pt-0" />
+        <form @submit.prevent="calculateLoan()" v-if="!viewRates">
           <div class="row">
             <div class="form-group col-md-4">
               <label for="loan">Loan:</label>
@@ -106,19 +112,10 @@
             <button type="submit" class="btn btn-primary">Calculate</button>
           </div>
         </form>
-      </div>
-      <div class="iq-card-body" v-else>
-        <div class="user-list-files text-right">
-          <a class="iq-bg-primary" href="#"> Email </a>
-          <a class="iq-bg-primary" @click="downoladPDF" href="#">
-            Download PDF
-          </a>
-          <a class="iq-bg-primary" href="#" @click="showCalc"> Calculator </a>
-        </div>
-        <div class="table-responsive">
+        <div class="table-responsive" v-else>
           <table
             id="user-list-table"
-            class="table table-striped table-borderless mt-4"
+            class="table table-striped table-borderless"
             role="grid"
             aria-describedby="user-list-page-info"
           >

@@ -30,13 +30,12 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
-        // dd('here');
-
-
         if (Auth::attempt($credentials)) {
             // Authentication passed...
             if (Auth::user()->role_id == 1) {
                 return redirect()->intended('/s-admin/dashboard')->with('success', "Login Successful");
+            } else if (Auth::user()->role_id == 0) {
+                return redirect()->intended('/u/dashboard')->with('success', "Login Successful");
             } else {
                 return redirect()->intended('/')->with('success', "Login Successful");
             }

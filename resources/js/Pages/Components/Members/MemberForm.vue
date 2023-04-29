@@ -8,7 +8,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content modal-div">
+      <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="formModal">{{ action }} Member.</h5>
           <button
@@ -21,7 +21,7 @@
           </button>
         </div>
         <form @submit.prevent="saveForm()">
-          <div class="modal-body">
+          <div class="modal-body modal-div">
             <div class="new-user-info">
               <div class="row">
                 <div class="form-group col-md-4">

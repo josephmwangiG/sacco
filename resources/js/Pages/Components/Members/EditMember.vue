@@ -88,10 +88,13 @@
                   </div>
                   <div class="media-support-info">
                     <h5 class="mb-0">
-                      <a href="#" class="">{{ title }}</a>
+                      <a href="#" class=""
+                        >{{ member.user.first_name }}
+                        {{ member.user.last_name }}</a
+                      >
                     </h5>
                     <p class="mb-0 text-primary">
-                      {{ member.first_name }} {{ member.last_name }}
+                      {{ title }}
                     </p>
                   </div>
                   <div class="iq-card-header-toolbar d-flex align-items-center">

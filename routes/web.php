@@ -17,6 +17,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SuperAdmin\OrganizationsController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WitnessController;
 use Illuminate\Support\Facades\Route;
@@ -108,4 +109,31 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::post('/activeLoans/payments/{loan_id}', [LoansController::class, 'createPayments'])->name('activeLoans.store.payments');
     Route::put('/activeLoans/payments/{p_id}', [LoansController::class, 'updatePayments'])->name('activeLoans.update.payments');
     Route::delete('/activeLoans/payments/{p_id}', [LoansController::class, 'deletePayments'])->name('activeLoans.delete.payments');
+});
+
+
+Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
+    Route::get('/', [DashboardController::class, 'udashboard'])->name('u.index');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('u.dashboard');
+
+    Route::get('/applications', [LoanApplicationController::class, 'uLoanApplications'])->name('u.loanApplications');
+    Route::get('/applications/{loan_id}', [LoanApplicationController::class, 'uEdit'])->name('u.loanApplications.edit');
+    Route::get('/loanApplications/witness/{loan_id}', [LoanApplicationController::class, 'uWitness'])->name('u.loanApplications.witness');
+    Route::get('/loanApplications/guarantors/{loan_id}', [LoanApplicationController::class, 'uGuarantors'])->name('u.loanApplications.guarantors');
+    Route::get('/loanApplications/collaterals/{loan_id}', [LoanApplicationController::class, 'uCollaterals'])->name('u.loanApplications.collaterals');
+    Route::get('/loanApplications/disbursement/{loan_id}', [LoanApplicationController::class, 'uDisbursement'])->name('u.loanApplications.disbursement');
+    Route::get('/loanApplications/confirm/{loan_id}', [LoanApplicationController::class, 'uConfirm'])->name('u.loanApplications.confirm');
+
+    Route::post('/loanApplications', [LoanApplicationController::class, 'store'])->name('u.loanApplications.store');
+    Route::post('/loanApplications/{id}', [LoanApplicationController::class, 'update'])->name('u.loanApplications.update');
+
+    Route::get('/loans', [LoansController::class, 'uLoans'])->name('u.loans');
+    Route::get('/loans/{loan_id}', [LoansController::class, 'uViewLoan'])->name('u.view.loan');
+    Route::get('/activeLoans/payments/{loan_id}', [LoansController::class, 'uPayments'])->name('u.activeLoans.payments');
+    Route::get('/activeLoans/accrue/{loan_id}', [LoansController::class, 'uAccrue'])->name('u.activeLoans.accrue');
+    Route::get('/activeLoans/penalties/{loan_id}', [LoansController::class, 'uPenalties'])->name('u.activeLoans.penalties');
+    Route::get('/activeLoans/collateral/{loan_id}', [LoansController::class, 'uCollateral'])->name('u.activeLoans.collateral');
+    Route::get('/activeLoans/guarantors/{loan_id}', [LoansController::class, 'uGuarantors'])->name('u.activeLoans.guarantors');
+
+    Route::get('/details', [MemberController::class, 'uDetails'])->name('u.details');
 });

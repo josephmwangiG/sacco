@@ -75,12 +75,12 @@ class HandleInertiaRequests extends Middleware
                 $members = Member::where('organization_id', $user->organization_id)->get()->map(fn ($item) => [
                     'id' => $item->id,
                     'account' => $item->account,
-                    'first_name' => $item->first_name,
-                    'last_name' => $item->last_name,
+                    'first_name' => $item->user->first_name,
+                    'last_name' => $item->user->last_name,
                     'id_number' => $item->id_number,
-                    'residential_address' => $item->residential_address,
-                    'email' => $item->email,
-                    'phone' => $item->phone,
+                    'residential_address' => $item->user->residential_address,
+                    'email' => $item->user->email,
+                    'phone' => $item->user->phone,
                     'date_became_member' => $item->date_became_member
 
                 ]);

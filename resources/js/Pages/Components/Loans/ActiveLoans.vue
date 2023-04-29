@@ -56,9 +56,7 @@
                 </thead>
                 <tbody>
                   <tr v-for="(obj, index) in activeLoans.data" :key="index">
-                    <td>
-                      {{ obj.member.first_name }} {{ obj.member.last_name }}
-                    </td>
+                    <td>{{ obj.user.first_name }} {{ obj.user.last_name }}</td>
                     <td>{{ obj.loanType.name }}</td>
                     <td>{{ obj.interest_rate }}</td>
                     <td>{{ obj.amount_approved }}</td>
@@ -100,6 +98,7 @@
                             <a
                               class="dropdown-item"
                               href="#loanStatement"
+                              @click="activeLoan = obj"
                               data-toggle="modal"
                               ><i class="ri-file-download-fill mr-2"></i
                               >Statement</a
@@ -144,7 +143,7 @@
     </div>
     <Confirm :url="url" />
     <Amortization :activeLoan="activeLoan" v-if="activeLoan != ''" />
-    <Statement />
+    <Statement :activeLoan="activeLoan" v-if="activeLoan != ''" />
   </Main>
 </template>
 <script setup>

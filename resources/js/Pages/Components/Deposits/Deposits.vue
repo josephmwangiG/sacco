@@ -66,7 +66,8 @@
                   <tr v-for="(obj, index) in deposits.data" :key="index">
                     <td>{{ obj.receipt_number }}</td>
                     <td>
-                      {{ obj.member.first_name }} {{ obj.member.last_name }}
+                      {{ obj.member.user.first_name }}
+                      {{ obj.member.user.last_name }}
                     </td>
                     <td>{{ obj.payment_date }}</td>
                     <td>{{ obj.method_id }}</td>

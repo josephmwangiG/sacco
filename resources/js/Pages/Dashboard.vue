@@ -1,6 +1,104 @@
 <template>
   <Main>
     <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div
+          class="iq-card iq-card-block iq-card-stretch iq-card-height"
+          style="border-radius: 0px"
+        >
+          <div class="iq-card-body">
+            <div
+              class="d-flex align-items-center justify-content-between text-right"
+            >
+              <div class="icon iq-icon-box rounded-circle bg-success">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h5 class="mb-0">Members</h5>
+                <span
+                  class="h5 text-success mb-0 counter d-inline-block w-100"
+                  >{{ members.length }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div
+          class="iq-card iq-card-block iq-card-stretch iq-card-height"
+          style="border-radius: 0px"
+        >
+          <div class="iq-card-body iq-box-relative">
+            <div
+              class="d-flex align-items-center justify-content-between text-right"
+            >
+              <div class="icon iq-icon-box rounded-circle bg-warning">
+                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h5 class="mb-0">Loans</h5>
+                <span
+                  class="h5 text-warning mb-0 counter d-inline-block w-100"
+                  >{{ loans_total.toLocaleString("en-US") }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div
+          class="iq-card iq-card-block iq-card-stretch iq-card-height"
+          style="border-radius: 0px"
+        >
+          <div class="iq-card-body iq-box-relative">
+            <div
+              class="d-flex align-items-center justify-content-between text-right"
+            >
+              <div class="icon iq-icon-box rounded-circle bg-danger">
+                <i class="fa fa-money" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h5 class="mb-0">Deposits</h5>
+                <span class="h5 text-info mb-0 counter d-inline-block w-100">{{
+                  deposits_total.toLocaleString("en-US")
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3">
+        <div
+          class="iq-card iq-card-block iq-card-stretch iq-card-height"
+          style="border-radius: 0px"
+        >
+          <div class="iq-card-body iq-box-relative">
+            <div
+              class="d-flex align-items-center justify-content-between text-right"
+            >
+              <div class="icon iq-icon-box rounded-circle bg-secondary">
+                <i class="las la-chalkboard-teacher" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h5 class="mb-0">Withdrawals</h5>
+                <span
+                  class="h5 text-secondary mb-0 counter d-inline-block w-100"
+                  >{{ withdrawals_total.toLocaleString("en-US") }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+          <div class="iq-card-body">
+            <statistics />
+          </div>
+        </div>
+      </div>
       <div class="col-sm-6 col-md-6 col-lg-4">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height-half">
           <div class="iq-card-body p-0">
@@ -29,7 +127,7 @@
                 <div class="ml-2">
                   <h5 class="mb-1">New Leads</h5>
                   <span
-                    class="h4 text-dark mb-0 counter d-inline-block w-100"
+                    class="h5 text-dark mb-0 counter d-inline-block w-100"
                     >{{ leads.length }}</span
                   >
                 </div>
@@ -80,7 +178,7 @@
                 <div class="ml-2">
                   <h5 class="mb-1">Members</h5>
                   <span
-                    class="h4 text-dark mb-0 counter d-inline-block w-100"
+                    class="h5 text-dark mb-0 counter d-inline-block w-100"
                     >{{ members.length }}</span
                   >
                 </div>
@@ -146,125 +244,6 @@
           </div>
           <div class="iq-card-body">
             <div id="progress-chart-4"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-          <div class="iq-card-body">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle dark-icon bg-primary">
-                <i class="ri-home-heart-line"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Branches</h5>
-                <span
-                  class="h4 text-primary mb-0 counter d-inline-block w-100"
-                  >{{ branches.length }}</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-          <div class="iq-card-body">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle bg-success">
-                <i class="las la-user-friends" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Members</h5>
-                <span
-                  class="h4 text-success mb-0 counter d-inline-block w-100"
-                  >{{ members.length }}</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-          <div class="iq-card-body">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle bg-danger">
-                <i class="las la-user-clock"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Leads</h5>
-                <span
-                  class="h4 text-danger mb-0 counter d-inline-block w-100"
-                  >{{ leads.length }}</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-          <div class="iq-card-body iq-box-relative">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle bg-warning">
-                <i class="fa fa-handshake-o" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Active Loans</h5>
-                <span
-                  class="h4 text-warning mb-0 counter d-inline-block w-100"
-                  >{{ loans_total.toLocaleString("en-US") }}</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-          <div class="iq-card-body iq-box-relative">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle bg-info">
-                <i class="ri-building-line" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Members Deposit</h5>
-                <span class="h4 text-info mb-0 counter d-inline-block w-100">{{
-                  deposits_total.toLocaleString("en-US")
-                }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-          <div class="iq-card-body iq-box-relative">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle bg-secondary">
-                <i class="las la-chalkboard-teacher" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Withdrawals</h5>
-                <span
-                  class="h4 text-secondary mb-0 counter d-inline-block w-100"
-                  >{{ withdrawals_total.toLocaleString("en-US") }}</span
-                >
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -352,6 +331,7 @@
   </Main>
 </template>
 <script setup>
+import Statistics from "./Statistics.vue";
 const props = defineProps({
   applications: Object,
   branches: Object,

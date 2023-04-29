@@ -24,8 +24,9 @@
       </div>
     </div>
     <div id="sidebar-scrollbar">
-      <AdminSidebar v-if="user.role_id != 1" />
+      <AdminSidebar v-if="user.role_id != 1 && user.role_id != 0" />
       <SuperAdminSidebar v-if="user.role_id == 1" />
+      <USidebar v-if="user.role_id == 0" />
       <div class="p-3"></div>
     </div>
   </div>
@@ -33,6 +34,7 @@
 <script setup>
 import { usePage } from "@inertiajs/inertia-vue3";
 import AdminSidebar from "./AdminSidebar.vue";
+import USidebar from "./USidebar.vue";
 import SuperAdminSidebar from "./SuperAdminSidebar.vue";
 const user = usePage().props.value.user;
 </script>

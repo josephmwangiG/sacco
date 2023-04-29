@@ -28,6 +28,9 @@ class LoansController extends Controller
                 "loanType" => $item->loanType,
                 "member_id" => $item->member_id,
                 "member" => $item->member,
+                "user" => $item->member->user,
+                "account" => $item->member->account,
+                "payment_sum" => $item->payments->sum('amount'),
                 "start_date" => $item->start_date,
                 "service_fee" => $item->service_fee,
                 "amount_approved" => $item->amount_approved,
@@ -145,7 +148,7 @@ class LoansController extends Controller
     {
         $activeLoan = Loan::find($id);
         $guarantors = Guarantor::where("loan_application_id", $activeLoan->loan_application_id)
-            ->with("Member.Account")
+            ->with("Member.Account", "Member.User")
             ->get();
         return inertia('Components/Loans/Guarantors', compact("id", "guarantors", "activeLoan"));
     }
@@ -155,9 +158,9 @@ class LoansController extends Controller
     {
         $activeLoan = Loan::find($id);
         $payments = LoanPayment::where("loan_id", $activeLoan->id)
-            ->with("Member.Account", "loan", "paymentMethod")
+            ->with("Member.Account", "Member.User", "loan", "paymentMethod")
             ->get();
-        $member = Member::where("id", $activeLoan->member_id)->with("account")->first();
+        $member = Member::where("id", $activeLoan->member_id)->with("account", "user")->first();
         return inertia('Components/Loans/Payments', compact("id", "payments", "activeLoan", "member"));
     }
 
@@ -279,5 +282,104 @@ class LoansController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // Users 
+
+    public function uLoans()
+    {
+
+        $activeLoans = Loan::where("member_id", Auth::user()->member->id)
+            ->latest()->paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "loan_type_id" => $item->loan_type_id,
+                "loanType" => $item->loanType,
+                "member_id" => $item->member_id,
+                "member" => $item->member,
+                "user" => $item->member->user,
+                "account" => $item->member->account,
+                "payment_sum" => $item->payments->sum('amount'),
+                "start_date" => $item->start_date,
+                "service_fee" => $item->service_fee,
+                "amount_approved" => $item->amount_approved,
+                "interest_rate" => $item->interest_rate,
+                "application_date" => $item->application_date,
+                "paymentFrequency" => $item->paymentFrequency,
+                "interestType" => $item->interestType,
+                "branch" => $item->branch,
+                "loanOfficer" => $item->loanOfficer,
+                'loan_reference_number' => $item->loan_reference_number,
+                'repayment_period' => $item->repayment_period,
+                'loan_status_id' => $item->loan_status_id,
+                'penalty_value' => $item->penalty_value,
+                'end_date' => $item->end_date,
+            ]);
+
+        $guarantors = Guarantor::where("member_id", Auth::user()->member->id)
+            ->with("LoanApplication.Loan", "LoanApplication.Member.User", "LoanApplication.Member", "LoanApplication.loanType")
+            ->get();
+
+        $filters = Request()->only('search');
+
+        return inertia("User/Loans", compact("activeLoans", "filters", "guarantors"));
+    }
+
+    public function uViewLoan($id)
+    {
+        $activeLoan = Loan::where("id", $id)->with("Member.User")->first();
+
+        $guarantors = Guarantor::where("member_id", Auth::user()->member->id)
+            ->with("LoanApplication.Loan", "LoanApplication.Member.User", "LoanApplication.Member", "LoanApplication.loanType")
+            ->get();
+
+        return inertia("User/EditForm", compact("activeLoan"));
+    }
+
+
+    public function uCollateral($id)
+    {
+        $activeLoan = Loan::find($id);
+        $collaterals = AssetLoanApplication::where("loan_application_id", $activeLoan->loan_application_id)
+            ->with("asset")
+            ->get();
+
+        $member = Member::find($activeLoan->member_id);
+        $assets = $member->assets;
+        return inertia('User/Collaterals', compact("id", "collaterals", "activeLoan", "assets"));
+    }
+
+
+    public function uGuarantors($id)
+    {
+        $activeLoan = Loan::find($id);
+        $guarantors = Guarantor::where("loan_application_id", $activeLoan->loan_application_id)
+            ->with("Member.Account", "Member.User")
+            ->get();
+        return inertia('User/Guarantors', compact("id", "guarantors", "activeLoan"));
+    }
+
+
+    public function uPayments($id)
+    {
+        $activeLoan = Loan::find($id);
+        $payments = LoanPayment::where("loan_id", $activeLoan->id)
+            ->with("Member.Account", "Member.User", "loan", "paymentMethod")
+            ->get();
+        $member = Member::where("id", $activeLoan->member_id)->with("account", "user")->first();
+        return inertia('User/Payments', compact("id", "payments", "activeLoan", "member"));
+    }
+
+    public function uAccrue($id)
+    {
+        $activeLoan = Loan::where("id", $id)->with("paymentFrequency", "payments", "interestType")->first();
+        $payments_sum = $activeLoan->payments->sum('amount');
+        $date_diff = date_diff(date_create($activeLoan->start_date), date_create(date("Y-m-d")));
+
+        $years = $date_diff->format("%r%y%") * 12;
+        $months = $date_diff->format("%r%m%") + $years;
+
+        return inertia('User/Accrue', compact("id", "activeLoan", "payments_sum", "months"));
     }
 }

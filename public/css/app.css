@@ -23,6 +23,6 @@ table tr th {
 }
 
 .modal-div {
-    max-height: 90vh;
+    max-height: 74vh !important;
     overflow-y: auto;
 }

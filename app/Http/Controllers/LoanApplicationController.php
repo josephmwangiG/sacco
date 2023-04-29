@@ -30,6 +30,7 @@ class LoanApplicationController extends Controller
                 "loanType" => $item->loanType,
                 "member_id" => $item->member_id,
                 "member" => $item->member,
+                "user" => $item->member->user,
                 "service_fee" => $item->service_fee,
                 "amount_applied" => $item->amount_applied,
                 "interest_rate" => $item->interest_rate,
@@ -38,8 +39,6 @@ class LoanApplicationController extends Controller
             ]);
 
         $filters = Request()->only('search');
-
-
 
         return inertia("Components/LoanApplications/LoanApplications", compact("loanApplications", "filters"));
     }
@@ -86,8 +85,7 @@ class LoanApplicationController extends Controller
         $data['repayment_period'] = $loan->repayment_period;
         $data['payment_frequency_id'] = $loan->payment_frequency_id;
         $data['penalty_type_id'] = $loan->penalty_type_id;
-        $data['loan_officer_id'] = Auth::user()->id;
-        $data['loan_officer_id'] = Auth::user()->id;
+        $data['loan_officer_id'] = Auth::user()->user_type == "member" ? 0 : Auth::user()->id;
         $data['disburse_method_id'] = 0;
 
         LoanApplication::create($data);
@@ -205,7 +203,7 @@ class LoanApplicationController extends Controller
     {
         $loanApplication = LoanApplication::where("id", $id)->firstOrFail();
         $guarantors = Guarantor::where("loan_application_id", $loanApplication->id)
-            ->with('Member.Account')->get();
+            ->with('Member.Account', "Member.User")->get();
         return inertia('Components/LoanApplications/Guarantors', compact("id", "guarantors", "loanApplication"));
     }
 
@@ -377,5 +375,81 @@ class LoanApplicationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // User 
+
+    public function uLoanApplications()
+    {
+        $applications = LoanApplication::where("member_id", Auth::user()->member->id)
+            // ->where("approved_on", null)
+            ->latest()->paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "loan_type_id" => $item->loan_type_id,
+                "loanType" => $item->loanType,
+                "member_id" => $item->member_id,
+                "member" => $item->member,
+                "paymentFrequency" => $item->paymentFrequency,
+                "user" => $item->member->user,
+                "service_fee" => $item->service_fee,
+                "amount_applied" => $item->amount_applied,
+                "interest_rate" => $item->interest_rate,
+                "application_date" => $item->application_date,
+                "guarantors" => $item->guarantors,
+            ]);
+
+        $member = Member::where("id", Auth::user()->member->id)->with("user", "account")->first();
+        $filters = Request()->only('search');
+
+        return inertia("User/Applications/Applications", compact("applications", "filters", "member"));
+    }
+
+    public function uEdit($id)
+    {
+        $loanApplication = LoanApplication::where("id", $id)->with("guarantors")->first();
+        return inertia("User/Applications/EditForm", compact("loanApplication"));
+    }
+
+
+    public function uWitness($id)
+    {
+        $loanApplication = LoanApplication::find($id);
+
+        return inertia("User/Applications/WitnessForm", compact('loanApplication'));
+    }
+
+    public function uGuarantors($id)
+    {
+        $loanApplication = LoanApplication::where("id", $id)->firstOrFail();
+        $guarantors = Guarantor::where("loan_application_id", $loanApplication->id)
+            ->with('Member.Account', "Member.User")->get();
+        return inertia('User/Applications/Guarantors', compact("id", "guarantors", "loanApplication"));
+    }
+
+    public function uCollaterals($id)
+    {
+        $loanApplication = LoanApplication::where("id", $id)->firstOrFail();
+        $member = Member::find($loanApplication->member_id);
+        $collaterals = AssetLoanApplication::where("loan_application_id", $loanApplication->id)
+            ->with("asset")->get();
+        $assets = $member->assets;
+        return inertia('User/Applications/Collaterals', compact("id", "collaterals", "assets", "loanApplication"));
+    }
+
+
+    public function uDisbursement($id)
+    {
+        $loanApplication = LoanApplication::find($id);
+
+        return inertia("User/Applications/DisburseForm", compact('loanApplication'));
+    }
+
+
+    public function uConfirm($id)
+    {
+        $loanApplication = LoanApplication::find($id);
+        return inertia("User/Applications/ConfirmForm", compact('loanApplication'));
     }
 }

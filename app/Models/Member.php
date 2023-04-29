@@ -41,29 +41,18 @@ class Member extends Model
      * @var array
      */
     protected $fillable = [
-        'organization_id',
+        'user_id',
         'branch_id',
-        'first_name',
-        'middle_name',
-        'last_name',
+        'organization_id',
         'date_of_birth',
         'date_became_member',
         'nationality',
-        'county',
-        'city',
         'id_number',
         'passport_number',
-        'phone',
-        'email',
-        'postal_address',
-        'residential_address',
         'status_id',
-
         'passport_photo',
         'extra_images',
-
         'membership_form',
-
         'created_by',
         'updated_by',
         'deleted_by'
@@ -165,6 +154,11 @@ class Member extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function account()
     {
         return $this->hasOne(Account::class, 'account_name');

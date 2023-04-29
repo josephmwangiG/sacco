@@ -71,9 +71,7 @@
                     v-for="(obj, index) in loanApplications.data"
                     :key="index"
                   >
-                    <td>
-                      {{ obj.member.first_name }} {{ obj.member.last_name }}
-                    </td>
+                    <td>{{ obj.user.first_name }} {{ obj.user.last_name }}</td>
                     <td>{{ obj.loanType.name }}</td>
                     <td>{{ obj.interest_rate }}</td>
                     <td>{{ obj.amount_applied }}</td>

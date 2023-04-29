@@ -8,8 +8,10 @@ use App\Models\Branch;
 use App\Models\Loan;
 use App\Models\LoanApplication;
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class MemberController extends Controller
 {
@@ -28,21 +30,22 @@ class MemberController extends Controller
             ->latest()
             ->paginate(10)->through(fn ($item) => [
                 'id' => $item->id,
-                'branch_id' => $item->branch_id,
+                'branch_id' => $item->user->branch_id,
                 'account' => $item->account,
-                'branch' => $item->branch,
-                'first_name' => $item->first_name,
-                'last_name' => $item->last_name,
+                'user' => $item->user,
+                'branch' => $item->user->branch,
+                'first_name' => $item->user->first_name,
+                'last_name' => $item->user->last_name,
                 'date_of_birth' => $item->date_of_birth,
                 'nationality' => $item->nationality,
-                'county' => $item->county,
-                'city' => $item->city,
+                'county' => $item->user->county,
+                'city' => $item->user->city,
                 'id_number' => $item->id_number,
                 'passport_number' => $item->passport_number,
-                'phone' => $item->phone,
-                'email' => $item->email,
-                'postal_address' => $item->postal_address,
-                'residential_address' => $item->residential_address,
+                'phone' => $item->user->phone,
+                'email' => $item->user->email,
+                'postal_address' => $item->user->postal_address,
+                'residential_address' => $item->user->residential_address,
                 'status_id' => $item->status_id,
                 'passport_photo' => $item->passport_photo,
                 'extra_images' => $item->extra_images,
@@ -82,23 +85,26 @@ class MemberController extends Controller
             'city' => [""],
             'id_number' => ["required", "unique:members"],
             'passport_number' => [""],
-            'phone' => ["required", "unique:members"],
+            'phone' => ["required", "unique:users"],
             'email' => ["required", "unique:users"],
             'postal_address' => ["required"],
             'residential_address' => ["required"],
         ]);
 
-
         $user = Auth::user();
         $branch_id = $user->branch_id;
 
         $accountType = AccountType::where("name", "MEMBER DEPOSIT")->firstOrFail();
-        $branch = Branch::where("id", $branch_id)->firstOrFail();
 
         $data["branch_id"] = $branch_id;
         $data["organization_id"] = $user->organization_id;
+        $data["password"] = Hash::make("password");
+
+        $new_user = User::create($data);
+        $data["user_id"] = $new_user->id;
 
         $member = Member::create($data);
+
         Account::create([
             'branch_id' => $branch_id,
             'organization_id' => $user->organization_id,
@@ -108,6 +114,8 @@ class MemberController extends Controller
             'account_type_id' => $accountType->id,
             'created_by' => $user->id
         ]);
+
+
         return back()->with('success', "Member Added Successfully");
     }
 
@@ -129,7 +137,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        $member = Member::find($id);
+        $member = Member::where("id", $id)->with("user")->first();
         return inertia("Components/Members/Details", compact('member'));
     }
 
@@ -157,7 +165,7 @@ class MemberController extends Controller
             'postal_address' => [""],
             'residential_address' => [""],
         ]);
-        $member = Member::find($id);
+        $member = Member::where("id", $id)->with("user")->first();
         $member->update($data);
 
         return  back()->with('success', "Member Details eleted Successfully");
@@ -174,7 +182,7 @@ class MemberController extends Controller
 
     public function loans($id)
     {
-        $member = Member::find($id);
+        $member = Member::where("id", $id)->with("user")->first();
         $loans = Loan::where("member_id", $member->id)->get();
         return inertia("Components/Members/Loans", compact('member', "loans"));
     }
@@ -182,7 +190,7 @@ class MemberController extends Controller
 
     public function applications($id)
     {
-        $member = Member::find($id);
+        $member = Member::where("id", $id)->with("user")->first();
         $applications = LoanApplication::where("member_id", $member->id)
             ->with("LoanType")
             ->get();
@@ -193,7 +201,7 @@ class MemberController extends Controller
 
     public function assets($id)
     {
-        $member = Member::find($id);
+        $member = Member::where("id", $id)->with("user")->first();
         $assets = $member->assets;
         return inertia("Components/Members/Assets", compact('member', "assets"));
     }
@@ -201,7 +209,7 @@ class MemberController extends Controller
 
     public function deposits($id)
     {
-        $member = Member::where('id', $id)->with('account', 'payments')->first();
+        $member = Member::where('id', $id)->with('account', 'payments', "user")->first();
         $deposits = $member->payments;
         return inertia("Components/Members/Deposits", compact('member', "deposits"));
     }
@@ -210,7 +218,7 @@ class MemberController extends Controller
 
     public function withdrawals($id)
     {
-        $member = Member::where('id', $id)->with('account', 'withdrawals')->first();
+        $member = Member::where('id', $id)->with('account', 'withdrawals', "user")->first();
         $withdrawals = $member->withdrawals;
         return inertia("Components/Members/Withdrawals", compact('member', "withdrawals"));
     }
@@ -218,11 +226,21 @@ class MemberController extends Controller
 
     public function destroy($id)
     {
-        $member = Member::find($id);
+        $member = Member::where("id", $id)->with("user")->first();
         $accounts = Account::where("account_name", $member->id)->first();
         $accounts->delete();
         $member->delete();
 
         return back()->with('success', "Member Details eleted Successfully");
+    }
+
+    // User
+
+    public function uDetails()
+    {
+        $member = Member::where("id", Auth::user()->member->id)
+            ->with("user")
+            ->first();
+        return inertia("User/Details", compact('member'));
     }
 }

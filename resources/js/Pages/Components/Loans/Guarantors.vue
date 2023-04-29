@@ -33,11 +33,13 @@
         </thead>
         <tbody>
           <tr v-for="(obj, index) in guarantors" :key="index">
-            <td>{{ obj.member.first_name }} {{ obj.member.last_name }}</td>
+            <td>
+              {{ obj.member.user.first_name }} {{ obj.member.user.last_name }}
+            </td>
             <td>{{ obj.member.account.account_number }}</td>
             <td>{{ obj.guarantee_amount }}</td>
-            <td>{{ obj.member.residential_address }}</td>
-            <td>{{ obj.member.phone }}</td>
+            <td>{{ obj.member.user.residential_address }}</td>
+            <td>{{ obj.member.user.phone }}</td>
             <td>
               <span class="badge dark-icon-light iq-bg-primary">Active</span>
             </td>

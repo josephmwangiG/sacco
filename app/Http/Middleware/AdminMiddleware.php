@@ -19,6 +19,8 @@ class AdminMiddleware
     {
         if (Auth::check() && Auth::user()->role_id == 1) {
             return redirect('/s-admin/dashboard');
+        } else if (Auth::check() && Auth::user()->role_id == 0) {
+            return redirect('/u');
         }
         return $next($request);
     }

@@ -38,6 +38,7 @@ class WithdrawalController extends Controller
                 'bank_branch' => $item->bank_branch,
                 'paymentMethod' => $item->paymentMethod,
                 'member' => $item->member,
+                'user' => $item->member->user,
                 'account' => $item->member->account,
                 'branch' => $item->branch,
             ]);

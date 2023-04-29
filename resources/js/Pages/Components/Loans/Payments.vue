@@ -43,7 +43,9 @@
         <tbody>
           <tr v-for="(obj, index) in payments" :key="index">
             <td>{{ obj.loan.loan_reference_number }}</td>
-            <td>{{ obj.member.first_name }} {{ obj.member.last_name }}</td>
+            <td>
+              {{ obj.member.user.first_name }} {{ obj.member.user.last_name }}
+            </td>
             <td>{{ obj.member.account.account_number }}</td>
             <td>{{ obj.member.phone }}</td>
             <td>{{ obj.method_id }}</td>

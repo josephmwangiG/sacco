@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function member()
+    {
+        return view("user");
+    }
     public function index()
     {
         return [User::with("role", "branch")->latest()->get(), Permission::all(), Role::all()];

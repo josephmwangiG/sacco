@@ -170,4 +170,10 @@ class User extends Model implements
     {
         return $this->hasMany(LoanApplication::class);
     }
+
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
+    }
 }

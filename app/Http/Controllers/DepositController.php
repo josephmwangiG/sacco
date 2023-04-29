@@ -19,7 +19,7 @@ class DepositController extends Controller
      */
     public function index()
     {
-        $deposits = Payment::with("Member.Account", "paymentMethod")->latest()->paginate(10);
+        $deposits = Payment::with("Member.Account", "paymentMethod", "Member.User")->latest()->paginate(10);
         $filters = array("filters" => Request()->only('search'));
         return inertia("Components/Deposits/Deposits", compact("deposits", "filters"));
     }

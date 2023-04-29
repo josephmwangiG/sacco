@@ -9,10 +9,6 @@
           ><i class="ri-home-3-line"></i><span>Dashboard</span></Link
         >
       </li>
-      <li class="iq-menu-title">
-        <i class="ri-subtract-line"></i><span>Users</span>
-      </li>
-
       <li>
         <Link
           :href="route('branches.index')"
@@ -21,6 +17,10 @@
           ><i class="ri-database-line"></i><span>Branches</span></Link
         >
       </li>
+      <li class="iq-menu-title">
+        <i class="ri-subtract-line"></i><span>CRM</span>
+      </li>
+
       <li>
         <Link
           :href="route('members.index')"
@@ -38,7 +38,38 @@
         >
       </li>
       <li class="iq-menu-title">
-        <i class="ri-subtract-line"></i><span>Transactions</span>
+        <i class="ri-subtract-line"></i><span>Loans & Savings</span>
+      </li>
+      <li>
+        <a
+          href="#icons"
+          class="iq-waves-effect collapsed"
+          data-toggle="collapse"
+          aria-expanded="false"
+          ><i class="ri-list-check"></i><span>Loans</span
+          ><i class="ri-arrow-right-s-line iq-arrow-right"></i
+        ></a>
+        <ul
+          id="icons"
+          class="iq-submenu collapse"
+          data-parent="#iq-sidebar-toggle"
+        >
+          <li>
+            <Link :href="route('calculator')" preserve-state
+              ><i class="ri-stack-line"></i>Loans Calculator</Link
+            >
+          </li>
+          <li>
+            <Link :href="route('activeLoans.index')" preserve-state
+              ><i class="ri-stack-line"></i>Active Loans</Link
+            >
+          </li>
+          <li>
+            <Link :href="route('loanApplications.index')" preserve-state
+              ><i class="ri-checkbox-line"></i>Applications</Link
+            >
+          </li>
+        </ul>
       </li>
       <li>
         <Link
@@ -56,39 +87,6 @@
           aria-expanded="false"
           ><i class="ri-bar-chart-line"></i><span>Withdrawals</span></Link
         >
-      </li>
-
-      <li>
-        <Link :href="route('loanTypes.index')" preserve-state
-          ><i class="ri-profile-line"></i>Loan Types</Link
-        >
-      </li>
-
-      <li>
-        <a
-          href="#icons"
-          class="iq-waves-effect collapsed"
-          data-toggle="collapse"
-          aria-expanded="false"
-          ><i class="ri-list-check"></i><span>Loans</span
-          ><i class="ri-arrow-right-s-line iq-arrow-right"></i
-        ></a>
-        <ul
-          id="icons"
-          class="iq-submenu collapse"
-          data-parent="#iq-sidebar-toggle"
-        >
-          <li>
-            <Link :href="route('activeLoans.index')" preserve-state
-              ><i class="ri-stack-line"></i>Active Loans</Link
-            >
-          </li>
-          <li>
-            <Link :href="route('loanApplications.index')" preserve-state
-              ><i class="ri-checkbox-line"></i>Applications</Link
-            >
-          </li>
-        </ul>
       </li>
 
       <!-- <li>
@@ -129,6 +127,12 @@
           <li>
             <Link :href="route('witnessTypes.index')"
               ><i class="ri-archive-line"></i>Witness Types</Link
+            >
+          </li>
+
+          <li>
+            <Link :href="route('loanTypes.index')" preserve-state
+              ><i class="ri-profile-line"></i>Loan Types</Link
             >
           </li>
 

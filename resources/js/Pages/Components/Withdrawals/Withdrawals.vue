@@ -65,9 +65,7 @@
                 <tbody>
                   <tr v-for="(obj, index) in withdrawals.data" :key="index">
                     <td>{{ obj.withdrawal_number }}</td>
-                    <td>
-                      {{ obj.member.first_name }} {{ obj.member.last_name }}
-                    </td>
+                    <td>{{ obj.user.first_name }} {{ obj.user.last_name }}</td>
                     <td>{{ obj.withdrawal_date }}</td>
                     <td>{{ obj.method_id }}</td>
                     <td>{{ obj.amount }}</td>

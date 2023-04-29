@@ -34,4 +34,21 @@ class DashboardController extends Controller
 
         return inertia('Dashboard', compact("branches", 'members', "leads", "loans", "loans_total", "applications", "payments", "withdrawals", "deposits", "withdrawals_total", "deposits_total"));
     }
+
+    public function udashboard()
+    {
+        $loans = Loan::where("member_id", Auth::user()->member->id)->get();
+        $loans_total = Loan::where("member_id", Auth::user()->member->id)->sum("amount_approved");
+        $applications = LoanApplication::where("member_id", Auth::user()->member->id)
+            ->with("member", "loanType")
+            ->get();
+        $deposits = Payment::where("member_id", Auth::user()->member->id)->get();
+        $deposits_total = Payment::where("member_id", Auth::user()->member->id)->sum("amount");
+        $withdrawals = Withdrawal::where("member_id", Auth::user()->member->id)->get();
+        $withdrawals_total = Withdrawal::where("member_id", Auth::user()->member->id)->sum("amount");
+        $payments = LoanPayment::where("member_id", Auth::user()->member->id)->get();
+
+
+        return inertia('User/Dashboard', compact("loans", "loans_total", "applications", "payments", "withdrawals", "deposits", "withdrawals_total", "deposits_total"));
+    }
 }

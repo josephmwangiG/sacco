@@ -8,7 +8,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content modal-div">
+      <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="formModal">{{ action }} Loan Payment.</h5>
           <button
@@ -22,7 +22,7 @@
         </div>
 
         <form @submit.prevent="saveForm()">
-          <div class="modal-body">
+          <div class="modal-body modal-div">
             <div class="new-user-info">
               <div class="row">
                 <div
@@ -60,7 +60,9 @@
                     required
                     :disabled="hasMember ? false : true"
                     :value="
-                      memberDetails.first_name + ' ' + memberDetails.last_name
+                      memberDetails.user.first_name +
+                      ' ' +
+                      memberDetails.user.last_name
                     "
                     id="member_names"
                     placeholder="Member"
