@@ -21,20 +21,20 @@
       <table class="table mb-0 table-borderless">
         <thead>
           <tr>
-            <th scope="col">Asset No.</th>
-            <th scope="col">Title</th>
-            <th scope="col">Value</th>
-            <th scope="col">Val Date</th>
+            <th scope="col">Loan No.</th>
+            <th scope="col">Loan Type</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Amount</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(obj, index) in loans" :key="index">
-            <td>{{ obj.asset_number }}</td>
-            <td>{{ obj.title }}</td>
-            <td>{{ obj.valuation_amount }}</td>
-            <td>{{ obj.valuation_date }}</td>
+            <td>{{ obj.loan_reference_number }}</td>
+            <td>{{ obj.loan_type.name }}</td>
+            <td>{{ obj.start_date }}</td>
+            <td>{{ obj.amount_approved }}</td>
             <td>
               <div class="badge badge-pill badge-success">Active</div>
             </td>

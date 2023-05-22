@@ -139,27 +139,27 @@
           data-parent="#iq-sidebar-toggle"
         >
           <li>
-            <Link :href="route('activeLoans.index')" preserve-state
+            <Link :href="route('u.member.statements')" preserve-state
               ><i class="ri-stack-line"></i>Member Statements</Link
             >
           </li>
           <li>
-            <Link :href="route('loanApplications.index')" preserve-state
+            <Link :href="route('u.savings.statements')" preserve-state
               ><i class="ri-checkbox-line"></i>Saving Statements</Link
             >
           </li>
           <li>
-            <Link :href="route('loanApplications.index')" preserve-state
+            <Link :href="route('u.loans.statements')" preserve-state
               ><i class="ri-checkbox-line"></i>Loans Statements</Link
             >
           </li>
           <li>
-            <Link :href="route('loanApplications.index')" preserve-state
+            <Link :href="route('u.guarantors.statements')" preserve-state
               ><i class="ri-checkbox-line"></i>Loan Guarantors</Link
             >
           </li>
           <li>
-            <Link :href="route('loanApplications.index')" preserve-state
+            <Link :href="route('u.guarantees.statements')" preserve-state
               ><i class="ri-checkbox-line"></i>Loans Guaranteed</Link
             >
           </li>

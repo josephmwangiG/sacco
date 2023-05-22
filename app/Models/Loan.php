@@ -290,6 +290,12 @@ class Loan extends Model
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class, 'invoice_number');
+        return $this->hasMany(LoanPayment::class, 'loan_id');
+    }
+
+
+    public function statements()
+    {
+        return $this->hasMany(LoanStatement::class, 'loan_id');
     }
 }

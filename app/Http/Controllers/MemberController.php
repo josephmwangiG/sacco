@@ -183,7 +183,9 @@ class MemberController extends Controller
     public function loans($id)
     {
         $member = Member::where("id", $id)->with("user")->first();
-        $loans = Loan::where("member_id", $member->id)->get();
+        $loans = Loan::where("member_id", $member->id)
+            ->with("loanType")
+            ->get();
         return inertia("Components/Members/Loans", compact('member', "loans"));
     }
 

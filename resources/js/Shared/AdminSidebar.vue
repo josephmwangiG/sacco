@@ -17,10 +17,6 @@
           ><i class="ri-database-line"></i><span>Branches</span></Link
         >
       </li>
-      <li class="iq-menu-title">
-        <i class="ri-subtract-line"></i><span>CRM</span>
-      </li>
-
       <li>
         <Link
           :href="route('members.index')"

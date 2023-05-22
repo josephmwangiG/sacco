@@ -11,9 +11,11 @@ use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\LeadsController;
 use App\Http\Controllers\LoanApplicationController;
 use App\Http\Controllers\LoansController;
+use App\Http\Controllers\LoanStatementController;
 use App\Http\Controllers\LoanTypeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\StatementsController;
 use App\Http\Controllers\SuperAdmin\OrganizationsController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\ToolsController;
@@ -134,6 +136,22 @@ Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
     Route::get('/activeLoans/penalties/{loan_id}', [LoansController::class, 'uPenalties'])->name('u.activeLoans.penalties');
     Route::get('/activeLoans/collateral/{loan_id}', [LoansController::class, 'uCollateral'])->name('u.activeLoans.collateral');
     Route::get('/activeLoans/guarantors/{loan_id}', [LoansController::class, 'uGuarantors'])->name('u.activeLoans.guarantors');
+
+    // Member Statements 
+    Route::get("/statements/member", [StatementsController::class, 'statements'])->name('u.member.statements');
+    Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('u.loans.statements');
+    Route::get("/statements/savings", [StatementsController::class, 'savings'])->name('u.savings.statements');
+    Route::get("/statements/guarantors", [StatementsController::class, 'guarantors'])->name('u.guarantors.statements');
+    Route::get("/statements/guarantees", [StatementsController::class, 'guarantees'])->name('u.guarantees.statements');
+
+
+    Route::get("/statements/member/pdf", [StatementsController::class, 'statementsPdf'])->name('u.member.statements.pdf');
+    Route::get("/statements/loans/pdf", [StatementsController::class, 'loansPdf'])->name('u.loans.statements.pdf');
+    Route::get("/statements/savings/pdf", [StatementsController::class, 'savingsPdf'])->name('u.savings.statements.pdf');
+    Route::get("/statements/guarantors/pdf", [StatementsController::class, 'guarantorsPdf'])->name('u.guarantors.statements.pdf');
+    Route::get("/statements/guarantees/pdf", [StatementsController::class, 'guarateedPdf'])->name('u.guarantees.statements.pdf');
+    Route::resource("/statements", LoanStatementController::class);
+
 
     Route::get('/details', [MemberController::class, 'uDetails'])->name('u.details');
 });

@@ -6,6 +6,7 @@ use App\Models\AssetLoanApplication;
 use App\Models\Guarantor;
 use App\Models\Loan;
 use App\Models\LoanApplication;
+use App\Models\LoanStatement;
 use App\Models\LoanType;
 use App\Models\Member;
 use App\Models\PaymentFrequency;
@@ -362,6 +363,31 @@ class LoanApplicationController extends Controller
         $loan_data['penalty_type_id'] = $loanApplication->loanType->penalty_type_id;
 
         $loan = Loan::create($loan_data);
+
+        LoanStatement::create([
+            "loan_id" => $loan->id,
+            "member_id" => $loan->member->id,
+            "posting_date" => $loan->start_date,
+            "document_number" => "Open Loan",
+            "description" => "Loan",
+            "debit_amount" => $loan->amount_approved,
+            "credit_amount" => "0.00",
+            "loan_balance" => $loan->amount_approved,
+        ]);
+
+
+        $interest = ($loan->amount_approved * ($loan->interest_rate / 12)) / 100;
+
+        LoanStatement::create([
+            "loan_id" => $loan->id,
+            "member_id" => $loan->member->id,
+            "posting_date" => $loan->start_date,
+            "document_number" => "Open Bal",
+            "description" => "Int Due",
+            "debit_amount" => $interest,
+            "credit_amount" => "0.00",
+            "loan_balance" => $loan->amount_approved + $interest,
+        ]);
 
         return back()->with("success", "Loan application approved.");
     }
