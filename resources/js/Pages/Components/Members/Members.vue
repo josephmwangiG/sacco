@@ -69,7 +69,7 @@
                     <td>{{ member.first_name }} {{ member.last_name }}</td>
                     <td>{{ member.branch.name }}</td>
                     <td>{{ member.phone }}</td>
-                    <td>{{ member.city }}, {{ member.nationality }}</td>
+                    <td>{{ member.city }}, {{ member.user.country }}</td>
                     <td>
                       <span class="badge dark-icon-light iq-bg-primary"
                         >Active</span
@@ -172,6 +172,18 @@ let form = ref(
     passport_photo: "",
     extra_images: "",
     membership_form: "",
+    kra_pin: "",
+    employer_name: "",
+    residence: "",
+    income_bracket: "0 - 50, 000",
+    bank_name: "",
+    bank_branch: "",
+    bank_account_number: "",
+    next_of_kin: "",
+    next_of_kin_relationship: "",
+    next_of_kin_postal_address: "",
+    next_of_kin_phone_number: "",
+    next_of_kin_email: "",
     date_became_member: "date_became_member",
   })
 );
@@ -180,6 +192,7 @@ const create = () => {
   item.value = 0;
   action.value = "Create";
   form.value = useForm({
+    branch_id: "",
     assigned_to: "",
     first_name: "",
     last_name: "",
@@ -191,10 +204,25 @@ const create = () => {
     passport_number: "",
     phone: "",
     email: "",
-    date_became_member: "",
     postal_address: "",
     residential_address: "",
     status_id: "",
+    passport_photo: "",
+    extra_images: "",
+    membership_form: "",
+    kra_pin: "",
+    employer_name: "",
+    residence: "",
+    income_bracket: "0 - 50, 000",
+    bank_name: "",
+    bank_branch: "",
+    bank_account_number: "",
+    next_of_kin: "",
+    next_of_kin_relationship: "",
+    next_of_kin_postal_address: "",
+    next_of_kin_phone_number: "",
+    next_of_kin_email: "",
+    date_became_member: "",
   });
 };
 

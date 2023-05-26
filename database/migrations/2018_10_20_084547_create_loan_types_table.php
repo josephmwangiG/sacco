@@ -20,6 +20,7 @@ class CreateLoanTypesTable extends Migration
             $table->string('description')->nullable();
             $table->string('active_status')->nullable();
             $table->string('interest_rate')->nullable();
+            $table->string('interest_duration')->nullable();
             $table->integer('interest_type_id');
             $table->integer('payment_frequency_id');
             $table->string('repayment_period')->nullable();

@@ -161,7 +161,8 @@
                 <tbody>
                   <tr v-for="(obj, index) in applications" :key="index">
                     <td>
-                      {{ obj.member.first_name }} {{ obj.member.last_name }}
+                      {{ obj.member.user.first_name }}
+                      {{ obj.member.user.last_name }}
                     </td>
                     <td>{{ obj.loan_type.name }}</td>
                     <td>{{ obj.interest_rate }}</td>

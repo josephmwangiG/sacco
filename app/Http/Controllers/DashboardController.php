@@ -20,10 +20,10 @@ class DashboardController extends Controller
         $branches = Branch::where("organization_id", Auth::user()->organization_id)->get();
         $members = Member::where("organization_id", Auth::user()->organization_id)->get();
         $leads = Lead::where("organization_id", Auth::user()->organization_id)->get();
-        $loans = Loan::where("organization_id", Auth::user()->organization_id)->get();
+        $loans = Loan::where("organization_id", Auth::user()->organization_id)->with('member.user')->get();
         $loans_total = Loan::where("organization_id", Auth::user()->organization_id)->sum("amount_approved");
         $applications = LoanApplication::where("organization_id", Auth::user()->organization_id)
-            ->with("member", "loanType")
+            ->with("member.user", "loanType")
             ->get();
         $deposits = Payment::where("organization_id", Auth::user()->organization_id)->get();
         $deposits_total = Payment::where("organization_id", Auth::user()->organization_id)->sum("amount");

@@ -28,6 +28,7 @@ class LoansController extends Controller
                 "loanType" => $item->loanType,
                 "member_id" => $item->member_id,
                 "member" => $item->member,
+                "payments" => $item->payments('paymentMethod')->get(),
                 "user" => $item->member->user,
                 "account" => $item->member->account,
                 "payment_sum" => $item->payments->sum('amount'),

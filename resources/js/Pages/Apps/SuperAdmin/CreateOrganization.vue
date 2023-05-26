@@ -136,11 +136,10 @@
                     id="selectcountry"
                   >
                     <option>Select Country</option>
-                    <option>Caneda</option>
-                    <option>Noida</option>
-                    <option>USA</option>
-                    <option>India</option>
-                    <option>Africa</option>
+                    <option>Kenya</option>
+                    <option>Uganda</option>
+                    <option>Tanzania</option>
+                    <option>South Africa</option>
                   </select>
                 </div>
                 <div class="form-group col-md-6">

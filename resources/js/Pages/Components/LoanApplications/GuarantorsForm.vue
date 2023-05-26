@@ -121,21 +121,29 @@
 
 <script setup>
 import { usePage } from "@inertiajs/inertia-vue3";
+import { computed } from "vue";
 
 const props = defineProps({
   form: Object,
   action: String,
   item: Number,
   id: Number,
+  m_id: Number,
 });
 
 const emit = defineEmits(["getItems"]);
 
 const paymentMethods = usePage().props.value.paymentMethods;
-const members = usePage().props.value.members;
+const members = computed(() => {
+  return usePage().props.value.members.filter((item) => {
+    if (item.id != props.m_id) {
+      return item;
+    }
+  });
+});
 
 const selectMember = (event) => {
-  members.forEach((item) => {
+  members.value.forEach((item) => {
     if (item.id == event.target.value) {
       props.form.id_number = item.id_number;
       props.form.account_number = item.account.account_number;

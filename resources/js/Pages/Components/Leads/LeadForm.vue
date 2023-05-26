@@ -106,11 +106,10 @@
                     id="nationality"
                   >
                     <option value="">Select Country</option>
-                    <option>Caneda</option>
-                    <option>Noida</option>
-                    <option>USA</option>
-                    <option>India</option>
-                    <option>Africa</option>
+                    <option>Kenya</option>
+                    <option>Uganda</option>
+                    <option>Tanzania</option>
+                    <option>South Africa</option>
                   </select>
                   <div class="text-danger" v-if="form.errors.nationality">
                     <small>{{ form.errors.nationality }}</small>

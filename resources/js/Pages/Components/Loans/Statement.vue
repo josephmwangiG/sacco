@@ -7,7 +7,7 @@
     aria-labelledby="loanStatement"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="loanStatement">Loan Statement.</h5>
@@ -20,17 +20,17 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body modal-div">
-          <div class="row">
+        <div class="modal-body">
+          <div class="row w-100">
             <div class="col-md-6">
               <h6>Member Details</h6>
               <p>
-                <b>Name:</b> {{ activeLoan.member.first_name }}
-                {{ activeLoan.member.last_name }}
+                <b>Name:</b> {{ activeLoan.member.user.first_name }}
+                {{ activeLoan.member.user.last_name }}
                 <br />
                 <b>Account:</b> {{ activeLoan.account.account_number }}
                 <br />
-                <b>Phone:</b> {{ activeLoan.member.phone }}
+                <b>Phone:</b> {{ activeLoan.member.user.phone }}
                 <br />
                 <b>Branch:</b> {{ activeLoan.branch.name }}
               </p>
@@ -132,22 +132,18 @@
             >
               <thead>
                 <tr>
-                  <th>Loan No.</th>
-                  <th>Principle</th>
-                  <th>Past Due Principle</th>
-                  <th>Current Interest / Fee</th>
-                  <th>Past Interest / Fee</th>
-                  <th>Total Due</th>
+                  <th>Receipt No.</th>
+                  <th>Payment Date</th>
+                  <th>Method</th>
+                  <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{{ activeLoan.loan_reference_number }}</td>
-                  <td>{{ activeLoan.loan_reference_number }}</td>
-                  <td>{{ activeLoan.loan_reference_number }}</td>
-                  <td>{{ activeLoan.loan_reference_number }}</td>
-                  <td>{{ activeLoan.loan_reference_number }}</td>
-                  <td>{{ activeLoan.loan_reference_number }}</td>
+                <tr v-for="obj in activeLoan.payments" :key="obj.id">
+                  <td>{{ obj.receipt_number }}</td>
+                  <td>{{ obj.payment_date }}</td>
+                  <td>{{ obj.method_id }}</td>
+                  <td>{{ obj.amount }}</td>
                 </tr>
               </tbody>
             </table>

@@ -19,6 +19,7 @@ use App\Http\Controllers\StatementsController;
 use App\Http\Controllers\SuperAdmin\OrganizationsController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\UACController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WitnessController;
@@ -69,6 +70,13 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::resource('/leads', LeadsController::class);
     Route::resource('/members', MemberController::class);
     Route::resource('/assets', AssetController::class);
+    Route::get('/users', [UACController::class, "getUsers"])->name('get-users');
+    Route::get('/roles', [UACController::class, "getRoles"])->name('get-roles');
+    Route::post('/roles-add', [UACController::class, "storeRole"])->name('roles.store');
+    Route::put('/roles-update/{id}', [UACController::class, "updateRole"])->name('roles.update');
+    Route::get('/roles', [UACController::class, "getRoles"])->name('get-roles');
+    Route::post('/users-add', [UACController::class, "storeUser"])->name('users.store');
+    Route::put('/users-update/{id}', [UACController::class, "updateUser"])->name('users.update');
 
     Route::get('/members/assets/{m_id}', [MemberController::class, 'assets'])->name('members.assets');
     Route::get('/members/deposits/{m_id}', [MemberController::class, 'deposits'])->name('members.deposits');

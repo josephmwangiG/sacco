@@ -126,11 +126,7 @@
                           <div class="form-group col-sm-6">
                             <label class="d-block">Gender:</label>
                             <div
-                              class="
-                                custom-control
-                                custom-radio
-                                custom-control-inline
-                              "
+                              class="custom-control custom-radio custom-control-inline"
                             >
                               <input
                                 type="radio"
@@ -147,11 +143,7 @@
                               </label>
                             </div>
                             <div
-                              class="
-                                custom-control
-                                custom-radio
-                                custom-control-inline
-                              "
+                              class="custom-control custom-radio custom-control-inline"
                             >
                               <input
                                 type="radio"
@@ -207,11 +199,10 @@
                               class="form-control"
                               id="exampleFormControlSelect3"
                             >
-                              <option>Caneda</option>
-                              <option>Noida</option>
-                              <option selected="">USA</option>
-                              <option>India</option>
-                              <option>Africa</option>
+                              <option>Kenya</option>
+                              <option>Uganda</option>
+                              <option>Tanzania</option>
+                              <option>South Africa</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-6">

@@ -81,7 +81,7 @@
           :href="route('withdrawals.index')"
           class="iq-waves-effect"
           aria-expanded="false"
-          ><i class="ri-bar-chart-line"></i><span>Withdrawals</span></Link
+          ><i class="ri-bar-chart-line"></i><span>Dividends</span></Link
         >
       </li>
 
@@ -161,13 +161,12 @@
           data-parent="#iq-sidebar-toggle"
         >
           <li>
-            <a href="#"><i class="ri-pages-line"></i>Users</a>
+            <a :href="route('get-users')"><i class="ri-pages-line"></i>Users</a>
           </li>
           <li>
-            <a href="#"><i class="ri-question-answer-line"></i>Roles</a>
-          </li>
-          <li>
-            <a href="#"><i class="ri-invision-line"></i>Permissions</a>
+            <a :href="route('get-roles')"
+              ><i class="ri-question-answer-line"></i>Roles</a
+            >
           </li>
         </ul>
       </li>

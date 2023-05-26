@@ -40,6 +40,7 @@ class LoanType extends Model
         'description',
         'active_status',
         'interest_rate',
+        'interest_duration',
         'interest_type_id',
         'payment_frequency_id',
 

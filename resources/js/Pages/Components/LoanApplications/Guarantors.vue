@@ -83,7 +83,13 @@
       </table>
     </div>
     <Confirm :url="url" />
-    <GuarantorsForm :form="gform" :action="action" :item="item" :id="id" />
+    <GuarantorsForm
+      :form="gform"
+      :action="action"
+      :item="item"
+      :id="id"
+      :m_id="loanApplication.member_id"
+    />
   </EditApplication>
 </template>
 <script setup>

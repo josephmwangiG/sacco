@@ -53,6 +53,22 @@
                   </div>
                 </div>
                 <div class="form-group col-sm-6">
+                  <label for="interest_duration">Interest Duration:</label>
+                  <select
+                    required
+                    v-model="form.interest_duration"
+                    class="form-control"
+                    id="interest_duration"
+                  >
+                    <option value="">Select option</option>
+                    <option :value="'Year'">Per Year</option>
+                    <option :value="'Month'">Per Month</option>
+                  </select>
+                  <div class="text-danger" v-if="form.errors.interest_duration">
+                    <small>{{ form.errors.interest_duration }}</small>
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
                   <label for="interest_type">Interest Type:</label>
                   <select
                     required

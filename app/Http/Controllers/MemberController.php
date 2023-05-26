@@ -22,12 +22,12 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::where("organization_id", Auth::user()->organization_id)
+        $members = Member::where("members.organization_id", Auth::user()->organization_id)
             ->when(Request()->input('search'), function ($query, $search) {
-                $query->where('first_name', "like", "%{$search}%")
-                    ->orwhere('last_name', "like", "%{$search}%");
+                $query->join("users", "users.id", "=", "members.user_id")->where('users.first_name', "like", "%{$search}%")
+                    ->orwhere('users.last_name', "like", "%{$search}%")->where("users.user_type", "member");
             })
-            ->latest()
+            ->latest("members.created_at")
             ->paginate(10)->through(fn ($item) => [
                 'id' => $item->id,
                 'branch_id' => $item->user->branch_id,
@@ -83,11 +83,24 @@ class MemberController extends Controller
             'nationality' => [""],
             'county' => [""],
             'city' => [""],
+            'physical_address' => [""],
             'id_number' => ["required", "unique:members"],
             'passport_number' => [""],
             'phone' => ["required", "unique:users"],
             'email' => ["required", "unique:users"],
             'postal_address' => ["required"],
+            'kra_pin' => ["required"], '',
+            'employer_name' => [""],
+            'residence' => ["required"],
+            'income_bracket' => ["required"],
+            'bank_name' => [""],
+            'bank_branch' => [""],
+            'bank_account_number' => [""],
+            'next_of_kin' => [""],
+            'next_of_kin_relationship' => [""],
+            'next_of_kin_postal_address' => [""],
+            'next_of_kin_phone_number' => [""],
+            'next_of_kin_email' => [""],
             'residential_address' => ["required"],
         ]);
 

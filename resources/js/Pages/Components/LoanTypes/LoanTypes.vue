@@ -68,7 +68,7 @@
                   <tr v-for="(obj, index) in loanTypes.data" :key="index">
                     <td>{{ obj.name }}</td>
                     <td>
-                      {{ obj.interest_rate }}
+                      {{ obj.interest_rate }}% per {{ obj.interest_duration }}
                     </td>
                     <td>{{ obj.interestType.display_name }}</td>
                     <td>{{ obj.paymentFrequency.display_name }}</td>
@@ -162,20 +162,7 @@ let action = ref("Add");
 
 let item = ref(0);
 
-let form = ref(
-  useForm({
-    name: "",
-    description: "",
-    interest_rate: "",
-    interest_type: "",
-    payment_frequency: "",
-    repayment_period: "",
-    service_fee: "",
-    penalty_type: "",
-    penalty_value: "",
-    penalty_frequency: "",
-  })
-);
+let form = ref(useForm({}));
 
 const create = () => {
   item.value = 0;
@@ -186,6 +173,7 @@ const create = () => {
     description: "",
     interest_rate: "",
     interest_type: "",
+    interest_duration: "",
     payment_frequency: "",
     repayment_period: "",
     service_fee: "",
@@ -202,6 +190,7 @@ const getItem = (obj) => {
     name: obj.name,
     description: obj.description,
     interest_rate: obj.interest_rate,
+    interest_duration: obj.interest_duration,
     interest_type: obj.interest_type_id,
     payment_frequency: obj.payment_frequency_id,
     repayment_period: obj.repayment_period,
