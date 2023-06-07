@@ -8,8 +8,6 @@
               <h5>Active Loans</h5>
               <div class="user-list-files">
                 <a class="iq-bg-primary" href="javascript:void();"> Print </a>
-                <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
-                <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
               </div>
             </div>
             <div class="table-responsive">
@@ -120,8 +118,6 @@
               <h5>Guaranteed Loans</h5>
               <div class="user-list-files">
                 <a class="iq-bg-primary" href="javascript:void();"> Print </a>
-                <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
-                <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
               </div>
             </div>
             <div class="table-responsive">

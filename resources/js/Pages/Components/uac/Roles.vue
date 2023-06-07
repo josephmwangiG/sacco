@@ -8,7 +8,6 @@
               <h4 class="card-title">Roles</h4>
             </div>
             <div class="user-list-files d-flex float-right">
-              <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
               <a class="iq-bg-primary" :href="route('pdf.members')"> Print </a>
               <a
                 class="iq-bg-primary"

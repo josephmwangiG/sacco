@@ -6,7 +6,7 @@
           <h5>Loans Application</h5>
           <div class="user-list-files">
             <a class="iq-bg-primary" href="javascript:void();"> Print </a>
-            <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
+
             <a
               class="iq-bg-primary"
               data-toggle="modal"

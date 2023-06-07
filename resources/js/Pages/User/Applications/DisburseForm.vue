@@ -1,5 +1,5 @@
 <template>
-  <EditApplication :id="loanApplication.id" :active="'disbursement'">
+  <EditApplication :loanApplication="loanApplication" :active="'disbursement'">
     <form @submit.prevent="saveForm()">
       <div class="row">
         <div class="form-group col-md-6">

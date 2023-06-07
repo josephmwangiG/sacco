@@ -14,7 +14,7 @@
                 <Link
                   class="nav-link"
                   :class="active == 'details' ? 'active' : ''"
-                  :href="route('loanApplications.edit', id)"
+                  :href="route('loanApplications.edit', loanApplication.id)"
                   ><i
                     class="ri-list-settings-line pr-1"
                     style="font-size: 20px"
@@ -26,7 +26,8 @@
                 <Link
                   :class="active == 'witness' ? 'active' : ''"
                   class="nav-link"
-                  :href="route('loanApplications.witness', id)"
+                  v-if="loanApplication.rejected_on == null"
+                  :href="route('loanApplications.witness', loanApplication.id)"
                   ><i class="ri-ball-pen-fill pr-1" style="font-size: 20px"></i>
                   Witness</Link
                 >
@@ -35,7 +36,10 @@
                 <Link
                   class="nav-link"
                   :class="active == 'guarantors' ? 'active' : ''"
-                  :href="route('loanApplications.guarantors', id)"
+                  :href="
+                    route('loanApplications.guarantors', loanApplication.id)
+                  "
+                  v-if="loanApplication.rejected_on == null"
                   ><i class="ri-safe-fill pr-1" style="font-size: 20px"></i>
                   Guarantors</Link
                 >
@@ -44,7 +48,10 @@
                 <Link
                   class="nav-link"
                   :class="active == 'collaterals' ? 'active' : ''"
-                  :href="route('loanApplications.collaterals', id)"
+                  :href="
+                    route('loanApplications.collaterals', loanApplication.id)
+                  "
+                  v-if="loanApplication.rejected_on == null"
                   ><i class="ri-refund-fill pr-1" style="font-size: 20px"></i>
                   Collateral</Link
                 >
@@ -53,7 +60,10 @@
                 <Link
                   class="nav-link"
                   :class="active == 'disbursement' ? 'active' : ''"
-                  :href="route('loanApplications.disbursement', id)"
+                  :href="
+                    route('loanApplications.disbursement', loanApplication.id)
+                  "
+                  v-if="loanApplication.rejected_on == null"
                   ><i
                     class="ri-send-plane-fill pr-1"
                     style="font-size: 20px"
@@ -65,12 +75,23 @@
                 <Link
                   class="nav-link"
                   :class="active == 'confirm' ? 'active' : ''"
-                  :href="route('loanApplications.confirm', id)"
+                  :href="route('loanApplications.confirm', loanApplication.id)"
+                  v-if="loanApplication.rejected_on == null"
                   ><i
                     class="ri-check-double-line pr-1"
                     style="font-size: 20px"
                   ></i>
                   Confirm</Link
+                >
+              </li>
+              <li class="nav-item">
+                <Link
+                  class="nav-link"
+                  :class="active == 'reject' ? 'active' : ''"
+                  :href="route('loanApplications.reject', loanApplication.id)"
+                  v-if="loanApplication.approved_on == null"
+                  ><i class="ri-close-line pr-1" style="font-size: 20px"></i>
+                  Reject</Link
                 >
               </li>
             </ul>
@@ -84,7 +105,7 @@
 </template>
 <script setup>
 const props = defineProps({
-  id: Number,
+  loanApplication: Object,
   active: String,
 });
 </script>

@@ -75,6 +75,7 @@ class LoanApplication extends Model
         'bank_name',
         'bank_branch',
         'cheque_date',
+        'account_number',
 
         'witness_type_id',
         'witness_first_name',

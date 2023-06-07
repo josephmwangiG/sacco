@@ -34,7 +34,7 @@
                     <a class="iq-bg-primary" href="javascript:void();">
                       Excel
                     </a>
-                    <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
+
                     <Link
                       class="iq-bg-primary"
                       :href="route('organizations.create')"

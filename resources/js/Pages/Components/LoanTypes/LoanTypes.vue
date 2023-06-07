@@ -29,8 +29,7 @@
               <div class="col-sm-12 col-md-6">
                 <div class="user-list-files d-flex float-right">
                   <a class="iq-bg-primary" href="javascript:void();"> Print </a>
-                  <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
-                  <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
+
                   <a
                     class="iq-bg-primary"
                     data-toggle="modal"

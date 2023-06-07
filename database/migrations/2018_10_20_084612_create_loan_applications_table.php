@@ -53,6 +53,7 @@ class CreateLoanApplicationsTable extends Migration
             $table->string('cheque_number')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('bank_branch')->nullable();
+            $table->string('account_number')->nullable();
             $table->date('cheque_date')->nullable();
             $table->date('disbursement_date')->nullable();
             $table->string('disburse_note')->nullable();

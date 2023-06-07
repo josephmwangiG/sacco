@@ -1,5 +1,5 @@
 <template>
-  <EditApplication :id="id" :active="'collaterals'">
+  <EditApplication :loanApplication="loanApplication" :active="'collaterals'">
     <div class="row justify-content-between">
       <div class="col-sm-5 col-md-4">
         <h4 class="card-title">Collaterals</h4>
@@ -7,8 +7,7 @@
       <div class="col-sm-7 col-md-6">
         <div class="user-list-files d-flex float-right">
           <a class="iq-bg-primary" href="javascript:void();"> Print </a>
-          <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
-          <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
+
           <a
             class="iq-bg-primary"
             data-toggle="modal"

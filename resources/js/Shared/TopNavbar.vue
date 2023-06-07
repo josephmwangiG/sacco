@@ -58,28 +58,8 @@
                   <li class="iq-bg-primary-hover rounded">
                     <a
                       href="/"
-                      class="
-                        nav-link
-                        router-link-exact-active router-link-active
-                        pr-2
-                      "
+                      class="nav-link router-link-exact-active router-link-active pr-2"
                       ><i class="ri-home-4-line pr-2"></i>Dashboard</a
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <Link
-                      href="/"
-                      class="
-                        nav-link
-                        router-link-exact-active router-link-active
-                        pr-2
-                      "
-                      ><i class="ri-home-3-line pr-2"></i>Dashboard-1</Link
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <Link href="#" class="nav-link"
-                      ><i class="ri-message-line pr-2"></i>Chat</Link
                     >
                   </li>
                   <li class="iq-bg-primary-hover rounded">
@@ -90,36 +70,6 @@
                   <li class="iq-bg-primary-hover rounded">
                     <Link href="#" class="nav-link"
                       ><i class="ri-profile-line pr-2"></i>Profile</Link
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <Link href="#" class="nav-link"
-                      ><i class="ri-chat-check-line pr-2"></i>Todo</Link
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <Link href="#" class="nav-link"
-                      ><i class="ri-mail-line pr-2"></i>Email</Link
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <a href="#" class="nav-link"
-                      ><i class="ri-message-line pr-2"></i>Product Listing</a
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <a href="/product-detail" class="nav-link"
-                      ><i class="ri-file-list-line pr-2"></i>Product Details</a
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <Link href="/faq" class="nav-link"
-                      ><i class="ri-compasses-line pr-2"></i>Faq</Link
-                    >
-                  </li>
-                  <li class="iq-bg-primary-hover rounded">
-                    <Link href="/form-wizard" class="nav-link"
-                      ><i class="ri-clockwise-line pr-2"></i>Form-wizard</Link
                     >
                   </li>
                 </ul>
@@ -150,55 +100,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto navbar-list">
             <li class="nav-item">
-              <a class="search-toggle iq-waves-effect language-title" href="#"
-                ><img
-                  src="/images/small/flag-01.png"
-                  alt="img-flaf"
-                  class="img-fluid mr-1"
-                  style="height: 16px; width: 16px" />
-                English <i class="ri-arrow-down-s-line"></i
-              ></a>
-              <div class="iq-sub-dropdown">
-                <a class="iq-sub-card" href="#"
-                  ><img
-                    src="/images/small/flag-02.png"
-                    alt="img-flaf"
-                    class="img-fluid mr-2"
-                  />French</a
-                >
-                <a class="iq-sub-card" href="#"
-                  ><img
-                    src="/images/small/flag-03.png"
-                    alt="img-flaf"
-                    class="img-fluid mr-2"
-                  />Spanish</a
-                >
-                <a class="iq-sub-card" href="#"
-                  ><img
-                    src="/images/small/flag-04.png"
-                    alt="img-flaf"
-                    class="img-fluid mr-2"
-                  />Italian</a
-                >
-                <a class="iq-sub-card" href="#"
-                  ><img
-                    src="/images/small/flag-05.png"
-                    alt="img-flaf"
-                    class="img-fluid mr-2"
-                  />German</a
-                >
-                <a class="iq-sub-card" href="#"
-                  ><img
-                    src="/images/small/flag-06.png"
-                    alt="img-flaf"
-                    class="img-fluid mr-2"
-                  />Japanese</a
-                >
-              </div>
-            </li>
-            <li class="nav-item">
               <a href="#" class="search-toggle iq-waves-effect">
-                <div id="lottie-beil"></div>
+                <i class="ri-message-line"></i>
                 <span class="bg-danger dots"></span>
               </a>
               <div class="iq-sub-dropdown">
@@ -208,7 +111,7 @@
                       <h5 class="mb-0 text-white">
                         All Notifications<small
                           class="badge badge-light float-right pt-1"
-                          >4</small
+                          >1</small
                         >
                       </h5>
                     </div>
@@ -222,65 +125,11 @@
                           />
                         </div>
                         <div class="media-body ml-3">
-                          <h6 class="mb-0">Emma Watson Nik</h6>
+                          <h6 class="mb-0">Admin</h6>
                           <small class="float-right font-size-12"
                             >Just Now</small
                           >
                           <p class="mb-0">95 MB</p>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="#" class="iq-sub-card">
-                      <div class="media align-items-center">
-                        <div class="">
-                          <img
-                            class="avatar-40 rounded"
-                            src="/images/user/02.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <div class="media-body ml-3">
-                          <h6 class="mb-0">New customer is join</h6>
-                          <small class="float-right font-size-12"
-                            >5 days ago</small
-                          >
-                          <p class="mb-0">Jond Nik</p>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="#" class="iq-sub-card">
-                      <div class="media align-items-center">
-                        <div class="">
-                          <img
-                            class="avatar-40 rounded"
-                            src="/images/user/03.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <div class="media-body ml-3">
-                          <h6 class="mb-0">Two customer is left</h6>
-                          <small class="float-right font-size-12"
-                            >2 days ago</small
-                          >
-                          <p class="mb-0">Jond Nik</p>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="#" class="iq-sub-card">
-                      <div class="media align-items-center">
-                        <div class="">
-                          <img
-                            class="avatar-40 rounded"
-                            src="/images/user/04.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <div class="media-body ml-3">
-                          <h6 class="mb-0">New Mail from Fenny</h6>
-                          <small class="float-right font-size-12"
-                            >3 days ago</small
-                          >
-                          <p class="mb-0">Jond Nik</p>
                         </div>
                       </div>
                     </a>
@@ -389,14 +238,7 @@
           <li>
             <a
               href="#"
-              class="
-                search-toggle
-                iq-waves-effect
-                d-flex
-                align-items-center
-                bg-primary
-                rounded
-              "
+              class="search-toggle iq-waves-effect d-flex align-items-center bg-primary rounded"
             >
               <img
                 src="/images/user/1.jpg"

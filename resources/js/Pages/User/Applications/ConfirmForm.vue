@@ -1,5 +1,5 @@
 <template>
-  <EditApplication :id="loanApplication.id" :active="'confirm'">
+  <EditApplication :loanApplication="loanApplication" :active="'confirm'">
     <form @submit.prevent="saveForm()">
       <div class="new-user-info">
         <div class="row">

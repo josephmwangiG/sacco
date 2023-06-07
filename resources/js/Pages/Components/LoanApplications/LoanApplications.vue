@@ -28,7 +28,6 @@
               </div>
               <div class="col-sm-12 col-md-7">
                 <div class="user-list-files d-flex float-right">
-                  <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
                   <a
                     class="iq-bg-primary"
                     :href="route('pdf.loan.applications')"
@@ -77,8 +76,20 @@
                     <td>{{ obj.amount_applied }}</td>
                     <td>{{ obj.service_fee }}</td>
                     <td>
-                      <span class="badge dark-icon-light iq-bg-primary"
-                        >Active</span
+                      <span
+                        class="badge bg-success text-white dark-icon-light iq-bg-primary"
+                        v-if="obj.approved_on != null"
+                        >Approved</span
+                      >
+                      <span
+                        class="badge bg-danger text-white dark-icon-light iq-bg-primary"
+                        v-else-if="obj.rejected_on != null"
+                        >Rejected</span
+                      >
+                      <span
+                        class="badge bg-dark text-white dark-icon-light iq-bg-primary"
+                        v-else
+                        >Pending</span
                       >
                     </td>
                     <td>{{ obj.application_date.substring(0, 10) }}</td>

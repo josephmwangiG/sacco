@@ -1,6 +1,70 @@
 <template>
-  <EditApplication :id="loanApplication.id" :active="'disbursement'">
+  <EditApplication :loanApplication="loanApplication" :active="'disbursement'">
+    <div class="my-3">
+      <div class="table-responsive w-100">
+        <div class="d-flex justify-content-between w-100">
+          <h5>List of Approvers</h5>
+          <button type="button" class="btn btn-primary">
+            Update List of Approvers
+          </button>
+        </div>
+        <hr />
+        <table
+          id="user-list-table"
+          class="table table-striped table-borderless mt-2 w-100"
+          role="grid"
+          aria-describedby="user-list-page-info"
+        >
+          <thead>
+            <tr>
+              <th>Profile</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Approval Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="obj in users" :key="obj.id">
+              <td class="text-center">
+                <img
+                  class="rounded-circle img-fluid avatar-40"
+                  src="/images/user/01.jpg"
+                  alt="profile"
+                />
+              </td>
+              <td>{{ obj.first_name }} {{ obj.last_name }}</td>
+              <td>{{ obj.phone }}</td>
+              <td>{{ obj.email }}</td>
+              <td>{{ obj.role.name }}</td>
+              <td>
+                <span class="badge dark-icon-light iq-bg-primary">active</span>
+              </td>
+              <td>
+                <div class="flex align-items-center list-user-action">
+                  <a
+                    class="iq-bg-primary"
+                    data-toggle="modal"
+                    data-placement="top"
+                    @click="url = route('deposits.destroy', obj.id)"
+                    data-original-title="Delete"
+                    href="#confirm"
+                    ><i class="ri-delete-bin-line"></i
+                  ></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <form @submit.prevent="saveForm()">
+      <div class="mt-4">
+        <h5>Disbursement Details</h5>
+        <hr class="mt-2" />
+      </div>
       <div class="row">
         <div class="form-group col-md-6">
           <label for="disbursement_date">Disbursement Date:</label>
@@ -65,7 +129,20 @@
             <small>{{ form.errors.bank_branch }}</small>
           </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
+          <label for="account_number">Member Account Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="account_number"
+            v-model="form.account_number"
+            placeholder="Account Number"
+          />
+          <div class="text-danger" v-if="form.errors.account_number">
+            <small>{{ form.errors.account_number }}</small>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
           <label for="cheque_date">Cheque Date:</label>
           <input
             type="date"
@@ -79,7 +156,7 @@
           </div>
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="cheque_number">Cheque Number:</label>
           <input
             type="text"
@@ -118,17 +195,22 @@
         <button type="button" class="btn btn-danger">Active Loan</button>
       </div>
     </form>
+    <ApproverForm :approverForm="approverForm" :users="users" />
   </EditApplication>
 </template>
 
 <script setup>
 import { usePage, useForm } from "@inertiajs/inertia-vue3";
 import EditApplication from "./EditApplication.vue";
+import ApproverForm from "./ApproverForm.vue";
 import { ref } from "vue";
 
 const props = defineProps({
   loanApplication: Object,
+  users: Object,
 });
+
+let approverForm = ref(useForm({}));
 
 let form = ref(
   useForm({
@@ -139,8 +221,9 @@ let form = ref(
     mpesa_middle_name: props.loanApplication.mpesa_middle_name,
     mpesa_last_name: props.loanApplication.mpesa_last_name,
     cheque_number: props.loanApplication.cheque_number,
-    bank_name: props.loanApplication.bank_name,
-    bank_branch: props.loanApplication.bank_branch,
+    bank_name: props.loanApplication.member.bank_name,
+    bank_branch: props.loanApplication.member.bank_branch,
+    account_number: props.loanApplication.member.account_number,
     cheque_date: props.loanApplication.cheque_date,
     disbursement_date: props.loanApplication.disbursement_date,
   })

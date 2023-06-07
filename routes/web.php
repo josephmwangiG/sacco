@@ -99,6 +99,7 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::get('/loanApplications/collaterals/{loan_id}', [LoanApplicationController::class, 'collaterals'])->name('loanApplications.collaterals');
     Route::get('/loanApplications/disbursement/{loan_id}', [LoanApplicationController::class, 'disbursement'])->name('loanApplications.disbursement');
     Route::get('/loanApplications/confirm/{loan_id}', [LoanApplicationController::class, 'confirm'])->name('loanApplications.confirm');
+    Route::get('/loanApplications/reject/{loan_id}', [LoanApplicationController::class, 'reject'])->name('loanApplications.reject');
 
 
     Route::post('/loanApplications/guarantors/{loan_id}', [LoanApplicationController::class, 'createguarantors'])->name('loanApplications.store.guarantors');
@@ -107,6 +108,7 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::delete('/loanApplications/guarantors/{g_id}', [LoanApplicationController::class, 'deleteGuarantors'])->name('loanApplications.delete.guarantors');
     Route::put('/loanApplications/disbursement/{loan_id}/save', [LoanApplicationController::class, 'updateDisbursement'])->name('loanApplications.update.disbusement');
     Route::put('/loanApplications/confirm/{loan_id}/save', [LoanApplicationController::class, 'saveConfirm'])->name('loanApplications.confirm.store');
+    Route::put('/loanApplications/reject/{loan_id}/save', [LoanApplicationController::class, 'saveReject'])->name('loanApplications.reject.store');
 
     Route::resource('/activeLoans', LoansController::class);
     Route::get('/activeLoans/payments/{loan_id}', [LoansController::class, 'payments'])->name('activeLoans.payments');

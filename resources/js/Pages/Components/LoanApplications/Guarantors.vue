@@ -1,5 +1,5 @@
 <template>
-  <EditApplication :id="id" :active="'guarantors'">
+  <EditApplication :loanApplication="loanApplication" :active="'guarantors'">
     <div class="row justify-content-between">
       <div class="col-sm-5 col-md-4">
         <h4 class="card-title">Guarantors</h4>
@@ -7,8 +7,7 @@
       <div class="col-sm-7 col-md-6">
         <div class="user-list-files d-flex float-right">
           <a class="iq-bg-primary" href="javascript:void();"> Print </a>
-          <a class="iq-bg-primary" href="javascript:void();"> Excel </a>
-          <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
+
           <a
             class="iq-bg-primary"
             data-toggle="modal"
@@ -20,6 +19,12 @@
             New
           </a>
         </div>
+      </div>
+      <div class="col-12 my-2" v-if="loanApplication.amount_applied > totalSum">
+        <span class="text-danger"
+          >The guaranteed amount of {{ totalSum }} is less than
+          {{ loanApplication.amount_applied }} applied.</span
+        >
       </div>
     </div>
     <div class="table-responsive">
@@ -103,6 +108,7 @@ import debounce from "lodash/debounce";
 const props = defineProps({
   loanApplication: Object,
   guarantors: Object,
+  totalSum: Number,
   id: Number,
 });
 

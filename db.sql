@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2023 at 10:29 PM
+-- Generation Time: Jun 07, 2023 at 10:00 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -57,7 +57,8 @@ INSERT INTO `accounts` (`id`, `organization_id`, `branch_id`, `account_code`, `a
 (6, 1, 1, '500', 'LN0002', '2', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-08 17:02:40', '2023-05-08 17:02:40'),
 (7, 1, 1, '700', 'AC48788384229', '3', '6', NULL, NULL, NULL, '2', NULL, NULL, NULL, '2023-05-23 17:07:39', '2023-05-23 17:07:39'),
 (8, 1, 1, '700', 'AC25506058529', '4', '6', NULL, NULL, NULL, '2', NULL, NULL, NULL, '2023-05-25 16:02:05', '2023-05-25 16:02:05'),
-(9, 1, 1, '500', 'LN0003', '3', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-25 16:21:03', '2023-05-25 16:21:03');
+(9, 1, 1, '500', 'LN0003', '3', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-25 16:21:03', '2023-05-25 16:21:03'),
+(10, 1, 1, '700', 'AC87557342278', '5', '6', NULL, NULL, NULL, '2', NULL, NULL, NULL, '2023-05-27 14:25:01', '2023-05-27 14:25:01');
 
 -- --------------------------------------------------------
 
@@ -592,7 +593,9 @@ CREATE TABLE `guarantors` (
 INSERT INTO `guarantors` (`id`, `organization_id`, `branch_id`, `member_id`, `loan_application_id`, `notes`, `guarantee_amount`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 2, '1', 'Approved', '200000', NULL, NULL, NULL, NULL, '2023-03-21 13:58:29', '2023-03-21 13:58:29'),
 (2, 1, 1, 2, '2', 'n/a', '780000', NULL, NULL, NULL, NULL, '2023-05-08 16:58:52', '2023-05-08 16:58:52'),
-(3, 1, 1, 2, '3', 'Description', '455000', NULL, NULL, NULL, NULL, '2023-05-25 16:17:52', '2023-05-25 16:17:52');
+(3, 1, 1, 2, '3', 'Description', '455000', NULL, NULL, NULL, NULL, '2023-05-25 16:17:52', '2023-05-25 16:17:52'),
+(4, 1, 1, 2, '4', 'This Is The Amount', '200000', NULL, NULL, NULL, NULL, '2023-05-27 14:27:00', '2023-05-27 14:27:00'),
+(5, 1, 1, 3, '4', 'Dan', '10090', NULL, NULL, NULL, NULL, '2023-05-27 14:49:09', '2023-05-27 14:49:51');
 
 -- --------------------------------------------------------
 
@@ -805,6 +808,7 @@ CREATE TABLE `loan_applications` (
   `cheque_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank_branch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `account_number` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cheque_date` date DEFAULT NULL,
   `disburse_note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `disbursement_date` date DEFAULT NULL,
@@ -828,10 +832,12 @@ CREATE TABLE `loan_applications` (
 -- Dumping data for table `loan_applications`
 --
 
-INSERT INTO `loan_applications` (`id`, `organization_id`, `branch_id`, `member_id`, `loan_officer_id`, `loan_type_id`, `interest_type_id`, `interest_rate`, `service_fee`, `penalty_type_id`, `penalty_value`, `penalty_frequency_id`, `reduce_principal_early`, `amount_applied`, `repayment_period`, `payment_frequency_id`, `periodic_payment_amount`, `application_date`, `witness_type_id`, `witness_first_name`, `witness_last_name`, `witness_country`, `witness_county`, `witness_city`, `witness_national_id`, `witness_phone`, `witness_email`, `witness_postal_address`, `witness_residential_address`, `disburse_method_id`, `mpesa_number`, `mpesa_first_name`, `mpesa_middle_name`, `mpesa_last_name`, `cheque_number`, `bank_name`, `bank_branch`, `cheque_date`, `disburse_note`, `disbursement_date`, `status_id`, `witnessed_by_user_id`, `reviewed_by_user_id`, `reviewed_on`, `approved_on`, `rejected_on`, `rejection_notes`, `attach_application_form`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2, 2, 3, 2, '10', 3000, 1, 12, 1, 0, '400000', '30', 2, NULL, '2023-03-24', 1, 'Joseph', NULL, 'Africa', NULL, 'MOLO', '1212100', '+254743282283', 'josephmwangi.jgm@gmail.com', '925 molo', 'Nairobi', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1970-01-01', 'Approved', '2023-03-23', NULL, NULL, 2, '2023-03-30', '2023-03-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-21 13:51:48', '2023-03-21 14:03:34'),
-(2, 1, 1, 2, 2, 5, 2, '10', 3000, 1, 10, 3, 0, '780,000', '72', 2, NULL, '2016-07-01', 1, 'James', NULL, 'Africa', NULL, 'Mumbai', '12345678', '0712345678', 'james@gmail.com', '12212', 'Dakar', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1970-01-01', 'n/a', '2023-05-01', NULL, NULL, 2, '2023-05-01', '2023-05-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-08 16:56:14', '2023-05-08 17:02:40'),
-(3, 1, 1, 4, 2, 5, 2, '10', 3000, 1, 10, 3, 0, '455000', '72', 2, NULL, '2023-05-03', 1, 'Joseph', NULL, 'Kenya', NULL, 'MOLO', '1212100', '+254743282283', 'mbuvi@gmail.com', '925 molo', 'Nairobi', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1970-01-01', 'Description', '2023-04-30', NULL, NULL, 2, '2023-05-27', '2023-06-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-25 16:02:57', '2023-05-25 16:21:03');
+INSERT INTO `loan_applications` (`id`, `organization_id`, `branch_id`, `member_id`, `loan_officer_id`, `loan_type_id`, `interest_type_id`, `interest_rate`, `service_fee`, `penalty_type_id`, `penalty_value`, `penalty_frequency_id`, `reduce_principal_early`, `amount_applied`, `repayment_period`, `payment_frequency_id`, `periodic_payment_amount`, `application_date`, `witness_type_id`, `witness_first_name`, `witness_last_name`, `witness_country`, `witness_county`, `witness_city`, `witness_national_id`, `witness_phone`, `witness_email`, `witness_postal_address`, `witness_residential_address`, `disburse_method_id`, `mpesa_number`, `mpesa_first_name`, `mpesa_middle_name`, `mpesa_last_name`, `cheque_number`, `bank_name`, `bank_branch`, `account_number`, `cheque_date`, `disburse_note`, `disbursement_date`, `status_id`, `witnessed_by_user_id`, `reviewed_by_user_id`, `reviewed_on`, `approved_on`, `rejected_on`, `rejection_notes`, `attach_application_form`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 2, 3, 2, '10', 3000, 1, 12, 1, 0, '400000', '30', 2, NULL, '2023-03-24', 1, 'Joseph', NULL, 'Africa', NULL, 'MOLO', '1212100', '+254743282283', 'josephmwangi.jgm@gmail.com', '925 molo', 'Nairobi', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1970-01-01', 'Approved', '2023-03-23', NULL, NULL, 2, '2023-03-30', '2023-03-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-21 13:51:48', '2023-03-21 14:03:34'),
+(2, 1, 1, 2, 2, 5, 2, '10', 3000, 1, 10, 3, 0, '780,000', '72', 2, NULL, '2016-07-01', 1, 'James', NULL, 'Africa', NULL, 'Mumbai', '12345678', '0712345678', 'james@gmail.com', '12212', 'Dakar', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1970-01-01', 'n/a', '2023-05-01', NULL, NULL, 2, '2023-05-01', '2023-05-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-08 16:56:14', '2023-05-08 17:02:40'),
+(3, 1, 1, 4, 2, 5, 2, '10', 3000, 1, 10, 3, 0, '455000', '72', 2, NULL, '2023-05-03', 1, 'Joseph', NULL, 'Kenya', NULL, 'MOLO', '1212100', '+254743282283', 'mbuvi@gmail.com', '925 molo', 'Nairobi', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1970-01-01', 'Description', '2023-04-30', NULL, NULL, 2, '2023-05-27', '2023-06-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-25 16:02:57', '2023-05-25 16:21:03'),
+(4, 1, 1, 5, 2, 6, 1, '2', 3000, 1, 20000, 1, 0, '300000', '24', 2, NULL, '2023-05-07', 1, 'Joseph', NULL, 'Kenya', NULL, 'MOLO', '14356', '+254743282283', 'josephmwangi.jgm@gmail.com', '925 molo', '345', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-07', 'You don\'t qualify for this application', NULL, NULL, NULL, NULL, NULL, '2023-05-27 14:25:41', '2023-06-07 15:12:12'),
+(5, 1, 1, 4, 2, 5, 2, '10', 3000, 1, 10, 3, 0, '455000', '72', 2, NULL, '2023-06-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-07 16:47:34', '2023-06-07 16:47:34');
 
 -- --------------------------------------------------------
 
@@ -845,6 +851,22 @@ CREATE TABLE `loan_application_statuses` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loan_approvers`
+--
+
+CREATE TABLE `loan_approvers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `loap_application_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1357,7 +1379,8 @@ CREATE TABLE `members` (
 INSERT INTO `members` (`id`, `user_id`, `date_of_birth`, `date_became_member`, `nationality`, `id_number`, `passport_number`, `status_id`, `passport_photo`, `extra_images`, `membership_form`, `kra_pin`, `employer_name`, `residence`, `income_bracket`, `bank_name`, `bank_branch`, `bank_account_number`, `next_of_kin`, `next_of_kin_relationship`, `next_of_kin_postal_address`, `next_of_kin_phone_number`, `next_of_kin_email`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`, `organization_id`, `branch_id`) VALUES
 (2, 4, '2023-03-28', '2023-04-07', 'Africa', '1212121', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-20 17:24:04', '2023-03-20 17:24:04', 1, 1),
 (3, 5, '1970-01-01', '2023-06-09', 'USA', '1212121w', NULL, NULL, NULL, NULL, NULL, 'A001122233V', 'Greck', 'Own', '0 - 50, 000', 'Equity', 'Nairobi', '1273283284632784', 'Dan Moore', 'son', NULL, '+254743282283', 'jrmoore@gmail.com', NULL, NULL, NULL, NULL, '2023-05-23 17:07:39', '2023-05-23 17:22:56', 1, 1),
-(4, 6, '2023-05-27', '2023-05-01', 'Kenya', '12121213', NULL, NULL, NULL, NULL, NULL, 'A001122233V', 'Greck Corporation', 'Own', '50, 001 - 100, 000', 'Equity', 'Nairobi', '1273283284632784', 'Cecilia K', 'Mother', NULL, '+254743282283', 'cess@gmail.com', NULL, NULL, NULL, NULL, '2023-05-25 16:02:05', '2023-05-25 16:02:05', 1, 1);
+(4, 6, '2023-05-27', '2023-05-01', 'Kenya', '12121213', NULL, NULL, NULL, NULL, NULL, 'A001122233V', 'Greck Corporation', 'Own', '50, 001 - 100, 000', 'Equity', 'Nairobi', '1273283284632784', 'Cecilia K', 'Mother', NULL, '+254743282283', 'cess@gmail.com', NULL, NULL, NULL, NULL, '2023-05-25 16:02:05', '2023-05-25 16:02:05', 1, 1),
+(5, 10, '2023-06-10', '2023-06-08', 'Uganda', '121212133', NULL, NULL, NULL, NULL, NULL, 'A001122233V', 'Greck', 'Own', '0 - 50, 000', 'Equity', 'Nairobi', '1273283284632784', 'Dan Moore', 'son', NULL, '21635123', 'maaa@gmail.com', NULL, NULL, NULL, NULL, '2023-05-27 14:25:01', '2023-05-27 14:25:01', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1442,7 +1465,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (64, '2022_09_19_131105_create_leads_table', 1),
 (65, '2023_02_09_182746_create_loan_payments_table', 2),
 (66, '2023_05_08_192128_create_loan_statements_table', 3),
-(67, '2023_05_26_191928_create_role_permissions_table', 4);
+(67, '2023_05_26_191928_create_role_permissions_table', 4),
+(68, '2023_05_27_181621_create_loan_approvers_table', 5);
 
 -- --------------------------------------------------------
 
@@ -1970,7 +1994,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `organization_id`, `name`, `display_name`, `description`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 0, 'SuperAdmin', 'Admin', 'site admin', NULL, NULL, NULL),
 (2, 1, 'Admin', 'Admin', 'Admin', NULL, '2023-01-19 05:54:30', '2023-01-19 05:54:30'),
-(3, 1, 'New Role', 'New Role', NULL, NULL, '2023-05-26 16:31:38', '2023-05-26 16:31:38');
+(3, 1, 'Staff', 'New Role', NULL, NULL, '2023-05-26 16:31:38', '2023-06-07 16:49:22');
 
 -- --------------------------------------------------------
 
@@ -1999,7 +2023,17 @@ INSERT INTO `role_permissions` (`id`, `role_id`, `permission_id`, `created_at`, 
 (6, 3, 6, '2023-05-26 16:31:38', '2023-05-26 16:31:38'),
 (7, 3, 5, '2023-05-26 16:31:53', '2023-05-26 16:31:53'),
 (8, 3, 6, '2023-05-26 16:31:53', '2023-05-26 16:31:53'),
-(9, 3, 58, '2023-05-26 16:31:53', '2023-05-26 16:31:53');
+(9, 3, 58, '2023-05-26 16:31:53', '2023-05-26 16:31:53'),
+(10, 2, 1, '2023-05-27 14:22:55', '2023-05-27 14:22:55'),
+(11, 2, 2, '2023-05-27 14:22:55', '2023-05-27 14:22:55'),
+(12, 2, 3, '2023-05-27 14:22:55', '2023-05-27 14:22:55'),
+(13, 2, 4, '2023-05-27 14:22:56', '2023-05-27 14:22:56'),
+(14, 2, 58, '2023-05-27 14:22:56', '2023-05-27 14:22:56'),
+(15, 3, 5, '2023-06-07 16:49:22', '2023-06-07 16:49:22'),
+(16, 3, 6, '2023-06-07 16:49:22', '2023-06-07 16:49:22'),
+(17, 3, 7, '2023-06-07 16:49:22', '2023-06-07 16:49:22'),
+(18, 3, 8, '2023-06-07 16:49:22', '2023-06-07 16:49:22'),
+(19, 3, 9, '2023-06-07 16:49:22', '2023-06-07 16:49:22');
 
 -- --------------------------------------------------------
 
@@ -2127,7 +2161,10 @@ INSERT INTO `users` (`id`, `organization_id`, `branch_id`, `first_name`, `middle
 (4, 1, 1, 'Joseph', NULL, 'Mwangi', NULL, NULL, '2345', NULL, 'Nairobi', 'Kenya', 0, 'member', NULL, '+254743282283', 'josephmwangi.jgm@gmail.com', '$2y$10$A4a0KKcKdbHT6ebz0IJeD.hqq2YmBxwOrqgYLARdzjJqfOD4IskgO', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-03-20 17:24:04', '2023-03-20 17:24:04'),
 (5, 1, 1, 'Joseph', NULL, 'Moore', NULL, NULL, '20106', NULL, 'Nakuru', 'Kenya', 0, 'member', NULL, '+2547432822833', 'moore@gmail.com', '$2y$10$Sk.qbE7rOIuvGDu7VmlcI.TqOx54pBzDQjrfrNVENkLKRaI832eKW', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-23 17:07:39', '2023-05-23 17:07:39'),
 (6, 1, 1, 'Lilian', NULL, 'Maina', NULL, NULL, '20106', NULL, 'Eldoret', 'Kenya', 0, 'member', NULL, '+254743282286', 'maina@gmail.com', '$2y$10$xu9HsLlkvUMPybdM.LtQQezb1wCeP9OaGJHRdxrh.LuabQ60oeADe', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-25 16:02:05', '2023-05-25 16:02:05'),
-(8, 1, 1, 'Joe', NULL, 'Mwangi', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'user', NULL, '+254743282285', 'jmwangig10@gmail.com', '$2y$10$FbV5YLoHfHo/G28zr3kEvesIRUJadls2/nXgEUgQ7FVXURuGksVTC', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-26 17:21:31', '2023-05-26 17:24:16');
+(8, 1, 1, 'Joe', NULL, 'Mwangi', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'user', NULL, '+254743282285', 'jmwangig10@gmail.com', '$2y$10$FbV5YLoHfHo/G28zr3kEvesIRUJadls2/nXgEUgQ7FVXURuGksVTC', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-26 17:21:31', '2023-05-26 17:24:16'),
+(9, 1, 1, 'Jack', NULL, 'Maa', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'user', NULL, '+2547432822833', 'maa@gmail.com', '$2y$10$J/u9uQUb3RJ1SnJ08QJ/Wu5vXKfkLxwevItozA68TTr70TkdG10um', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-27 14:22:27', '2023-05-27 14:22:27'),
+(10, 1, 1, 'Davvy', NULL, 'Mains', NULL, NULL, '20106', NULL, '925 molo', NULL, 0, 'member', NULL, '+254743282280', 'main@gmail.com', '$2y$10$BoUnYM1Icmr8dEIWGJHfs.RgxeH0hRO4YkRiUy3VIwgMUnAPSgY6a', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-27 14:25:01', '2023-05-27 14:25:01'),
+(11, 1, 1, 'Dan', NULL, 'DV', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'user', NULL, '+254743282285', 'dv@gmail.com', '$2y$10$UdHp2aUWfWuCJ89kWqc45eIujzvf4nW06S7F3UPMd/B.6H/Aer3UO', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-07 16:48:56', '2023-06-07 16:48:56');
 
 -- --------------------------------------------------------
 
@@ -2406,6 +2443,12 @@ ALTER TABLE `loan_application_statuses`
   ADD UNIQUE KEY `loan_application_statuses_name_unique` (`name`);
 
 --
+-- Indexes for table `loan_approvers`
+--
+ALTER TABLE `loan_approvers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `loan_payments`
 --
 ALTER TABLE `loan_payments`
@@ -2668,7 +2711,7 @@ ALTER TABLE `witness_types`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `account_classes`
@@ -2806,7 +2849,7 @@ ALTER TABLE `fiscal_periods`
 -- AUTO_INCREMENT for table `guarantors`
 --
 ALTER TABLE `guarantors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `interest_types`
@@ -2842,12 +2885,18 @@ ALTER TABLE `loans`
 -- AUTO_INCREMENT for table `loan_applications`
 --
 ALTER TABLE `loan_applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `loan_application_statuses`
 --
 ALTER TABLE `loan_application_statuses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `loan_approvers`
+--
+ALTER TABLE `loan_approvers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -2890,13 +2939,13 @@ ALTER TABLE `login_events`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `mpesa_bulk_payments`
@@ -3028,7 +3077,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `role_permissions`
 --
 ALTER TABLE `role_permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `sms_settings`
@@ -3058,7 +3107,7 @@ ALTER TABLE `transaction_types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`

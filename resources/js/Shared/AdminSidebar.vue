@@ -4,12 +4,12 @@
       <li class="iq-menu-title">
         <i class="ri-subtract-line"></i><span>Dashboard</span>
       </li>
-      <li>
+      <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
         <Link href="/dashboard" class="iq-waves-effect"
           ><i class="ri-home-3-line"></i><span>Dashboard</span></Link
         >
       </li>
-      <li>
+      <li :class="usePage().url.value.startsWith('/branches') ? 'active' : ''">
         <Link
           :href="route('branches.index')"
           class="iq-waves-effect"
@@ -17,7 +17,7 @@
           ><i class="ri-database-line"></i><span>Branches</span></Link
         >
       </li>
-      <li>
+      <li :class="usePage().url.value.startsWith('/members') ? 'active' : ''">
         <Link
           :href="route('members.index')"
           class="iq-waves-effect"
@@ -25,7 +25,7 @@
           ><i class="ri-menu-3-line"></i><span>Members</span></Link
         >
       </li>
-      <li>
+      <li :class="usePage().url.value.startsWith('/leads') ? 'active' : ''">
         <Link
           :href="route('leads.index')"
           class="iq-waves-effect"
@@ -36,7 +36,15 @@
       <li class="iq-menu-title">
         <i class="ri-subtract-line"></i><span>Loans & Savings</span>
       </li>
-      <li>
+      <li
+        :class="
+          usePage().url.value.startsWith('/calculator') ||
+          usePage().url.value.startsWith('/activeLoans') ||
+          usePage().url.value.startsWith('/loanApplications')
+            ? 'active'
+            : ''
+        "
+      >
         <a
           href="#icons"
           class="iq-waves-effect collapsed"
@@ -50,24 +58,38 @@
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/calculator') ? 'active' : ''
+            "
+          >
             <Link :href="route('calculator')" preserve-state
-              ><i class="ri-stack-line"></i>Loans Calculator</Link
+              ><i class="ri-calculator-fill"></i>Loans Calculator</Link
             >
           </li>
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/activeLoans') ? 'active' : ''
+            "
+          >
             <Link :href="route('activeLoans.index')" preserve-state
               ><i class="ri-stack-line"></i>Active Loans</Link
             >
           </li>
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/loanApplications')
+                ? 'active'
+                : ''
+            "
+          >
             <Link :href="route('loanApplications.index')" preserve-state
               ><i class="ri-checkbox-line"></i>Applications</Link
             >
           </li>
         </ul>
       </li>
-      <li>
+      <li :class="usePage().url.value.startsWith('/deposits') ? 'active' : ''">
         <Link
           :href="route('deposits.index')"
           class="iq-waves-effect"
@@ -76,16 +98,13 @@
         >
       </li>
 
-      <li>
-        <Link
-          :href="route('withdrawals.index')"
-          class="iq-waves-effect"
-          aria-expanded="false"
+      <li :class="usePage().url.value.startsWith('/dividends') ? 'active' : ''">
+        <Link :href="'#'" class="iq-waves-effect" aria-expanded="false"
           ><i class="ri-bar-chart-line"></i><span>Dividends</span></Link
         >
       </li>
 
-      <!-- <li>
+      <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
         <a href="#" class="iq-waves-effect" aria-expanded="false"
           ><i class="ri-database-line"></i><span>Expenses</span></a
         >
@@ -93,7 +112,17 @@
       <li class="iq-menu-title">
         <i class="ri-subtract-line"></i><span>Settings</span>
       </li>
-      <li>
+      <li
+        :class="
+          usePage().url.value.startsWith('/edit') ||
+          usePage().url.value.startsWith('/accounts') ||
+          usePage().url.value.startsWith('/witnessTypes') ||
+          usePage().url.value.startsWith('/loanTypes') ||
+          usePage().url.value.startsWith('/loanSettings')
+            ? 'active'
+            : ''
+        "
+      >
         <a
           href="#extra-pages"
           class="iq-waves-effect collapsed"
@@ -107,46 +136,67 @@
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li>
+          <li :class="usePage().url.value.startsWith('/edit') ? 'active' : ''">
             <Link :href="'/edit'"
               ><i class="ri-pages-line"></i>Organization</Link
             >
           </li>
-          <li>
+          <li
+            :class="usePage().url.value.startsWith('/accounts') ? 'active' : ''"
+          >
             <Link :href="route('accounts.index')"
               ><i class="ri-question-answer-line"></i>Accounts</Link
             >
           </li>
-          <li>
+          <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
             <a href="#"><i class="ri-invision-line"></i>Capital</a>
-          </li>
-          <li>
+          </li> -->
+          <li
+            :class="
+              usePage().url.value.startsWith('/witnessTypes') ? 'active' : ''
+            "
+          >
             <Link :href="route('witnessTypes.index')"
               ><i class="ri-archive-line"></i>Witness Types</Link
             >
           </li>
 
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/loanTypes') ? 'active' : ''
+            "
+          >
             <Link :href="route('loanTypes.index')" preserve-state
               ><i class="ri-profile-line"></i>Loan Types</Link
             >
           </li>
 
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/loanSettings') ? 'active' : ''
+            "
+          >
             <Link :href="route('loanSettings')"
               ><i class="ri-error-warning-line"></i>Loans Settings</Link
             >
           </li>
-          <li>
+          <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
             <a href="#"><i class="ri-price-tag-line"></i>Payment Methods</a>
           </li>
-          <li>
+          <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
             <a href="#"><i class="ri-mastercard-line"></i>Communication</a>
-          </li>
+          </li> -->
         </ul>
       </li>
 
-      <li>
+      <li
+        :class="
+          usePage().url.value.startsWith('/users') ||
+          usePage().url.value.startsWith('/roles')
+            ? 'active'
+            : ''
+        "
+      >
         <a
           href="#uac"
           class="iq-waves-effect collapsed"
@@ -160,19 +210,21 @@
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li>
-            <a :href="route('get-users')"><i class="ri-pages-line"></i>Users</a>
+          <li :class="usePage().url.value.startsWith('/users') ? 'active' : ''">
+            <Link :href="route('get-users')"
+              ><i class="ri-pages-line"></i>Users</Link
+            >
           </li>
-          <li>
-            <a :href="route('get-roles')"
-              ><i class="ri-question-answer-line"></i>Roles</a
+          <li :class="usePage().url.value.startsWith('/roles') ? 'active' : ''">
+            <Link :href="route('get-roles')"
+              ><i class="ri-question-answer-line"></i>Roles</Link
             >
           </li>
         </ul>
       </li>
 
       <li class="iq-menu-title"><i class=""></i><span>Reports</span></li>
-      <li>
+      <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
         <a
           href="#authentication"
           class="iq-waves-effect collapsed"
@@ -186,19 +238,35 @@
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+            "
+          >
             <a href="#"><i class="ri-login-box-line"></i>Loans</a>
           </li>
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+            "
+          >
             <a href="#"><i class="ri-login-box-line"></i>Deposits</a>
           </li>
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+            "
+          >
             <a href="#"><i class="ri-login-box-line"></i>Withdrawals</a>
           </li>
-          <!-- <li>
+          <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
             <a href="#"><i class="ri-login-circle-line"></i>Expenses</a>
           </li> -->
-          <li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+            "
+          >
             <a href="#"><i class="ri-record-mail-line"></i>Leads</a>
           </li>
         </ul>
@@ -207,3 +275,7 @@
     </ul>
   </nav>
 </template>
+<script setup>
+import { usePage } from "@inertiajs/inertia-vue3";
+</script>
+

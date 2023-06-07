@@ -16,7 +16,7 @@
             @foreach ($deposits as $item)
                 <tr>
                     <td>{{ $item->receipt_number }}</td>
-                    <td>{{ $item->member->first_name }} {{ $item->member->last_name }}</td>
+                    <td>{{ $item->member->user->first_name }} {{ $item->member->user->last_name }}</td>
                     <td>{{ $item->member->account->account_number }}</td>
                     <td>{{ $item->branch->name }}</td>
                     <td>{{ $item->payment_date }}</td>

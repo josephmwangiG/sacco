@@ -10,6 +10,7 @@ use App\Models\LoanStatement;
 use App\Models\LoanType;
 use App\Models\Member;
 use App\Models\PaymentFrequency;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,8 @@ class LoanApplicationController extends Controller
                 "amount_applied" => $item->amount_applied,
                 "interest_rate" => $item->interest_rate,
                 "application_date" => $item->application_date,
+                "approved_on" => $item->approved_on,
+                "rejected_on" => $item->rejected_on,
                 "guarantors" => $item->guarantors,
             ]);
 
@@ -85,6 +88,7 @@ class LoanApplicationController extends Controller
         $data['interest_rate'] = $loan->interest_rate;
         $data['repayment_period'] = $loan->repayment_period;
         $data['payment_frequency_id'] = $loan->payment_frequency_id;
+
         $data['penalty_type_id'] = $loan->penalty_type_id;
         $data['loan_officer_id'] = Auth::user()->user_type == "member" ? 0 : Auth::user()->id;
         $data['disburse_method_id'] = 0;
@@ -205,7 +209,10 @@ class LoanApplicationController extends Controller
         $loanApplication = LoanApplication::where("id", $id)->firstOrFail();
         $guarantors = Guarantor::where("loan_application_id", $loanApplication->id)
             ->with('Member.Account', "Member.User")->get();
-        return inertia('Components/LoanApplications/Guarantors', compact("id", "guarantors", "loanApplication"));
+
+        $totalSum = Guarantor::where("loan_application_id", $loanApplication->id)
+            ->sum("guarantee_amount");
+        return inertia('Components/LoanApplications/Guarantors', compact("id", "guarantors", "loanApplication", "totalSum"));
     }
 
     public function createGuarantors(Request $request, $id)
@@ -298,9 +305,13 @@ class LoanApplicationController extends Controller
 
     public function disbursement($id)
     {
-        $loanApplication = LoanApplication::find($id);
+        $loanApplication = LoanApplication::where("id", $id)->with("member")->first();
+        $users = User::where("id", "!=", Auth::user()->id)
+            ->where("organization_id", Auth::user()->organization_id)
+            ->where("user_type", "!=", "member")
+            ->with("role.permissions")->get();
 
-        return inertia("Components/LoanApplications/DisburseForm", compact('loanApplication'));
+        return inertia("Components/LoanApplications/DisburseForm", compact('loanApplication', "users"));
     }
 
     public function updateDisbursement(Request $request, $id)
@@ -316,6 +327,7 @@ class LoanApplicationController extends Controller
             "bank_name" => "",
             "bank_branch" => "",
             "cheque_date" => "",
+            "account_number" => "",
             "disbursement_date" => "",
         ]);
 
@@ -331,6 +343,13 @@ class LoanApplicationController extends Controller
         $loanApplication = LoanApplication::find($id);
 
         return inertia("Components/LoanApplications/ConfirmForm", compact('loanApplication'));
+    }
+
+    public function reject($id)
+    {
+        $loanApplication = LoanApplication::find($id);
+
+        return inertia("Components/LoanApplications/RejectForm", compact('loanApplication'));
     }
 
     public function saveConfirm(Request $request, $id)
@@ -392,6 +411,21 @@ class LoanApplicationController extends Controller
         return back()->with("success", "Loan application approved.");
     }
 
+    public function saveReject(Request $request, $id)
+    {
+        $data = $request->validate([
+            "rejection_notes" => "required",
+        ]);
+
+        $data['rejected_on'] = date("Y-m-d");
+
+        $loanApplication = LoanApplication::find($id);
+
+        $loanApplication->update($data);
+
+        return back()->with("success", "Loan application rejected.");
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -451,7 +485,10 @@ class LoanApplicationController extends Controller
         $loanApplication = LoanApplication::where("id", $id)->firstOrFail();
         $guarantors = Guarantor::where("loan_application_id", $loanApplication->id)
             ->with('Member.Account', "Member.User")->get();
-        return inertia('User/Applications/Guarantors', compact("id", "guarantors", "loanApplication"));
+        $totalSum = Guarantor::where("loan_application_id", $loanApplication->id)
+            ->sum("guarantee_amount");
+
+        return inertia('User/Applications/Guarantors', compact("id", "guarantors", "loanApplication", "totalSum"));
     }
 
     public function uCollaterals($id)
@@ -467,7 +504,7 @@ class LoanApplicationController extends Controller
 
     public function uDisbursement($id)
     {
-        $loanApplication = LoanApplication::find($id);
+        $loanApplication = LoanApplication::where("id", $id)->with("member")->first();
 
         return inertia("User/Applications/DisburseForm", compact('loanApplication'));
     }

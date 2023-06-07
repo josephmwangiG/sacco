@@ -28,7 +28,6 @@
               </div>
               <div class="col-sm-12 col-md-7">
                 <div class="user-list-files d-flex float-right">
-                  <a class="iq-bg-primary" href="javascript:void();"> Pdf </a>
                   <a class="iq-bg-primary" :href="route('pdf.leads')">
                     Print
                   </a>
