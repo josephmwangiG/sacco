@@ -8,7 +8,7 @@
         <div class="iq-dark-logo">
           <!-- <img src="/images/logo-dark.gif" class="img-fluid" alt="" /> -->
         </div>
-        <span style="text-transform: uppercase; font-size: 20px">FHTS</span>
+        <span style="text-transform: uppercase; font-size: 20px">PS CLUB</span>
       </a>
       <div class="iq-menu-bt-sidebar">
         <div class="iq-menu-bt align-self-center">

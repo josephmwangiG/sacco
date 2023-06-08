@@ -1,7 +1,7 @@
 <template>
   <EditMember :member="member" :title="'Member Deposits'">
     <div class="col-sm-12 mb-3">
-      <div class="user-list-files d-flex float-right">
+      <div class="user-list-files d-flex float-right mb-3">
         <a class="iq-bg-primary" href="javascript:void();"> Print </a>
 
         <a

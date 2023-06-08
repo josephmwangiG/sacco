@@ -1,16 +1,10 @@
 <template>
   <EditMember :member="member" :title="'Member Assets'">
-    <div class="col-sm-12 mb-3">
-      <div class="user-list-files d-flex float-right">
+    <div class="col-sm-12 my-3">
+      <div class="user-list-files d-flex float-right mb-3">
         <a class="iq-bg-primary" href="javascript:void();"> Print </a>
 
-        <a
-          class="iq-bg-primary"
-          data-toggle="modal"
-          data-target="#formModal"
-          @click="create"
-          href="javascript:void();"
-        >
+        <a class="iq-bg-primary" data-toggle="modal" data-target="#formModal" @click="create" href="javascript:void();">
           New
         </a>
       </div>
@@ -39,24 +33,11 @@
             </td>
             <td>
               <div class="flex align-items-center list-user-action">
-                <a
-                  class="iq-bg-primary"
-                  data-placement="top"
-                  @click="getObject(obj)"
-                  data-toggle="modal"
-                  data-target="#formModal"
-                  href="javascript:void();"
-                  ><i class="ri-pencil-line"></i
-                ></a>
-                <a
-                  class="iq-bg-primary"
-                  data-toggle="modal"
-                  data-placement="top"
-                  @click="url = route('assets.destroy', obj.id)"
-                  data-original-title="Delete"
-                  href="#confirm"
-                  ><i class="ri-delete-bin-line"></i
-                ></a>
+                <a class="iq-bg-primary" data-placement="top" @click="getObject(obj)" data-toggle="modal"
+                  data-target="#formModal" href="javascript:void();"><i class="ri-pencil-line"></i></a>
+                <a class="iq-bg-primary" data-toggle="modal" data-placement="top"
+                  @click="url = route('assets.destroy', obj.id)" data-original-title="Delete" href="#confirm"><i
+                    class="ri-delete-bin-line"></i></a>
               </div>
             </td>
           </tr>

@@ -9,64 +9,54 @@
             </div>
           </div>
           <div class="iq-card-body">
-            <ul class="nav nav-tabs" id="myTab-2" role="tablist">
-              <li class="nav-item">
-                <Link
-                  class="nav-link"
-                  :class="active == 'details' ? 'active' : ''"
-                  :href="route('activeLoans.edit', id)"
-                  ><i
-                    class="ri-list-settings-line pr-1"
-                    style="font-size: 20px"
-                  ></i>
-                  Details</Link
-                >
-              </li>
 
-              <li class="nav-item">
-                <Link
-                  class="nav-link"
-                  :class="active == 'collaterals' ? 'active' : ''"
-                  :href="route('activeLoans.collateral', id)"
-                  ><i class="ri-refund-fill pr-1" style="font-size: 20px"></i>
-                  Collateral</Link
-                >
-              </li>
+            <hr class="mt-0">
+            <div class="items-tabs">
+              <div class="d-flex justify-content-between">
+                <div class="tabs-menu" style="overflow-y: hidden;">
 
-              <li class="nav-item">
-                <Link
-                  class="nav-link"
-                  :class="active == 'guarantors' ? 'active' : ''"
-                  :href="route('activeLoans.guarantors', id)"
-                  ><i class="ri-safe-fill pr-1" style="font-size: 20px"></i>
-                  Guarantors</Link
-                >
-              </li>
+                  <Link class="tab" :href="route('activeLoans.edit', id)">
+                  <label class="pb-0 mb-0"
+                    :class="usePage().url.value.startsWith('/activeLoans/' + id) ? 'active-tab' : ''"><i
+                      class="ri-list-settings-line pr-1" style="font-size: 20px"></i>
+                    Details</label>
+                  </Link>
+                  <Link class="tab" :href="route('activeLoans.guarantors', id)
+                    ">
+                  <label class="pb-0 mb-0"
+                    :class="usePage().url.value.startsWith('/activeLoans/guarantors') ? 'active-tab' : ''"><i
+                      class="ri-safe-fill pr-1" style="font-size: 20px"></i>
+                    Guarantors</label>
+                  </Link>
+                  <Link class="tab" :href="route('activeLoans.collateral', id)
+                    ">
+                  <label class="pb-0 mb-0"
+                    :class="usePage().url.value.startsWith('/activeLoans/collateral') ? 'active-tab' : ''"><i
+                      class="ri-refund-fill pr-1" style="font-size: 20px"></i>
+                    Collateral</label>
+                  </Link>
+                  <Link class="tab" :href="route('activeLoans.payments', id)
+                    ">
+                  <label class="pb-0 mb-0"
+                    :class="usePage().url.value.startsWith('/activeLoans/payments') ? 'active-tab' : ''"><i
+                      class="ri-money-dollar-circle-line pr-1" style="font-size: 20px"></i>
+                    Payments</label>
+                  </Link>
+                  <Link class="tab" :href="route('activeLoans.accrue', id)
+                    ">
+                  <label class="pb-0 mb-0"
+                    :class="usePage().url.value.startsWith('/activeLoans/accrue') ? 'active-tab' : ''"><i
+                      class="ri-edit-box-line pr-1" style="font-size: 20px"></i>
+                    Accrue</label>
+                  </Link>
 
-              <li class="nav-item">
-                <Link
-                  class="nav-link"
-                  :class="active == 'payments' ? 'active' : ''"
-                  :href="route('activeLoans.payments', id)"
-                  ><i
-                    class="ri-money-dollar-circle-line pr-1"
-                    style="font-size: 20px"
-                  ></i>
-                  Payments</Link
-                >
-              </li>
 
-              <li class="nav-item">
-                <Link
-                  class="nav-link"
-                  :class="active == 'accrue' ? 'active' : ''"
-                  :href="route('activeLoans.accrue', id)"
-                  ><i class="ri-edit-box-line pr-1" style="font-size: 20px"></i>
-                  Accrue</Link
-                >
-              </li>
-            </ul>
+                </div>
 
+              </div>
+              <div class="tab-content-wrapper pt-0 mt-0 mb-3">
+              </div>
+            </div>
             <slot />
           </div>
         </div>
@@ -75,6 +65,7 @@
   </Main>
 </template>
 <script setup>
+import { usePage } from '@inertiajs/inertia-vue3';
 const props = defineProps({
   id: Number,
   active: String,

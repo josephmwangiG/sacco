@@ -2,31 +2,21 @@
   <EditApplication :id="id" :active="'payments'">
     <div class="row justify-content-between">
       <div class="col-sm-5 col-md-4">
-        <h4 class="card-title">payments</h4>
+        <h4 class="card-title">Payments</h4>
       </div>
       <div class="col-sm-7 col-md-6">
         <div class="user-list-files d-flex float-right">
           <a class="iq-bg-primary" href="javascript:void();"> Print </a>
 
-          <a
-            class="iq-bg-primary"
-            data-toggle="modal"
-            data-target="#formModal"
-            @click="create"
-            href="javascript:void();"
-          >
+          <a class="iq-bg-primary" data-toggle="modal" data-target="#formModal" @click="create" href="javascript:void();">
             New
           </a>
         </div>
       </div>
     </div>
     <div class="table-responsive">
-      <table
-        id="user-list-table"
-        class="table table-striped table-borderless mt-2"
-        role="grid"
-        aria-describedby="user-list-page-info"
-      >
+      <table id="user-list-table" class="table table-striped table-borderless mt-2" role="grid"
+        aria-describedby="user-list-page-info">
         <thead>
           <tr>
             <th>Loan No.</th>
@@ -54,24 +44,11 @@
             </td>
             <td>
               <div class="flex align-items-center list-user-action">
-                <a
-                  class="iq-bg-primary"
-                  data-placement="top"
-                  @click="getObject(obj)"
-                  data-toggle="modal"
-                  data-target="#formModal"
-                  href="javascript:void();"
-                  ><i class="ri-pencil-line"></i
-                ></a>
-                <a
-                  class="iq-bg-primary"
-                  data-toggle="modal"
-                  data-placement="top"
-                  @click="url = route('activeLoans.delete.payments', obj.id)"
-                  data-original-title="Delete"
-                  href="#confirm"
-                  ><i class="ri-delete-bin-line"></i
-                ></a>
+                <a class="iq-bg-primary" data-placement="top" @click="getObject(obj)" data-toggle="modal"
+                  data-target="#formModal" href="javascript:void();"><i class="ri-pencil-line"></i></a>
+                <a class="iq-bg-primary" data-toggle="modal" data-placement="top"
+                  @click="url = route('activeLoans.delete.payments', obj.id)" data-original-title="Delete"
+                  href="#confirm"><i class="ri-delete-bin-line"></i></a>
               </div>
             </td>
           </tr>
@@ -79,13 +56,7 @@
       </table>
     </div>
     <Confirm :url="url" />
-    <PaymentForm
-      :hasMember="true"
-      :memberDetails="member"
-      :form="form"
-      :action="action"
-      :item="item"
-    />
+    <PaymentForm :hasMember="true" :memberDetails="member" :form="form" :action="action" :item="item" />
   </EditApplication>
 </template>
 <script setup>
