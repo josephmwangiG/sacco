@@ -135,12 +135,6 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer mt-3" v-if="loanApplication.approved_on == null">
-        <button type="submit" class="btn btn-success">Approve Loan</button>
-      </div>
-      <div class="modal-footer mt-3" v-else>
-        <button type="button" class="btn btn-danger">Active Loan</button>
-      </div>
     </form>
   </EditApplication>
 </template>

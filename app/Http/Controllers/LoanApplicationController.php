@@ -515,4 +515,10 @@ class LoanApplicationController extends Controller
         $loanApplication = LoanApplication::find($id);
         return inertia("User/Applications/ConfirmForm", compact('loanApplication'));
     }
+
+    public function uReject($id)
+    {
+        $loanApplication = LoanApplication::find($id);
+        return inertia("User/Applications/RejectForm", compact('loanApplication'));
+    }
 }

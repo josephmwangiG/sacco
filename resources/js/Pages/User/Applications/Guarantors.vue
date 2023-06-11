@@ -1,5 +1,5 @@
 <template>
-  <EditApplication :id="id" :active="'guarantors'">
+  <EditApplication :loanApplication="loanApplication" :active="'guarantors'">
     <div class="row justify-content-between">
       <div class="col-sm-5 col-md-4">
         <h4 class="card-title">Guarantors</h4>
@@ -82,7 +82,13 @@
       </table>
     </div>
     <Confirm :url="url" />
-    <GuarantorsForm :form="gform" :action="action" :item="item" :id="id" />
+    <GuarantorsForm
+      :m_id="loanApplication.member_id"
+      :form="gform"
+      :action="action"
+      :item="item"
+      :id="id"
+    />
   </EditApplication>
 </template>
 <script setup>

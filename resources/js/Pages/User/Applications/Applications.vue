@@ -41,7 +41,21 @@
                 <td>{{ obj.amount_applied }}</td>
                 <td>{{ obj.service_fee }}</td>
                 <td>
-                  <div class="badge badge-pill badge-success">Active</div>
+                  <span
+                    class="badge bg-success text-white dark-icon-light iq-bg-primary"
+                    v-if="obj.approved_on != null"
+                    >Approved</span
+                  >
+                  <span
+                    class="badge bg-danger text-white dark-icon-light iq-bg-primary"
+                    v-else-if="obj.rejected_on != null"
+                    >Rejected</span
+                  >
+                  <span
+                    class="badge bg-dark text-white dark-icon-light iq-bg-primary"
+                    v-else
+                    >Pending</span
+                  >
                 </td>
                 <td>
                   <div class="flex align-items-center list-user-action">
@@ -84,43 +98,48 @@ let action = ref("Create");
 
 let item = ref(0);
 
-const form = ref(
-  useForm({
-    member_id: props.member.id,
-    branch_id: props.member.branch_id,
-    asset_number: "",
-    title: "",
-    description: "",
-    valuation_date: "",
-    valued_by: "",
-    valuer_phone: "",
-    valuation_amount: "",
-    location: "",
-    registration_number: "",
-    registered_to: "",
-    condition: "",
-    notes: "",
-  })
-);
+const form = ref(useForm({}));
 
 const create = () => {
   item.value = 0;
   action.value = "Create";
   form.value = useForm({
-    member_id: props.member.id,
+    member: props.member.id,
     branch_id: props.member.branch_id,
-    asset_number: "",
-    title: "",
-    description: "",
-    valuation_date: "",
-    valued_by: "",
-    valuer_phone: "",
-    valuation_amount: "",
-    location: "",
-    registration_number: "",
-    registered_to: "",
-    condition: "",
-    notes: "",
+    loan_officer: "",
+    loan_type: "",
+    reduce_principal_early: "",
+    amount_applied: "",
+    periodic_payment_amount: "",
+    application_date: "",
+    disburse_method: "",
+    disburse_note: "",
+    mpesa_number: "",
+    mpesa_first_name: "",
+    mpesa_middle_name: "",
+    mpesa_last_name: "",
+    cheque_number: "",
+    bank_name: "",
+    bank_branch: "",
+    cheque_date: "",
+    witness_type: "",
+    witness_first_name: "",
+    witness_last_name: "",
+    witness_country: "",
+    witness_county: "",
+    witness_city: "",
+    witness_national_id: "",
+    witness_phone: "",
+    witness_email: "",
+    witness_postal_address: "",
+    witness_residential_address: "",
+    witnessed_by: "",
+    reviewed_by: "",
+    reviewed_on: "",
+    approved_on: "",
+    rejected_on: "",
+    rejection_notes: "",
+    attach_application_form: "",
   });
 };
 
@@ -130,18 +149,40 @@ const getObject = (obj) => {
   form.value = useForm({
     member_id: props.member.id,
     branch_id: props.member.branch_id,
-    asset_number: obj.asset_number,
-    title: obj.title,
-    description: obj.description,
-    valuation_date: obj.valuation_date,
-    valued_by: obj.valued_by,
-    valuer_phone: obj.valuer_phone,
-    valuation_amount: obj.valuation_amount,
-    location: obj.location,
-    registration_number: obj.registration_number,
-    registered_to: obj.asset_number,
-    condition: obj.asset_number,
-    notes: obj.asset_number,
+    loan_officer: "",
+    loan_type: "",
+    reduce_principal_early: "",
+    amount_applied: "",
+    periodic_payment_amount: "",
+    application_date: "",
+    disburse_method: "",
+    disburse_note: "",
+    mpesa_number: "",
+    mpesa_first_name: "",
+    mpesa_middle_name: "",
+    mpesa_last_name: "",
+    cheque_number: "",
+    bank_name: "",
+    bank_branch: "",
+    cheque_date: "",
+    witness_type: "",
+    witness_first_name: "",
+    witness_last_name: "",
+    witness_country: "",
+    witness_county: "",
+    witness_city: "",
+    witness_national_id: "",
+    witness_phone: "",
+    witness_email: "",
+    witness_postal_address: "",
+    witness_residential_address: "",
+    witnessed_by: "",
+    reviewed_by: "",
+    reviewed_on: "",
+    approved_on: "",
+    rejected_on: "",
+    rejection_notes: "",
+    attach_application_form: "",
   });
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <EditApplication :id="id" :active="'collaterals'">
+  <EditApplication :loanApplication="loanApplication" :active="'collaterals'">
     <div class="row justify-content-between">
       <div class="col-sm-5 col-md-4">
         <h4 class="card-title">Collaterals</h4>

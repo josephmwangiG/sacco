@@ -10,9 +10,7 @@
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="formModal">
-            {{ action }} New Loan Application.
-          </h5>
+          <h5 class="modal-title" id="formModal">New Loan Application.</h5>
           <button
             type="button"
             class="close"
@@ -60,13 +58,12 @@
                   />
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="account_number">Address:</label>
+                  <label for="address">Address:</label>
                   <input
                     type="text"
                     v-model="member.residential_address"
                     class="form-control"
-                    required
-                    id="account_number"
+                    id="address"
                     placeholder="Residential Address"
                   />
                 </div>
@@ -263,7 +260,7 @@
               Close
             </button>
             <button type="submit" class="btn btn-primary">
-              {{ action }} Loan Application
+              Apply for Loan
             </button>
           </div>
         </form>
@@ -343,6 +340,7 @@ const selectLoan = (event) => {
 };
 
 function saveForm() {
+  console.log(props.action);
   if (props.action == "Edit") {
     props.form.put(route("u.loanApplications.update", props.item), {
       onSuccess: () => {
