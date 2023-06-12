@@ -34,7 +34,6 @@
             <th>Asset No.</th>
             <th>valuation Amt.</th>
             <th>Valuation date</th>
-            <th>Condition</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -44,7 +43,6 @@
             <td>{{ obj.asset.asset_number }}</td>
             <td>{{ obj.asset.valuation_amount }}</td>
             <td>{{ obj.asset.valuation_date }}</td>
-            <td>{{ obj.asset.condition }}</td>
             <td>
               <div class="flex align-items-center list-user-action">
                 <a

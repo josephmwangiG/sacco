@@ -1,22 +1,10 @@
 <template>
-  <div
-    class="modal fade"
-    id="formModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="formModal"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="formModal">{{ action }} Collateral.</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -26,13 +14,7 @@
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label for="asset">Asset:</label>
-                  <select
-                    required
-                    @change="selectAsset($event)"
-                    v-model="form.asset"
-                    class="form-control"
-                    id="asset"
-                  >
+                  <select required @change="selectAsset($event)" v-model="form.asset" class="form-control" id="asset">
                     <option value="">Select Asset</option>
                     <option v-for="a in assets" :key="a.id" :value="a.id">
                       {{ a.title }}
@@ -44,69 +26,43 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="asset_number">Asset Number:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    required
-                    v-model="form.asset_number"
-                    id="asset_number"
-                    placeholder="Asset Number"
-                  />
+                  <input type="text" class="form-control" required v-model="form.asset_number" id="asset_number"
+                    placeholder="Asset Number" />
                   <div class="text-danger" v-if="form.errors.asset_number">
                     <small>{{ form.errors.asset_number }}</small>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="valuation_amount">Valuation Amount:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="valuation_amount"
-                    v-model="form.valuation_amount"
-                    placeholder="Valuation Amount"
-                  />
+                  <input type="text" class="form-control" id="valuation_amount" v-model="form.valuation_amount"
+                    placeholder="Valuation Amount" />
                   <div class="text-danger" v-if="form.errors.valuation_amount">
                     <small>{{ form.errors.valuation_amount }}</small>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="valuation_date">Valuation date:</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="valuation_date"
-                    v-model="form.valuation_date"
-                    placeholder="Valuation date"
-                  />
+                  <input type="date" class="form-control" id="valuation_date" v-model="form.valuation_date"
+                    placeholder="Valuation date" />
                   <div class="text-danger" v-if="form.errors.valuation_date">
                     <small>{{ form.errors.valuation_date }}</small>
                   </div>
                 </div>
-                <div class="form-group col-md-12">
+                <!-- <div class="form-group col-md-12">
                   <div class="form-group">
                     <label for="condition">Asset Condition</label>
-                    <textarea
-                      class="form-control"
-                      v-model="form.condition"
-                      placeholder="Asset Condition"
-                      id="condition"
-                      rows="4"
-                    ></textarea>
+                    <textarea class="form-control" v-model="form.condition" placeholder="Asset Condition" id="condition"
+                      rows="4"></textarea>
                     <div class="text-danger" v-if="form.errors.condition">
                       <small>{{ form.errors.condition }}</small>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              id="closeModal"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
+            <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
             <button type="submit" class="btn btn-primary">
@@ -151,15 +107,17 @@ if (props.action == "Edit") {
 }
 
 function saveForm() {
+
   if (props.action == "Edit") {
-    props.form.put(route("collaterals.update", props.item), {
+    props.form.put(route("u.loanApplications.update.collaterals", props.item), {
       onSuccess: (response) => {
         props.form.reset();
         document.getElementById("closeModal").click();
       },
     });
   } else {
-    props.form.post(route("collaterals.store"), {
+    console.log(props.action)
+    props.form.post(route("u.loanApplications.store.collaterals"), {
       onSuccess: (response) => {
         props.form.reset();
         document.getElementById("closeModal").click();

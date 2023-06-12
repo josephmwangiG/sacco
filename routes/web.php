@@ -148,6 +148,11 @@ Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
     Route::get('/activeLoans/collateral/{loan_id}', [LoansController::class, 'uCollateral'])->name('u.activeLoans.collateral');
     Route::get('/activeLoans/guarantors/{loan_id}', [LoansController::class, 'uGuarantors'])->name('u.activeLoans.guarantors');
 
+    Route::put('/loanApplications/guarantors/{g_id}', [LoanApplicationController::class, 'updateGuarantors'])->name('u.loanApplications.update.guarantors');
+    Route::post('/loanApplications/guarantors/{loan_id}', [LoanApplicationController::class, 'createguarantors'])->name('u.loanApplications.store.guarantors');
+    Route::post('/loanApplications/collaterals/new', [ApplicationAssetsController::class, 'store'])->name('u.loanApplications.store.collaterals');
+    Route::put('/loanApplications/collaterals/{id}', [ApplicationAssetsController::class, 'update'])->name('u.loanApplications.update.collaterals');
+
     // Member Statements 
     Route::get("/statements/member", [StatementsController::class, 'statements'])->name('u.member.statements');
     Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('u.loans.statements');

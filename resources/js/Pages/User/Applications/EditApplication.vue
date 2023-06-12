@@ -109,7 +109,7 @@
                         loanApplication.id
                       )
                     "
-                    v-if="loanApplication.rejected_on == null"
+                    v-if="loanApplication.approved_on != null"
                   >
                     <label
                       class="pb-0 mb-0"

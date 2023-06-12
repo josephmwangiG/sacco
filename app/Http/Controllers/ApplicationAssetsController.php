@@ -34,13 +34,14 @@ class ApplicationAssetsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         $data = request()->validate([
             "asset" => "required",
             "member_id" => "required",
             "loan_application_id" => "required",
             "organization_id" => "required",
+            "con" => "required",
         ]);
 
         $data['asset_id'] = $data['asset'];

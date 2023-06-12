@@ -36,7 +36,6 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Status</th>
-            <th>Join Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -52,7 +51,6 @@
             <td>
               <span class="badge dark-icon-light iq-bg-primary">Active</span>
             </td>
-            <td>{{ obj.member.date_became_member.substring(0, 10) }}</td>
             <td>
               <div class="flex align-items-center list-user-action">
                 <a
