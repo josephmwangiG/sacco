@@ -24,10 +24,14 @@ class LoanApplicationController extends Controller
     public function index()
     {
         $loanApplications = LoanApplication::where("organization_id", Auth::user()->organization_id)
-            // ->where("approved_on", null)
+            ->when(Request()->input('search'), function ($query, $search) {
+
+                $query->where('application_ref_number', "LIKE", "%{$search}%");
+            })
             ->latest()->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
+                "application_ref_number" => $item->application_ref_number,
                 "loan_type_id" => $item->loan_type_id,
                 "loanType" => $item->loanType,
                 "member_id" => $item->member_id,

@@ -297,6 +297,17 @@ const passForm = useForm({
   password_confirmation: "",
 });
 
+const saveForm = () => {
+  form.post(route("organization.update"), {
+    preserveScroll: true,
+    onSuccess: () => {
+      if (JSON.stringify(form.errors) == "{}") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        form.reset();
+      }
+    },
+  });
+};
 const changePass = () => {
   passForm.post(route("change.password"), {
     preserveScroll: true,

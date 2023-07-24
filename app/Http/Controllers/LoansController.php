@@ -21,6 +21,9 @@ class LoansController extends Controller
     public function index()
     {
         $activeLoans = Loan::where("organization_id", Auth::user()->organization_id)
+            ->when(Request()->input('search'), function ($query, $search) {
+                $query->where('loan_reference_number', "LIKE", "%{$search}%");
+            })
             ->latest()->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
