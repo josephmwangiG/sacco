@@ -38,6 +38,7 @@ class LoanApplication extends Model
      * @var array
      */
     protected $fillable = [
+        'application_ref_number',
         'organization_id',
         'branch_id',
         'member_id',
@@ -103,6 +104,24 @@ class LoanApplication extends Model
         'updated_by',
         'deleted_by'
     ];
+
+    static function boot()
+    {
+        parent::boot();
+
+        // Generate Loan Numbers
+        static::creating(function ($model) {
+
+            $latest = $model->latest()->first();
+
+            if ($latest) {
+                $string = preg_replace("/[^0-9\.]/", '', $latest->application_ref_number);
+                $model->application_ref_number =  'AP' . sprintf('%04d', $string + 1);
+            } else {
+                $model->application_ref_number = 'AP0001';
+            }
+        });
+    }
 
     /**
      * @param $application_date

@@ -64,6 +64,7 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::get('/home', [DashboardController::class, 'dashboard'])->name('home');
     Route::get('/organization', [GeneralSettingController::class, 'index'])->name("organization");
     Route::get('/edit', [GeneralSettingController::class, 'edit'])->name("organization.edit");
+    Route::put('/update/organization', [GeneralSettingController::class, 'update'])->name("organization.update");
     Route::post('/change-pass', [GeneralSettingController::class, 'changePassword'])->name("change.password");
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/branches', BranchController::class);

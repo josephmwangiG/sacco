@@ -21,6 +21,27 @@ class GeneralSettingController extends Controller
         return inertia("Settings/Edit", compact('organization'));
     }
 
+    public function update()
+    {
+        $user = User::find(Auth::user()->id);
+        $data = request()->validate([
+            'business_name' => 'required',
+            'business_type' => 'required',
+            'phone' => 'required',
+            'alternate_phone' => '',
+            'country' => 'required',
+            'county' => 'required',
+            'about' => 'required',
+            'physical_address' => '',
+            'postal_address' => '',
+            'postal_code' => ''
+        ]);
+
+        $user->organization->update($data);
+
+        return back()->with('success', "Organization Details Updated");
+    }
+
     public function changePassword()
     {
         $user = User::find(Auth::user()->id);

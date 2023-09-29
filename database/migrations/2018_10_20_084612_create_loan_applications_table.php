@@ -21,6 +21,7 @@ class CreateLoanApplicationsTable extends Migration
             $table->integer('loan_officer_id');
             $table->integer('loan_type_id');
             $table->integer('interest_type_id')->nullable();
+            $table->string('application_ref_number')->nullable();
             $table->string('interest_rate')->nullable();
             $table->double('service_fee')->default(0);
             $table->integer('penalty_type_id')->nullable();

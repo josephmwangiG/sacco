@@ -1,7 +1,7 @@
 <template>
   <Main>
     <div class="row">
-      <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="col-sm-6 col-md-6 col-lg-4">
         <div
           class="iq-card iq-card-block iq-card-stretch iq-card-height"
           style="border-radius: 0px"
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="col-sm-6 col-md-6 col-lg-4">
         <div
           class="iq-card iq-card-block iq-card-stretch iq-card-height"
           style="border-radius: 0px"
@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="col-sm-6 col-md-6 col-lg-4">
         <div
           class="iq-card iq-card-block iq-card-stretch iq-card-height"
           style="border-radius: 0px"
@@ -69,29 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-3">
-        <div
-          class="iq-card iq-card-block iq-card-stretch iq-card-height"
-          style="border-radius: 0px"
-        >
-          <div class="iq-card-body iq-box-relative">
-            <div
-              class="d-flex align-items-center justify-content-between text-right"
-            >
-              <div class="icon iq-icon-box rounded-circle bg-secondary">
-                <i class="las la-chalkboard-teacher" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h5 class="mb-0">Withdrawals</h5>
-                <span
-                  class="h5 text-secondary mb-0 counter d-inline-block w-100"
-                  >{{ withdrawals_total.toLocaleString("en-US") }}</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div class="col-12">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
           <div class="iq-card-body">
