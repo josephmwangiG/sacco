@@ -238,37 +238,47 @@
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li
+        <li
             :class="
-              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+              usePage().url.value.startsWith('/reports') ? 'active' : ''
             "
           >
-            <a href="#"><i class="ri-login-box-line"></i>Loans</a>
+            <Link :href="route('deposits.reports')"><i class="ri-login-circle-line"></i>Deposits</Link>
           </li>
           <li
             :class="
-              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+              usePage().url.value.startsWith('/reports') ? 'active' : ''
             "
           >
-            <a href="#"><i class="ri-login-box-line"></i>Deposits</a>
+            <Link :href="route('dividends.reports')"><i class="ri-bar-chart-line"></i>Dividends</Link>
           </li>
           <li
             :class="
-              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
+              usePage().url.value.startsWith('/reports') ? 'active' : ''
             "
           >
-            <a href="#"><i class="ri-login-box-line"></i>Withdrawals</a>
+            <Link :href="route('applications.reports')"><i class="ri-checkbox-line"></i>Applications</Link>
           </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports') ? 'active' : ''
+            "
+          >
+            <Link :href="route('loans.reports')"><i class="ri-stack-line"></i>Loans</Link>
+          </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports') ? 'active' : ''
+            "
+          >
+            <Link :href="route('payments.reports')"><i class="ri-money-pound-circle-line"></i>Payments</Link>
+          </li>
+         
+        
+          
           <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
             <a href="#"><i class="ri-login-circle-line"></i>Expenses</a>
           </li> -->
-          <li
-            :class="
-              usePage().url.value.startsWith('/dashboard') ? 'active' : ''
-            "
-          >
-            <a href="#"><i class="ri-record-mail-line"></i>Leads</a>
-          </li>
         </ul>
       </li>
       <div class="py-5"></div>

@@ -15,6 +15,7 @@ use App\Http\Controllers\LoanStatementController;
 use App\Http\Controllers\LoanTypeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StatementsController;
 use App\Http\Controllers\SuperAdmin\OrganizationsController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -122,6 +123,19 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::post('/activeLoans/payments/{loan_id}', [LoansController::class, 'createPayments'])->name('activeLoans.store.payments');
     Route::put('/activeLoans/payments/{p_id}', [LoansController::class, 'updatePayments'])->name('activeLoans.update.payments');
     Route::delete('/activeLoans/payments/{p_id}', [LoansController::class, 'deletePayments'])->name('activeLoans.delete.payments');
+
+
+    // Reports 
+    Route::get("/reports/deposits", [ReportController::class, 'deposits'])->name('deposits.reports');
+    Route::get("/reports/loans", [ReportController::class, 'loans'])->name('loans.reports');
+    Route::get("/reports/applications", [ReportController::class, 'applications'])->name('applications.reports');
+    Route::get("/reports/payments", [ReportController::class, 'payments'])->name('payments.reports');
+    Route::get("/reports/dividends", [ReportController::class, 'dividends'])->name('dividends.reports');
+    Route::get("/reports/deposits/pdf", [ReportController::class, 'depositsPdf'])->name('deposits.reports.pdf');
+    Route::get("/reports/payments/pdf", [ReportController::class, 'paymentsPdf'])->name('payments.reports.pdf');
+    Route::get("/reports/loans/pdf", [ReportController::class, 'loansPdf'])->name('loans.reports.pdf');
+    Route::get("/reports/applications/pdf", [ReportController::class, 'applicationsPdf'])->name('applications.reports.pdf');
+    Route::get("/reports/dividends/pdf", [ReportController::class, 'dividendsPdf'])->name('dividends.reports.pdf');
 });
 
 
@@ -171,4 +185,9 @@ Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
 
 
     Route::get('/details', [MemberController::class, 'uDetails'])->name('u.details');
+
+
+    
+   
+
 });
