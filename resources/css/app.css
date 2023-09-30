@@ -45,3 +45,100 @@
     border-bottom-left-radius: 3px;
     border-top-right-radius: 3px;
 }
+
+
+table.dataTable.no-footer {
+    border: none;
+    border-bottom: #f2edff 1px solid;
+}
+
+table.dataTable thead th {
+    border: none;
+    border-bottom: #555 1px solid;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    color: #999 !important;
+}
+
+li.paginate_button.page-item.active {
+    background-color: #ccc !important;
+    border: none !important;
+}
+a.page-link {
+    background: none !important;
+    color: black !important;
+    border: none !important;
+    outline: none !important;
+}
+
+a.page-link:hover {
+    background-color: #ccc !important;
+    border: none !important;
+    outline: none !important;
+}
+
+li.paginate_button.page-item {
+    background-color: #eee !important;
+    padding: 0px !important;
+    border: none !important;
+    outline: none !important;
+}
+
+#table_paginate > ul > li:hover {
+    background-color: #ccc !important;
+}
+
+th.sorting_asc {
+    text-transform: capitalize;
+}
+
+th.sorting_desc {
+    text-transform: capitalize;
+}
+th.sorting_disabled {
+    text-transform: capitalize;
+}
+
+.dt-buttons {
+    float: left;
+    position: relative;
+}
+.dt-buttons .button {
+    bottom: 0;
+}
+
+.dataTables_filter label {
+    display: block !important;
+    flex-direction: column !important;
+}
+
+th {
+    border-bottom: 1px solid #ebe9e9 !important;
+}
+
+.dataTables_length {
+    display: none !important;
+}
+
+.dt-button-background {
+    display: none !important;
+}
+
+.dt-button-collection {
+    max-height: 75%;
+    overflow-y: scroll !important;
+}
+
+.dialog-body {
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+}
+
+thead th{
+    text-wrap: nowrap;
+}
+
+
+table .btn{
+    text-wrap: nowrap;
+}

@@ -18,15 +18,10 @@ export function useDataTable() {
     const options = {
         dom: "lfBrtip",
         buttons: [
-            'colvis',
             {
                 extend: 'excelHtml5',
                 exportOptions: eo
             },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: eo
-            }
         ]
     };
 

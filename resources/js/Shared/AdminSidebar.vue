@@ -224,7 +224,7 @@
       </li>
 
       <li class="iq-menu-title"><i class=""></i><span>Reports</span></li>
-      <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
+      <li :class="usePage().url.value.startsWith('/reports') ? 'active' : ''">
         <a
           href="#authentication"
           class="iq-waves-effect collapsed"
@@ -240,35 +240,35 @@
         >
         <li
             :class="
-              usePage().url.value.startsWith('/reports') ? 'active' : ''
+              usePage().url.value.startsWith('/reports/deposits') ? 'active' : ''
             "
           >
             <Link :href="route('deposits.reports')"><i class="ri-login-circle-line"></i>Deposits</Link>
           </li>
           <li
             :class="
-              usePage().url.value.startsWith('/reports') ? 'active' : ''
+              usePage().url.value.startsWith('/reports/dividends') ? 'active' : ''
             "
           >
             <Link :href="route('dividends.reports')"><i class="ri-bar-chart-line"></i>Dividends</Link>
           </li>
           <li
             :class="
-              usePage().url.value.startsWith('/reports') ? 'active' : ''
+              usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
             "
           >
             <Link :href="route('applications.reports')"><i class="ri-checkbox-line"></i>Applications</Link>
           </li>
           <li
             :class="
-              usePage().url.value.startsWith('/reports') ? 'active' : ''
+              usePage().url.value.startsWith('/reports/loans') ? 'active' : ''
             "
           >
             <Link :href="route('loans.reports')"><i class="ri-stack-line"></i>Loans</Link>
           </li>
           <li
             :class="
-              usePage().url.value.startsWith('/reports') ? 'active' : ''
+              usePage().url.value.startsWith('/reports/payments') ? 'active' : ''
             "
           >
             <Link :href="route('payments.reports')"><i class="ri-money-pound-circle-line"></i>Payments</Link>

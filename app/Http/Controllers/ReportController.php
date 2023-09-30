@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\LoanType;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,11 +13,8 @@ class ReportController extends Controller
     public function loans()
     {
         $activeLoans = Loan::where("organization_id", Auth::user()->organization_id)
-            ->when(Request()->input('search'), function ($query, $search) {
-                $query->where('loan_reference_number', "LIKE", "%{$search}%");
-            })
-            ->latest()->paginate(10)
-            ->through(fn ($item) => [
+            ->latest()->get()
+            ->map(fn ($item) => [
                 "id" => $item->id,
                 "loan_type_id" => $item->loan_type_id,
                 "loanType" => $item->loanType,
@@ -41,14 +40,18 @@ class ReportController extends Controller
                 'end_date' => $item->end_date,
             ]);
 
-        $filters = Request()->only('search');
 
-        return inertia("reports/Loans", compact("activeLoans", "filters"));
+        $loanTypes = LoanType::where("organization_id", Auth::user()->organization_id)->pluck("name");
+
+
+        return inertia("reports/Loans", compact("activeLoans", "loanTypes"));
     }
 
     public function deposits()
     {
-        return inertia("User/Statements/SavingStatements");
+        $deposits = Payment::with("Member.Account", "paymentMethod", "Member.User")->latest()->get();
+        $filters = array("filters" => Request()->only('search'));
+        return inertia("reports/Deposits", compact("deposits", "filters"));
     }
 
     public function payments()
