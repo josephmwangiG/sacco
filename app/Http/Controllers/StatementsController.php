@@ -8,7 +8,6 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Pdf;
-
 class StatementsController extends Controller
 {
     public function statements()
