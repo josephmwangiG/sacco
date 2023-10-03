@@ -124,6 +124,13 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::put('/activeLoans/payments/{p_id}', [LoansController::class, 'updatePayments'])->name('activeLoans.update.payments');
     Route::delete('/activeLoans/payments/{p_id}', [LoansController::class, 'deletePayments'])->name('activeLoans.delete.payments');
 
+    // Member Statements 
+    Route::get("/statements/member", [StatementsController::class, 'statements'])->name('member.statements');
+    Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('loans.statements');
+    Route::get("/statements/savings", [StatementsController::class, 'savings'])->name('savings.statements');
+    Route::get("/statements/guarantors", [StatementsController::class, 'guarantors'])->name('guarantors.statements');
+    Route::get("/statements/guarantees", [StatementsController::class, 'guarantees'])->name('guarantees.statements');
+
 
     // Reports 
     Route::get("/reports/deposits", [ReportController::class, 'deposits'])->name('deposits.reports');
@@ -138,6 +145,23 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::get("/reports/dividends/pdf", [ReportController::class, 'dividendsPdf'])->name('dividends.reports.pdf');
 });
 
+
+Route::group(["middleware" => ["auth"], 'prefix' => "/u"], function () {
+    // Member Statements 
+    Route::get("/statements/member", [StatementsController::class, 'statements'])->name('u.member.statements');
+    Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('u.loans.statements');
+    Route::get("/statements/savings", [StatementsController::class, 'savings'])->name('u.savings.statements');
+    Route::get("/statements/guarantors", [StatementsController::class, 'guarantors'])->name('u.guarantors.statements');
+    Route::get("/statements/guarantees", [StatementsController::class, 'guarantees'])->name('u.guarantees.statements');
+
+
+    Route::get("/statements/member/pdf", [StatementsController::class, 'statementsPdf'])->name('u.member.statements.pdf');
+    Route::get("/statements/loans/pdf", [StatementsController::class, 'loansPdf'])->name('u.loans.statements.pdf');
+    Route::get("/statements/savings/pdf", [StatementsController::class, 'savingsPdf'])->name('u.savings.statements.pdf');
+    Route::get("/statements/guarantors/pdf", [StatementsController::class, 'guarantorsPdf'])->name('u.guarantors.statements.pdf');
+    Route::get("/statements/guarantees/pdf", [StatementsController::class, 'guarateedPdf'])->name('u.guarantees.statements.pdf');
+    Route::resource("/statements", LoanStatementController::class);
+});
 
 Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
     Route::get('/', [DashboardController::class, 'udashboard'])->name('u.index');
@@ -168,26 +192,7 @@ Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
     Route::post('/loanApplications/collaterals/new', [ApplicationAssetsController::class, 'store'])->name('u.loanApplications.store.collaterals');
     Route::put('/loanApplications/collaterals/{id}', [ApplicationAssetsController::class, 'update'])->name('u.loanApplications.update.collaterals');
 
-    // Member Statements 
-    Route::get("/statements/member", [StatementsController::class, 'statements'])->name('u.member.statements');
-    Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('u.loans.statements');
-    Route::get("/statements/savings", [StatementsController::class, 'savings'])->name('u.savings.statements');
-    Route::get("/statements/guarantors", [StatementsController::class, 'guarantors'])->name('u.guarantors.statements');
-    Route::get("/statements/guarantees", [StatementsController::class, 'guarantees'])->name('u.guarantees.statements');
-
-
-    Route::get("/statements/member/pdf", [StatementsController::class, 'statementsPdf'])->name('u.member.statements.pdf');
-    Route::get("/statements/loans/pdf", [StatementsController::class, 'loansPdf'])->name('u.loans.statements.pdf');
-    Route::get("/statements/savings/pdf", [StatementsController::class, 'savingsPdf'])->name('u.savings.statements.pdf');
-    Route::get("/statements/guarantors/pdf", [StatementsController::class, 'guarantorsPdf'])->name('u.guarantors.statements.pdf');
-    Route::get("/statements/guarantees/pdf", [StatementsController::class, 'guarateedPdf'])->name('u.guarantees.statements.pdf');
-    Route::resource("/statements", LoanStatementController::class);
 
 
     Route::get('/details', [MemberController::class, 'uDetails'])->name('u.details');
-
-
-    
-   
-
 });

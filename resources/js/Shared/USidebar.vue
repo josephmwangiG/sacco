@@ -126,28 +126,28 @@
       </li>
       <li>
         <a
-          href="#icons"
+          href="#statements"
           class="iq-waves-effect collapsed"
           data-toggle="collapse"
           aria-expanded="false"
-          ><i class="ri-list-check"></i><span>Statements</span
+          ><i class="ri-stack-line"></i><span>Statements</span
           ><i class="ri-arrow-right-s-line iq-arrow-right"></i
         ></a>
         <ul
-          id="icons"
+          id="statements"
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li>
+          <!-- <li>
             <Link :href="route('u.member.statements')" preserve-state
               ><i class="ri-stack-line"></i>Member Statements</Link
             >
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <Link :href="route('u.savings.statements')" preserve-state
               ><i class="ri-checkbox-line"></i>Saving Statements</Link
             >
-          </li>
+          </li> -->
           <li>
             <Link :href="route('u.loans.statements')" preserve-state
               ><i class="ri-checkbox-line"></i>Loans Statements</Link

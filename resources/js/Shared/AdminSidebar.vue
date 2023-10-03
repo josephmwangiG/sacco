@@ -109,6 +109,109 @@
           ><i class="ri-database-line"></i><span>Expenses</span></a
         >
       </li> -->
+
+      <li class="iq-menu-title"><i class=""></i><span>Reports</span></li>
+      <li>
+        <a
+          href="#statements"
+          class="iq-waves-effect collapsed"
+          data-toggle="collapse"
+          aria-expanded="false"
+          ><i class="ri-stack-line"></i><span>Statements</span
+          ><i class="ri-arrow-right-s-line iq-arrow-right"></i
+        ></a>
+        <ul
+          id="statements"
+          class="iq-submenu collapse"
+          data-parent="#iq-sidebar-toggle"
+        >
+          <!-- <li>
+            <Link :href="route('u.member.statements')" preserve-state
+              ><i class="ri-stack-line"></i>Member Statements</Link
+            >
+          </li> -->
+          <!-- <li>
+            <Link :href="route('u.savings.statements')" preserve-state
+              ><i class="ri-checkbox-line"></i>Saving Statements</Link
+            >
+          </li> -->
+          <li>
+            <Link :href="route('loans.statements')" preserve-state
+              ><i class="ri-checkbox-line"></i>Loans Statements</Link
+            >
+          </li>
+          <!-- <li>
+            <Link :href="route('guarantors.statements')" preserve-state
+              ><i class="ri-checkbox-line"></i>Loan Guarantors</Link
+            >
+          </li> -->
+          <!-- <li>
+            <Link :href="route('guarantees.statements')" preserve-state
+              ><i class="ri-checkbox-line"></i>Loans Guaranteed</Link
+            >
+          </li> -->
+        </ul>
+      </li>
+
+      <li :class="usePage().url.value.startsWith('/reports') ? 'active' : ''">
+        <a
+          href="#authentication"
+          class="iq-waves-effect collapsed"
+          data-toggle="collapse"
+          aria-expanded="false"
+          ><i class="ri-folder-chart-2-line"></i><span>Reports</span
+          ><i class="ri-arrow-right-s-line iq-arrow-right"></i
+        ></a>
+        <ul
+          id="authentication"
+          class="iq-submenu collapse"
+          data-parent="#iq-sidebar-toggle"
+        >
+        <li
+            :class="
+              usePage().url.value.startsWith('/reports/deposits') ? 'active' : ''
+            "
+          >
+            <Link :href="route('deposits.reports')"><i class="ri-login-circle-line"></i>Deposits</Link>
+          </li>
+          <!-- <li
+            :class="
+              usePage().url.value.startsWith('/reports/dividends') ? 'active' : ''
+            "
+          >
+            <Link :href="route('dividends.reports')"><i class="ri-bar-chart-line"></i>Dividends</Link>
+          </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
+            "
+          >
+            <Link :href="route('applications.reports')"><i class="ri-checkbox-line"></i>Applications</Link>
+          </li> -->
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports/loans') ? 'active' : ''
+            "
+          >
+            <Link :href="route('loans.reports')"><i class="ri-stack-line"></i>Loans</Link>
+          </li>
+          <!-- <li
+            :class="
+              usePage().url.value.startsWith('/reports/payments') ? 'active' : ''
+            "
+          >
+            <Link :href="route('payments.reports')"><i class="ri-money-pound-circle-line"></i>Payments</Link>
+          </li> -->
+         
+        
+          
+          <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
+            <a href="#"><i class="ri-login-circle-line"></i>Expenses</a>
+          </li> -->
+        </ul>
+      </li>
+
+
       <li class="iq-menu-title">
         <i class="ri-subtract-line"></i><span>Settings</span>
       </li>
@@ -223,64 +326,9 @@
         </ul>
       </li>
 
-      <li class="iq-menu-title"><i class=""></i><span>Reports</span></li>
-      <li :class="usePage().url.value.startsWith('/reports') ? 'active' : ''">
-        <a
-          href="#authentication"
-          class="iq-waves-effect collapsed"
-          data-toggle="collapse"
-          aria-expanded="false"
-          ><i class="ri-folder-chart-2-line"></i><span>Reports</span
-          ><i class="ri-arrow-right-s-line iq-arrow-right"></i
-        ></a>
-        <ul
-          id="authentication"
-          class="iq-submenu collapse"
-          data-parent="#iq-sidebar-toggle"
-        >
-        <li
-            :class="
-              usePage().url.value.startsWith('/reports/deposits') ? 'active' : ''
-            "
-          >
-            <Link :href="route('deposits.reports')"><i class="ri-login-circle-line"></i>Deposits</Link>
-          </li>
-          <li
-            :class="
-              usePage().url.value.startsWith('/reports/dividends') ? 'active' : ''
-            "
-          >
-            <Link :href="route('dividends.reports')"><i class="ri-bar-chart-line"></i>Dividends</Link>
-          </li>
-          <li
-            :class="
-              usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
-            "
-          >
-            <Link :href="route('applications.reports')"><i class="ri-checkbox-line"></i>Applications</Link>
-          </li>
-          <li
-            :class="
-              usePage().url.value.startsWith('/reports/loans') ? 'active' : ''
-            "
-          >
-            <Link :href="route('loans.reports')"><i class="ri-stack-line"></i>Loans</Link>
-          </li>
-          <li
-            :class="
-              usePage().url.value.startsWith('/reports/payments') ? 'active' : ''
-            "
-          >
-            <Link :href="route('payments.reports')"><i class="ri-money-pound-circle-line"></i>Payments</Link>
-          </li>
-         
-        
-          
-          <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
-            <a href="#"><i class="ri-login-circle-line"></i>Expenses</a>
-          </li> -->
-        </ul>
-      </li>
+    
+    
+
       <div class="py-5"></div>
     </ul>
   </nav>

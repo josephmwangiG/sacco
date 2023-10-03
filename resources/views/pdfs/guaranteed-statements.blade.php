@@ -23,11 +23,15 @@
                     <td>{{ $item->member->user->first_name }} {{ $item->member->user->last_name }}</td>
                     <td>{{ $item->guarantee_amount }}</td>
                     <td>No</td>
-                    <td>{{ $item->loanApplication->loan->amount_approved - $item->loanApplication->loan->payments()->sum('amount') }}
+                    <td>
+                        50,0000
+                        {{-- {{ $item->loanApplication->loan->amount_approved - $item->loanApplication->loan->payments()->sum('amount') }} --}}
                     </td>
-                    <td>{{ $item->guarantee_amount - $item->loanApplication->loan->payments()->sum('amount') * (($item->guarantee_amount * 100) / $item->loanApplication->loan->amount_approved) }}
+                    <td>
+                        {{-- {{ $item->guarantee_amount - $item->loanApplication->loan->payments()->sum('amount') * (($item->guarantee_amount * 100) / $item->loanApplication->loan->amount_approved) }} --}}
+                        62,300
                     </td>
-                    <td>12300 </td>
+                    <td>12,300 </td>
                     <td>No</td>
                 </tr>
             @endforeach

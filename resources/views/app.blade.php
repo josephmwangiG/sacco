@@ -29,11 +29,7 @@
 
 <body>
     @csrf
-    <div id="loading">
-        <div id="loading-center">
-
-        </div>
-    </div>
+    
     @inertia
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <!-- Rtl and Darkmode -->

@@ -33,7 +33,7 @@
                                     class="form-control mr-2"
                                     @change="filterLoans()"
                                 />
-                                <div class="user-list-files">
+                                <div class="user-list-files collapse">
                                     <a
                                         class="iq-bg-primary"
                                         :href="route('pdf.loans')"

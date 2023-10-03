@@ -62,8 +62,13 @@ class StatementsController extends Controller
     public function loansPdf()
     {
         // ->setPaper('a4', 'landscape');
-        $loans = Loan::where("member_id", Auth::user()->member->id)
-            ->latest()->get();
+        if (Auth::user()->user_type == 'admin') {
+            $loans = Loan::where("organization_id", Auth::user()->organization_id)
+                ->latest()->get();
+        } else {
+            $loans = Loan::where("member_id", Auth::user()->member->id)
+                ->latest()->get();
+        }
 
         $data = [
             "organization" => Auth::user()->organization,
