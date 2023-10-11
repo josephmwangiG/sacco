@@ -40,6 +40,10 @@ use Illuminate\Support\Facades\Route;
 // Auth
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::get('/reset-password', [LoginController::class, 'resetPassword'])->name('reset-password');
+Route::post('/update-password', [LoginController::class, 'updatePassword'])->name('update-password');
+Route::get('/change-password/{token}', [LoginController::class, 'changePassword'])->name('change-password');
+Route::post('/save-password', [LoginController::class, 'savePassword'])->name('save-password');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(["middleware" => ["auth"]], function () {

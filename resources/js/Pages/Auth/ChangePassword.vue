@@ -4,34 +4,43 @@
             <div class="row no-gutters">
                 <div class="col-sm-6 align-self-center">
                     <div class="sign-in-from">
-                        <h1 class="mb-0">Reset Password</h1>
-                        <p>
-                            Enter your email address and we'll send you an email
-                            with instructions to reset your password.
-                        </p>
-                        <div
-                            class="alert alert-success"
-                            v-if="$page.props.flash.success"
-                        >
-                            {{ $page.props.flash.success }}
-                        </div>
+                        <h1 class="mb-0">Change Password</h1>
+                      
                         <form class="mt-4" @submit.prevent="submit">
                             <div class="form-group">
-                                <label for="exampleInputEmail1"
-                                    >Email address</label
+                                <label for="password"
+                                    >Password</label
                                 >
                                 <input
-                                    type="email"
-                                    v-model="form.email"
+                                    type="password"
+                                    v-model="form.password"
                                     class="form-control mb-0"
-                                    id="exampleInputEmail1"
-                                    placeholder="Enter email"
+                                    id="password"
+                                    placeholder="Enter Password"
                                 />
                                 <div
                                     class="text-danger"
-                                    v-if="form.errors.email"
+                                    v-if="form.errors.password"
                                 >
-                                    <small>{{ form.errors.email }}</small>
+                                    <small>{{ form.errors.password }}</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm"
+                                    >Confirm Password</label
+                                >
+                                <input
+                                    type="password"
+                                    v-model="form.confirm_password"
+                                    class="form-control mb-0"
+                                    id="confirm"
+                                    placeholder="Confirm Password"
+                                />
+                                <div
+                                    class="text-danger"
+                                    v-if="form.errors.confirm_password"
+                                >
+                                    <small>{{ form.errors.confirm_password }}</small>
                                 </div>
                             </div>
 
@@ -87,11 +96,19 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 
+const props = defineProps({
+    token: String,
+});
+
+
+
 const form = useForm({
-    email: "",
+    password: "",
+    confirm_password: "",
+    token: props.token,
 });
 
 const submit = () => {
-    form.post(route("update-password"));
+    form.post(route("save-password"));
 };
 </script>

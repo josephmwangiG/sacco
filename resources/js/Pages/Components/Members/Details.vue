@@ -264,11 +264,11 @@
               type="text"
               class="form-control"
               id="address"
-              v-model="form.address"
+              v-model="form.physical_address"
               placeholder="Address"
             />
-            <div class="text-danger" v-if="form.errors.address">
-              <small>{{ form.errors.address }}</small>
+            <div class="text-danger" v-if="form.errors.physical_address">
+              <small>{{ form.errors.physical_address }}</small>
             </div>
           </div>
           <div class="form-group col-md-4">
@@ -432,13 +432,12 @@ let form = useForm({
   date_of_birth: props.member.date_of_birth,
   date_became_member: props.member.date_became_member,
   nationality: props.member.nationality,
-  county: props.member.county,
-  city: props.member.city,
+  city: props.member.user.city,
   id_number: props.member.id_number,
   passport_number: props.member.passport_number,
   phone: props.member.user.phone,
   email: props.member.user.email,
-  postal_address: props.member.postal_address,
+  postal_address: props.member.user.postal_address,
   physical_address: props.member.user.physical_address,
   residential_address: props.member.residential_address,
   status_id: props.member.status_id,
@@ -454,16 +453,11 @@ let form = useForm({
   next_of_kin_postal_address: props.member.next_of_kin_postal_address,
   next_of_kin_phone_number: props.member.next_of_kin_phone_number,
   next_of_kin_email: props.member.next_of_kin_email,
-  kra_pin: "",
+  kra_pin: props.member.kra_pin,
 });
 
 function saveForm() {
-  form.put(route("members.update", props.member.id), {
-    onSuccess: () => {
-      props.form.reset();
-      document.getElementById("closeModal").click();
-    },
-  });
+  form.put(route("members.update", props.member.id));
 }
 </script>
 

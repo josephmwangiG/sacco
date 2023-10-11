@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -42,6 +46,54 @@ class LoginController extends Controller
         } else {
             return redirect()->back()->with('danger', "Invalid Credentials");
         }
+    }
+
+
+    public function resetPassword()
+    {
+        return inertia('Auth/Recover');
+    }
+
+
+    public function updatePassword()
+    {
+        $data = request()->validate([
+            "email" => "required|email|exists:users"
+        ]);
+
+        $user = User::where('email', $data['email'])->first();
+
+        $data['url'] = route('change-password', ['token' => Crypt::encrypt($data['email'])]);
+
+        Mail::to($user)->send(new ResetPassword($data));
+
+        $email = $data['email'];
+
+        return inertia('Auth/Confirm', compact('email'));
+    }
+
+
+    public function changePassword($token)
+    {
+        return inertia('Auth/ChangePassword', compact('token'));
+    }
+
+    public function savePassword()
+    {
+        $data = request()->validate([
+            "password" => "required",
+            "confirm_password" => "required|same:password",
+            "token" => "required",
+        ]);
+
+        $user = User::where('email', Crypt::decrypt($data['token']))->first();
+
+        // Change user password
+
+        $user->password = Hash::make($data['password']);
+        $user->save();
+
+        return redirect()->route('login')->with('success', "Password Updated");
     }
 
     public function logout()

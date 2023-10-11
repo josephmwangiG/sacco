@@ -169,19 +169,65 @@ class MemberController extends Controller
             'date_of_birth' => [""],
             'date_became_member' => [""],
             'nationality' => [""],
-            'county' => [""],
             'city' => [""],
             'id_number' => ["required", ""],
+            'kra_pin' => ["required", ""],
             'passport_number' => [""],
             'phone' => ["required", ""],
             'email' => ["required", ""],
             'postal_address' => [""],
             'residential_address' => [""],
+            'physical_address' => [""],
+            'employer_name' => '',
+            'residence' => '',
+            'income_bracket' => '',
+            'bank_name' => '',
+            'bank_branch' => '',
+            'bank_account_number' => '',
+            'next_of_kin' => '',
+            'next_of_kin_relationship' => '',
+            'next_of_kin_postal_address' => '',
+            'next_of_kin_phone_number' => '',
+            'next_of_kin_email' => '',
         ]);
-        $member = Member::where("id", $id)->with("user")->first();
-        $member->update($data);
 
-        return  back()->with('success', "Member Details eleted Successfully");
+
+
+
+        $member = Member::where("id", $id)->with("user")->first();
+        $member->update([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'date_of_birth' => $data['date_of_birth'],
+            'date_became_member' => $data['date_became_member'],
+            'nationality' => $data['nationality'],
+            'city' => $data['city'],
+            'id_number' => $data['id_number'],
+            'kra_pin' => $data['kra_pin'],
+            'passport_number' => $data['passport_number'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'employer_name' => $data['employer_name'],
+            'residence' => $data['residence'],
+            'income_bracket' => $data['income_bracket'],
+            'bank_name' => $data['bank_name'],
+            'bank_branch' => $data['bank_branch'],
+            'bank_account_number' => $data['bank_account_number'],
+            'next_of_kin' => $data['next_of_kin'],
+            'next_of_kin_relationship' => $data['next_of_kin_relationship'],
+            'next_of_kin_postal_address' => $data['next_of_kin_postal_address'],
+            'next_of_kin_phone_number' => $data['next_of_kin_phone_number'],
+            'next_of_kin_email' => $data['next_of_kin_email'],
+        ]);
+
+        $member->user->update([
+            'postal_address' => $data['postal_address'],
+            'physical_address' => $data['physical_address'],
+            'city' => $data['city'],
+            'country' => $data['nationality'],
+        ]);
+
+        return  back()->with('success', "Member Details Updated Successfully");
     }
 
     /**
