@@ -245,7 +245,7 @@
                 />
               </div>
             </div>
-            <div class="checkbox">
+            <div class="checkbox collapse">
               <label
                 ><input
                   v-model="form.two_factor"
