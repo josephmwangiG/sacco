@@ -44,6 +44,7 @@ Route::get('/reset-password', [LoginController::class, 'resetPassword'])->name('
 Route::post('/update-password', [LoginController::class, 'updatePassword'])->name('update-password');
 Route::get('/change-password/{token}', [LoginController::class, 'changePassword'])->name('change-password');
 Route::post('/save-password', [LoginController::class, 'savePassword'])->name('save-password');
+Route::get('/accept-guarantee-request/{id}/{token}', [LoanApplicationController::class, 'acceptGuaranteeRequest'])->name('accept-guarantee-request');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(["middleware" => ["auth"]], function () {
@@ -100,9 +101,12 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::resource('/loanApplications', LoanApplicationController::class);
     Route::resource('/collaterals', ApplicationAssetsController::class);
 
+    Route::get('/applications/pending-approval', [LoanApplicationController::class, 'loansPendingApproval'])->name('loanApplications.pending-approval');
+    Route::post('/applications/approve-loan', [LoanApplicationController::class, 'approveLoan'])->name('loanApplications.approve');
     Route::get('/loanApplications/witness/{loan_id}', [LoanApplicationController::class, 'witness'])->name('loanApplications.witness');
     Route::get('/loanApplications/guarantors/{loan_id}', [LoanApplicationController::class, 'guarantors'])->name('loanApplications.guarantors');
     Route::get('/loanApplications/collaterals/{loan_id}', [LoanApplicationController::class, 'collaterals'])->name('loanApplications.collaterals');
+    Route::get('/loanApplications/approval/{loan_id}', [LoanApplicationController::class, 'approval'])->name('loanApplications.approval');
     Route::get('/loanApplications/disbursement/{loan_id}', [LoanApplicationController::class, 'disbursement'])->name('loanApplications.disbursement');
     Route::get('/loanApplications/confirm/{loan_id}', [LoanApplicationController::class, 'confirm'])->name('loanApplications.confirm');
     Route::get('/loanApplications/reject/{loan_id}', [LoanApplicationController::class, 'reject'])->name('loanApplications.reject');
@@ -169,7 +173,7 @@ Route::group(["middleware" => ["auth"], 'prefix' => "/u"], function () {
 
 Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
     Route::get('/', [DashboardController::class, 'udashboard'])->name('u.index');
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('u.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'udashboard'])->name('u.dashboard');
 
     Route::get('/applications', [LoanApplicationController::class, 'uLoanApplications'])->name('u.loanApplications');
     Route::get('/applications/{loan_id}', [LoanApplicationController::class, 'uEdit'])->name('u.loanApplications.edit');

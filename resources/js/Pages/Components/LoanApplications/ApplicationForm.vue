@@ -41,7 +41,7 @@
                       :value="i.id"
                       :key="index"
                     >
-                      {{ i.first_name }} {{ i.last_name }}
+                      {{ i.user.first_name }} {{ i.user.last_name }}
                     </option>
                   </select>
                   <div class="text-danger" v-if="form.errors.member">
@@ -74,7 +74,7 @@
                   <label for="account_number">Address:</label>
                   <input
                     type="text"
-                    v-model="member.residential_address"
+                    v-model="member.physical_address"
                     class="form-control"
                     required
                     id="account_number"
@@ -322,9 +322,9 @@ const selectMember = (event) => {
       member.value = {
         account: element.account.account_number,
         id_number: element.id_number,
-        residential_address: element.residential_address,
-        email: element.email,
-        phone: element.phone,
+        physical_address: element.user.physical_address,
+        email: element.user.email,
+        phone: element.user.phone,
         date_became_member: element.date_became_member,
       };
     }

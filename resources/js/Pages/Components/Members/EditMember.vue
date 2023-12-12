@@ -6,7 +6,8 @@
           <div class="user-post-data px-3 pt-3">
             <div class="d-flex flex-wrap pb-0 mb-0">
               <div class="media-support-user-img mr-3">
-                <img class="rounded-circle img-fluid" src="/images/user/01.jpg" alt="" />
+                <img class="rounded-circle img-fluid" 
+                    style="height: 60px; width: 60px;" src="/images/user/01.jpg" alt="" />
               </div>
               <div class="media-support-info">
                 <h5 class="mb-0">
@@ -31,7 +32,7 @@
                     :class="usePage().url.value.startsWith('/members/' + member.id) ? 'active-tab' : ''"><i
                       class="ri-home-3-line mr-2"></i><span>Details</span></label>
                   </Link>
-                  <Link class="tab" :href="route('members.assets', member.id)">
+                  <Link class="tab collapse" :href="route('members.assets', member.id)">
                   <label class="pb-0 mb-0"
                     :class="usePage().url.value.startsWith('/members/assets') ? 'active-tab' : ''"><i
                       class="ri-database-line mr-2"></i><span>Assets</span></label>
@@ -42,8 +43,8 @@
                       class="ri-login-circle-line mr-2"></i><span>Deposits</span></label>
                   </Link>
                   <Link class="tab" :href="'#'">
-                  <label class="pb-0 mb-0" :class="usePage().url.value.startsWith('/memberss') ? 'active-tab' : ''"><i
-                      class="ri-bar-chart-line mr-2"></i><span>Dividends</span></label>
+                  <label class="pb-0 mb-0 collapse" :class="usePage().url.value.startsWith('/memberss') ? 'active-tab' : ''"><i
+                      class="ri-bar-chart-line mr-2 "></i><span>Dividends</span></label>
                   </Link>
                   <Link class="tab" :href="route('members.loans', member.id)">
                   <label class="pb-0 mb-0" :class="usePage().url.value.startsWith('/members/loans') ? 'active-tab' : ''"><i

@@ -76,10 +76,7 @@
                                         <td>{{ obj.method_id }}</td>
                                         <td>{{ obj.amount }}</td>
                                         <td>
-                                            <span
-                                                class="badge dark-icon-light iq-bg-primary"
-                                                >Active</span
-                                            >
+                                            <span class="active">Active</span>
                                         </td>
                                     </tr>
                                 </tbody>

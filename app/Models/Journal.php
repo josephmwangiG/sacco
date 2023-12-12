@@ -12,15 +12,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\BranchFilterScope;
-use App\Traits\BranchScope;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class Journal extends Model
 {
-   
+
 
     public $incrementing = true;
 

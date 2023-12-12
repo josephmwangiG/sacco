@@ -16,7 +16,7 @@ use App\Traits\BranchFilterScope;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 use Exception;
 
 class Member extends Model
@@ -65,6 +65,10 @@ class Member extends Model
         'next_of_kin_postal_address',
         'next_of_kin_phone_number',
         'next_of_kin_email',
+        'approver_1',
+        'approver_2',
+        'approver_3',
+        'approver_4',
         'created_by',
         'updated_by',
         'deleted_by'

@@ -39,6 +39,10 @@ class CreateMembersTable extends Migration
             $table->string('next_of_kin_relationship')->nullable();
             $table->string('next_of_kin_email')->nullable();
             $table->string('next_of_kin_phone_number')->nullable();
+            $table->string('approver_1')->nullable();
+            $table->string('approver_2')->nullable();
+            $table->string('approver_3')->nullable();
+            $table->string('approver_4')->nullable();
             $table->string('created_by', 36)->nullable();
             $table->string('updated_by', 36)->nullable();
             $table->string('deleted_by', 36)->nullable();

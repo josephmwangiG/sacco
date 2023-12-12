@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\GuaranteeRequest;
 use App\Models\AssetLoanApplication;
 use App\Models\Guarantor;
 use App\Models\Loan;
@@ -13,6 +14,8 @@ use App\Models\PaymentFrequency;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 class LoanApplicationController extends Controller
 {
@@ -47,8 +50,57 @@ class LoanApplicationController extends Controller
             ]);
 
         $filters = Request()->only('search');
+        $members = Member::where("organization_id", Auth::user()->organization_id)->with('user', 'account')->get();
 
-        return inertia("Components/LoanApplications/LoanApplications", compact("loanApplications", "filters"));
+        return inertia("Components/LoanApplications/LoanApplications", compact("loanApplications", "filters", "members"));
+    }
+    public function loansPendingApproval()
+    {
+        $loanApplications1 = LoanApplication::where("approver_1", Auth::user()->id)->where('approver_1_status', 'Pending')
+            ->latest()
+            ->with('member.user', 'loanType')->get();
+        $loanApplications2 = LoanApplication::where("approver_2", Auth::user()->id)->where('approver_2_status', 'Pending')
+            ->latest()
+            ->with('member.user', 'loanType')->get();
+        $loanApplications3 = LoanApplication::where("approver_3", Auth::user()->id)->where('approver_3_status', 'Pending')
+            ->latest()
+            ->with('member.user', 'loanType')->get();
+        $loanApplications4 = LoanApplication::where("approver_4", Auth::user()->id)->where('approver_4_status', 'Pending')
+            ->latest()
+            ->with('member.user', 'loanType')->get();
+
+
+        $loanApplications = $loanApplications1->concat($loanApplications2)->concat($loanApplications3)->concat($loanApplications4);
+
+        $members = Member::where("organization_id", Auth::user()->organization_id)->with('user', 'account')->get();
+
+        return inertia("Components/LoanApplications/PendingApproval", compact("loanApplications", "members"));
+    }
+
+    public function approveLoan()
+    {
+        $data = Request()->validate([
+            "id" => "required",
+        ]);
+
+        $loanApplication = LoanApplication::find($data['id']);
+
+        if ($loanApplication->approver_1 == Auth::user()->id) {
+            $loanApplication->approver_1_status = "Approved";
+        }
+        if ($loanApplication->approver_2 == Auth::user()->id) {
+            $loanApplication->approver_2_status = "Approved";
+        }
+        if ($loanApplication->approver_3 == Auth::user()->id) {
+            $loanApplication->approver_3_status = "Approved";
+        }
+        if ($loanApplication->approver_4 == Auth::user()->id) {
+            $loanApplication->approver_4_status = "Approved";
+        }
+
+        $loanApplication->save();
+
+        return back()->with("success", "Status updated successfully");
     }
 
     /**
@@ -88,6 +140,10 @@ class LoanApplicationController extends Controller
         $data['penalty_frequency_id'] = $loan->penalty_frequency_id;
         $data['branch_id'] = $member->branch_id;
         $data['organization_id'] = $member->organization_id;
+        $data['approver_1'] = $member->approver_1;
+        $data['approver_2'] = $member->approver_2;
+        $data['approver_3'] = $member->approver_3;
+        $data['approver_4'] = $member->approver_4;
         $data['interest_type_id'] = $loan->interest_type_id;
         $data['interest_rate'] = $loan->interest_rate;
         $data['repayment_period'] = $loan->repayment_period;
@@ -234,24 +290,39 @@ class LoanApplicationController extends Controller
         $data['branch_id'] = $member->branch_id;
         $data['organization_id'] = $member->organization_id;
 
-        Guarantor::create($data);
+        $guarantor = Guarantor::create($data);
 
-        return back()->with("success", "Loan guarantor added successfully.");
+        $data['guarantor'] = $guarantor;
+        $data['loan'] = LoanApplication::find($id);
+        $data['url'] = route('accept-guarantee-request', [$guarantor->id, Crypt::encrypt($member->user->email)]);
+
+        Mail::to($member->user)->send(new GuaranteeRequest($data));
+
+        return back()->with("success", "Loan guarantor added successfully. A notification email was sent to the member.");
+    }
+
+    public function acceptGuaranteeRequest($id, $token)
+    {
+
+        $user = User::where('email', Crypt::decrypt($token))->first();
+
+        if ($user == null) {
+            return back();
+        }
+
+        $guarantor = Guarantor::find($id);
+
+        $guarantor->update(["status" => 'Approved']);
+
+        return inertia('Components/LoanApplications/AcceptGuaranteeRequest');
     }
 
     public function updateGuarantors(Request $request, $id)
     {
         $data = $request->validate([
-            'member' => "required",
             'guarantee_amount' => "required",
             'notes' => "required",
         ]);
-
-        $member = Member::find($data['member']);
-
-        $data['member_id'] = $data['member'];
-        $data['branch_id'] = $member->branch_id;
-        $data['organization_id'] = $member->organization_id;
 
         $guarantor = Guarantor::find($id);
         $guarantor->update($data);
@@ -318,6 +389,15 @@ class LoanApplicationController extends Controller
         return inertia("Components/LoanApplications/DisburseForm", compact('loanApplication', "users"));
     }
 
+    public function approval($id)
+    {
+        $loanApplication = LoanApplication::where("id", $id)->with("member", "approver1", "approver2", "approver3",     "approver4")->first();
+
+        return inertia("Components/LoanApplications/Approval", compact('loanApplication'));
+    }
+
+
+
     public function updateDisbursement(Request $request, $id)
     {
         $data = $request->validate([
@@ -375,7 +455,13 @@ class LoanApplicationController extends Controller
 
         $loanApplication->update($data);
 
+        if ($loanApplication->loanType->interst_duration == 'year') {
+            $interest = ($data['amount_approved'] * ($loanApplication->interest_rate / 12)) / 100;
+        } else {
+            $interest = ($data['amount_approved'] * ($loanApplication->interest_rate / 12)) / 100;
+        }
         $loan_data = $loanApplication->toArray();
+
 
         $loan_data['loan_application_id'] = $loanApplication->id;
         $loan_data['amount_approved'] = $data['amount_approved'];
@@ -384,6 +470,8 @@ class LoanApplicationController extends Controller
         $loan_data['payment_frequency_id'] = $loanApplication->loanType->payment_frequency_id;
         $loan_data['penalty_frequency_id'] = $loanApplication->loanType->penalty_frequency_id;
         $loan_data['penalty_type_id'] = $loanApplication->loanType->penalty_type_id;
+        $loan_data['current_balance'] =  $data['amount_approved'];
+        $loan_data['interest_due'] =  $interest;
 
         $loan = Loan::create($loan_data);
 
@@ -399,8 +487,6 @@ class LoanApplicationController extends Controller
         ]);
 
 
-        $interest = ($loan->amount_approved * ($loan->interest_rate / 12)) / 100;
-
         LoanStatement::create([
             "loan_id" => $loan->id,
             "member_id" => $loan->member->id,
@@ -409,7 +495,7 @@ class LoanApplicationController extends Controller
             "description" => "Int Due",
             "debit_amount" => $interest,
             "credit_amount" => "0.00",
-            "loan_balance" => $loan->amount_approved + $interest,
+            "loan_balance" =>  $loan->amount_approved,
         ]);
 
         return back()->with("success", "Loan application approved.");

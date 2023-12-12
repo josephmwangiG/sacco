@@ -14,20 +14,28 @@
                                 <input
                                     v-model="form.start_date"
                                     type="date"
-                                    style="width: 150px; border-radius: 3px; height: 35px;"
+                                    style="
+                                        width: 150px;
+                                        border-radius: 3px;
+                                        height: 35px;
+                                    "
                                     class="form-control mr-2"
                                     @change="filterLoans()"
                                 />
                                 <input
                                     v-model="form.end_date"
                                     type="date"
-                                    style="width: 150px; border-radius: 3px; height: 35px;"
+                                    style="
+                                        width: 150px;
+                                        border-radius: 3px;
+                                        height: 35px;
+                                    "
                                     class="form-control mr-2"
                                     @change="filterLoans()"
                                 />
                                 <select
                                     v-model="form.loanType"
-                                    style="width: 150px; height: 35px;"
+                                    style="width: 150px; height: 35px"
                                     class="form-control"
                                     id="selectcountry"
                                     @change="filterLoans()"
@@ -55,7 +63,6 @@
                         <div class="table-responsive mt-3" :key="loans.length">
                             <DataTable
                                 :options="options"
-                                
                                 id="user-list-table"
                                 class="table table-striped table-borderless mt-4"
                                 role="grid"
@@ -88,10 +95,7 @@
                                         <td>{{ obj.amount_approved }}</td>
                                         <td>{{ obj.service_fee }}</td>
                                         <td>
-                                            <span
-                                                class="badge dark-icon-light iq-bg-primary"
-                                                >Active</span
-                                            >
+                                            <span class="active">Active</span>
                                         </td>
                                         <td>
                                             {{
@@ -142,7 +146,7 @@ let form = ref(
 );
 
 const filterLoans = () => {
-    loans.value = props.activeLoans
+    loans.value = props.activeLoans;
     if (form.value.loanType != "") {
         loans.value = loans.value.filter((x) => {
             return x.loanType.name == form.value.loanType;

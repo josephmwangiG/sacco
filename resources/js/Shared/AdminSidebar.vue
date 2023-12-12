@@ -4,7 +4,7 @@
       <li class="iq-menu-title">
         <i class="ri-subtract-line"></i><span>Dashboard</span>
       </li>
-      <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
+      <li :class="usePage().url.value.startsWith('/dashboard') || usePage().url.value == '/' ? 'active' : ''">
         <Link href="/dashboard" class="iq-waves-effect"
           ><i class="ri-home-3-line"></i><span>Dashboard</span></Link
         >
@@ -25,7 +25,7 @@
           ><i class="ri-menu-3-line"></i><span>Members</span></Link
         >
       </li>
-      <li :class="usePage().url.value.startsWith('/leads') ? 'active' : ''">
+      <li class="collapse" :class="usePage().url.value.startsWith('/leads') ? 'active' : ''">
         <Link
           :href="route('leads.index')"
           class="iq-waves-effect"
@@ -58,22 +58,24 @@
           class="iq-submenu collapse"
           data-parent="#iq-sidebar-toggle"
         >
-          <li
+        <li
             :class="
-              usePage().url.value.startsWith('/calculator') ? 'active' : ''
+              usePage().url.value.startsWith('/applications/pending-approval')
+                ? 'active'
+                : ''
             "
           >
-            <Link :href="route('calculator')" preserve-state
-              ><i class="ri-calculator-fill"></i>Loans Calculator</Link
+            <Link :href="route('loanApplications.pending-approval')" preserve-state
+              ><i class="ri-checkbox-line"></i>Pending Approval</Link
             >
           </li>
-          <li
-            :class="
+        <li
+        :class="
               usePage().url.value.startsWith('/activeLoans') ? 'active' : ''
             "
           >
-            <Link :href="route('activeLoans.index')" preserve-state
-              ><i class="ri-stack-line"></i>Active Loans</Link
+          <Link :href="route('activeLoans.index')" preserve-state
+          ><i class="ri-stack-line"></i>Active Loans</Link
             >
           </li>
           <li
@@ -84,7 +86,16 @@
             "
           >
             <Link :href="route('loanApplications.index')" preserve-state
-              ><i class="ri-checkbox-line"></i>Applications</Link
+              ><i class="ri-checkbox-line"></i>All Applications</Link
+            >
+          </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/calculator') ? 'active' : ''
+            "
+          >
+            <Link :href="route('calculator')" preserve-state
+              ><i class="ri-calculator-fill"></i>Loans Calculator</Link
             >
           </li>
         </ul>
@@ -98,7 +109,7 @@
         >
       </li>
 
-      <li :class="usePage().url.value.startsWith('/dividends') ? 'active' : ''">
+      <li class="collapse" :class="usePage().url.value.startsWith('/dividends') ? 'active' : ''">
         <Link :href="'#'" class="iq-waves-effect" aria-expanded="false"
           ><i class="ri-bar-chart-line"></i><span>Dividends</span></Link
         >

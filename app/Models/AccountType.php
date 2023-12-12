@@ -12,7 +12,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class AccountType extends Model
 {

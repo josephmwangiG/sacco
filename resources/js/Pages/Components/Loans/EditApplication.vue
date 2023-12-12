@@ -30,7 +30,7 @@
                   </Link>
                   <Link class="tab" :href="route('activeLoans.collateral', id)
                     ">
-                  <label class="pb-0 mb-0"
+                  <label class="pb-0 mb-0 collapse"
                     :class="usePage().url.value.startsWith('/activeLoans/collateral') ? 'active-tab' : ''"><i
                       class="ri-refund-fill pr-1" style="font-size: 20px"></i>
                     Collateral</label>
@@ -44,7 +44,7 @@
                   </Link>
                   <Link class="tab" :href="route('activeLoans.accrue', id)
                     ">
-                  <label class="pb-0 mb-0"
+                  <label class="pb-0 mb-0 collapse"
                     :class="usePage().url.value.startsWith('/activeLoans/accrue') ? 'active-tab' : ''"><i
                       class="ri-edit-box-line pr-1" style="font-size: 20px"></i>
                     Accrue</label>

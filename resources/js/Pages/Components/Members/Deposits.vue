@@ -29,19 +29,16 @@
             <th>Payment Date</th>
             <th>Method</th>
             <th>Amount</th>
-            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(obj, index) in deposits" :key="index">
             <td>{{ obj.receipt_number }}</td>
-            <td>{{ obj.payment_date }}</td>
+            <td>{{ formatDate(obj.payment_date) }}</td>
             <td>{{ obj.method_id }}</td>
-            <td>{{ obj.amount }}</td>
-            <td>
-              <span class="badge dark-icon-light iq-bg-primary">Active</span>
-            </td>
+            <td>{{ Number(obj.amount).toLocaleString() }}</td>
+         
             <td>
               <div class="flex align-items-center list-user-action">
                 <a
@@ -85,6 +82,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import EditMember from "./EditMember.vue";
 import DepositForm from "../Deposits/DepositForm.vue";
 import { ref } from "vue";
+import { formatDate } from "@/composables/utils.js";
 
 const props = defineProps({
   deposits: Object,

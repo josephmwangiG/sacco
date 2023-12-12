@@ -26,8 +26,8 @@
           <tr v-for="(obj, index) in loans" :key="index">
             <td>{{ obj.loan_reference_number }}</td>
             <td>{{ obj.loan_type.name }}</td>
-            <td>{{ obj.start_date }}</td>
-            <td>{{ obj.amount_approved }}</td>
+            <td>{{ formatDate(obj.start_date) }}</td>
+            <td>{{ Number(obj.amount_approved).toLocaleString() }}</td>
             <td>
               <div class="badge badge-pill badge-success">Active</div>
             </td>
@@ -55,6 +55,8 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import EditMember from "./EditMember.vue";
 import AssetForm from "./AssetForm.vue";
 import { ref } from "vue";
+import {formatDate} from "@/composables/utils.js"
+
 
 const props = defineProps({
   member: Object,

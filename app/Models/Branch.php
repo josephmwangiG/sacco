@@ -12,7 +12,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\BranchAccountsSetup;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class Branch extends Model
 {

@@ -12,9 +12,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-use App\Traits\BranchFilterScope;
-use App\Traits\BranchScope;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
+
 
 class LoanApplication extends Model
 {
@@ -91,6 +90,14 @@ class LoanApplication extends Model
         'witness_residential_address',
         'status_id',
         'witnessed_by_user_id',
+        'approver_1',
+        'approver_2',
+        'approver_3',
+        'approver_4',
+        'approver_1_status',
+        'approver_2_status',
+        'approver_3_status',
+        'approver_4_status',
 
         'reviewed_by_user_id',
         'reviewed_on',
@@ -223,6 +230,22 @@ class LoanApplication extends Model
     public function witnessUser()
     {
         return $this->belongsTo(User::class);
+    }
+    public function approver1()
+    {
+        return $this->belongsTo(User::class, 'approver_1');
+    }
+    public function approver2()
+    {
+        return $this->belongsTo(User::class, 'approver_2');
+    }
+    public function approver3()
+    {
+        return $this->belongsTo(User::class, 'approver_3');
+    }
+    public function approver4()
+    {
+        return $this->belongsTo(User::class, 'approver_4');
     }
 
     /**

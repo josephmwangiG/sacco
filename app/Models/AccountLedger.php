@@ -12,11 +12,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class AccountLedger extends Model
 {
-   
+
 
     public $timestamps = false;
 

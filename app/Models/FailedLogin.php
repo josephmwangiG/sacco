@@ -12,11 +12,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class FailedLogin extends Model
 {
-    
+
     /**
      * The database table used by the model.
      *

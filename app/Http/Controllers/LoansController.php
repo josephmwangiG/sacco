@@ -7,6 +7,7 @@ use App\Models\Guarantor;
 use App\Models\Loan;
 use App\Models\LoanApplication;
 use App\Models\LoanPayment;
+use App\Models\LoanStatement;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,7 @@ class LoansController extends Controller
                 "member_id" => $item->member_id,
                 "member" => $item->member,
                 "payments" => $item->payments('paymentMethod')->get(),
+                "statements" => $item->statements('statements')->get(),
                 "user" => $item->member->user,
                 "account" => $item->member->account,
                 "payment_sum" => $item->payments->sum('amount'),
@@ -217,6 +219,41 @@ class LoansController extends Controller
             'bank_branch' => $data['bank_branch'],
             'cheque_date' => $data['cheque_date'],
         ]);
+
+        $loan = Loan::where("id", $data['loan_id'])->first();
+        $amount_after_interest = $data['amount'] - $loan->interest_due;
+
+        $loan->update(
+            ["interest_due" => $amount_after_interest > 0  ? 0 : -1 * $amount_after_interest]
+        );
+
+        LoanStatement::create([
+            "loan_id" => $loan->id,
+            "member_id" => $loan->member->id,
+            "posting_date" => date('Y-m-d'),
+            "document_number" => "Interest Payment",
+            "description" => "Pay Interest",
+            "debit_amount" => $amount_after_interest > 0  ? $loan->interest_due : $data['amount'],
+            "credit_amount" => "0.00",
+            "loan_balance" => $loan->current_balance,
+        ]);
+
+        if ($amount_after_interest > 0) {
+            LoanStatement::create([
+                "loan_id" => $loan->id,
+                "member_id" => $loan->member->id,
+                "posting_date" => date('Y-m-d'),
+                "document_number" => "Loan Payment",
+                "description" => "Loan Payment",
+                "debit_amount" => $amount_after_interest,
+                "credit_amount" => "0.00",
+                "loan_balance" => $loan->amount_approved - $amount_after_interest,
+            ]);
+
+            $loan->update(
+                ["current_balance" => $loan->current_balance - $amount_after_interest]
+            );
+        }
 
         return back()->with("success", "Loan payment added successfully.");
     }

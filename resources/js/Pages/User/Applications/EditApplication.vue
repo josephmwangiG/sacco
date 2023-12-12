@@ -102,7 +102,7 @@
                     >
                   </Link>
                   <Link
-                    class="tab"
+                    class="tab collapse"
                     :href="
                       route(
                         'u.loanApplications.disbursement',
@@ -128,7 +128,7 @@
                     >
                   </Link>
                   <Link
-                    class="tab"
+                    class="tab collapse"
                     :href="
                       route('u.loanApplications.confirm', loanApplication.id)
                     "

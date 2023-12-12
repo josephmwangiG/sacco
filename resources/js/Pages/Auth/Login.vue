@@ -1,14 +1,34 @@
 <template>
-    <section class="sign-in-page">
-        <div class="container bg-white mt-5 p-0">
-            <div class="row no-gutters">
-                <div class="col-sm-6 align-self-center">
+    <section class="sign-in-page bg-white mt-0">
+        <div class="container bg-white px-0 py-5 d-flex align-items-center" >
+            <div class="row no-gutters py-5 shadow-sm w-100" style="background-color: #f5f5f5; min-height: 90vh !important; border-radius: 8px;">
+             
+                <div class="col-md-4 offset-md-1 align-self-center hide-on-small">
+                    <div class="">
+                      
+                        <div class="slick-slider1">
+                            <div class="item px-4">
+                                <img
+                                    src="/images/login/banner.jpeg"
+                                    class="mb-4 w-100"
+                                    alt="logo"
+                                />
+                                <h4 class="mb-1 text-white bg-primary p-2 text-center" >
+                                    Automate your SACCO
+                                </h4>
+                                <p class="text-primary mt-3" >
+                                    PSC Sacco is what your SACCO needs to move to the next level. Focus on Investments as we handle the Financial Administration. Automate your SACCO now!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 offset-md-1 col-12 align-self-center login-section">
                     <div class="sign-in-from">
-                        <h1 class="mb-0 dark-signin">Sign in</h1>
-                        <p>
-                            Enter your email address and password to access your
-                            account.
-                        </p>
+                        <h3 class="mb-0 dark-signin mb-2">Login to PSC SACCO</h3>
+                        <strong>
+                            Welcome back! Please enter your details.
+                        </strong>
                         <div
                             class="alert alert-danger"
                             v-if="$page.props.flash.danger"
@@ -50,11 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <Link
-                                    :href="route('reset-password')"
-                                    class="float-right"
-                                    >Forgot password?</Link
-                                >
+                               
                                 <input
                                     type="password"
                                     required
@@ -67,7 +83,7 @@
                             </div>
                             <div class="d-inline-block w-100 mt-3">
                                 <div
-                                    class="custom-control custom-checkbox d-inline-block mt-2 pt-1"
+                                    class="custom-control custom-checkbox d-inline-block mt-2 pt-1 my-auto"
                                 >
                                     <input
                                         type="checkbox"
@@ -80,13 +96,19 @@
                                         >Remember Me</label
                                     >
                                 </div>
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary float-right"
+                                <Link
+                                    :href="route('reset-password')"
+                                    class="my-auto float-right"
+                                    >Forgot password?</Link
                                 >
-                                    Sign in
-                                </button>
                             </div>
+                            <button
+                                    type="submit"
+                                    style="border-radius: 4px;"
+                                    class="btn btn-primary w-100 mt-3"
+                                >
+                                   <strong> Sign in</strong>
+                                </button>
                             <div class="sign-info collapse">
                                 <span
                                     class="dark-color d-inline-block line-height-2"
@@ -114,29 +136,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-sm-6 text-center">
-                    <div class="sign-in-detail text-white">
-                        <!-- <a class="sign-in-logo mb-5" href="#"
-              ><img src="/images/logo-white.png" class="img-fluid" alt="logo"
-            /></a> -->
-                        <div class="slick-slider11">
-                            <div class="item">
-                                <img
-                                    src="/images/login/1.png"
-                                    class="img-fluid mb-4"
-                                    alt="logo"
-                                />
-                                <h4 class="mb-1 text-white">
-                                    PSC Sacco
-                                </h4>
-                                <p>
-                                    Easily manage your Loans applications,
-                                    transactions and savings.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -152,3 +151,14 @@ const loginForm = ref(
     })
 );
 </script>
+
+<style>
+@media (max-width: 768px) { /* Adjust the max-width value to match your 'md' breakpoint */
+  .hide-on-small {
+    display: none;
+  }
+  .login-section{
+    width: 100% !important;
+  }
+}
+</style>

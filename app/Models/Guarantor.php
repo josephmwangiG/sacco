@@ -11,9 +11,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\BranchFilterScope;
-use App\Traits\BranchScope;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
+
 
 class Guarantor extends Model
 {
@@ -43,6 +42,7 @@ class Guarantor extends Model
         'loan_application_id',
         'notes',
         'guarantee_amount',
+        'status',
         'created_by',
         'updated_by',
         'deleted_by'

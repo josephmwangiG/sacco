@@ -11,10 +11,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\BranchFilterScope;
-use App\Traits\BranchScope;
+
 use Illuminate\Notifications\Notifiable;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class Loan extends Model
 {
@@ -67,6 +66,8 @@ class Loan extends Model
 
         'start_date',
         'next_repayment_date',
+        'current_balance',
+        'interest_due',
         'end_date',
 
         'payment_frequency_id',

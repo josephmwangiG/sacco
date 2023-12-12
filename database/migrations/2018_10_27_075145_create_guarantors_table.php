@@ -21,6 +21,7 @@ class CreateGuarantorsTable extends Migration
             $table->string('loan_application_id', 36);
             $table->string('notes')->nullable();
             $table->string('guarantee_amount')->nullable();
+            $table->string('status')->default('Pending');
             $table->string('created_by', 36)->nullable();
             $table->string('updated_by', 36)->nullable();
             $table->string('deleted_by', 36)->nullable();

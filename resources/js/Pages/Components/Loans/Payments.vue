@@ -22,10 +22,9 @@
             <th>Loan No.</th>
             <th>Member</th>
             <th>Ac Number</th>
-            <th>Phone</th>
+            <th>Payment Date</th>
             <th>Method</th>
             <th>Amount</th>
-            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -36,12 +35,10 @@
               {{ obj.member.user.first_name }} {{ obj.member.user.last_name }}
             </td>
             <td>{{ obj.member.account.account_number }}</td>
-            <td>{{ obj.member.phone }}</td>
+            <td>{{ formatDate(obj.payment_date) }}</td>
             <td>{{ obj.method_id }}</td>
-            <td>{{ obj.amount }}</td>
-            <td>
-              <span class="badge dark-icon-light iq-bg-primary">Active</span>
-            </td>
+            <td>{{ Number(obj.amount).toLocaleString() }}</td>
+           
             <td>
               <div class="flex align-items-center list-user-action">
                 <a class="iq-bg-primary" data-placement="top" @click="getObject(obj)" data-toggle="modal"
@@ -66,6 +63,7 @@ import { ref, watch } from "vue";
 import PaymentForm from "./PaymentForm.vue";
 import EditApplication from "./EditApplication.vue";
 import debounce from "lodash/debounce";
+import { formatDate } from "@/composables/utils.js";
 
 const props = defineProps({
   payments: Object,

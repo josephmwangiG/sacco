@@ -17,20 +17,14 @@
             <th scope="col">Loan</th>
             <th scope="col">Date Applied</th>
             <th scope="col">Amount</th>
-            <th scope="col">Val Date</th>
-            <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(obj, index) in applications" :key="index">
             <td>{{ obj.loan_type.name }}</td>
-            <td>{{ obj.application_date }}</td>
-            <td>{{ obj.amount_applied }}</td>
-            <td>{{ obj.valuation_date }}</td>
-            <td>
-              <div class="badge badge-pill badge-success">Active</div>
-            </td>
+            <td>{{ formatDate(obj.application_date) }}</td>
+            <td>{{ Number(obj.amount_applied).toLocaleString('en-US') }}</td>
             <td>
               <div class="flex align-items-center list-user-action">
                 <a class="iq-bg-primary" data-placement="top" @click="getObject(obj)" data-toggle="modal"
@@ -55,6 +49,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import EditMember from "./EditMember.vue";
 import AssetForm from "./AssetForm.vue";
 import { ref } from "vue";
+import {formatDate} from "@/composables/utils.js"
 
 const props = defineProps({
   member: Object,

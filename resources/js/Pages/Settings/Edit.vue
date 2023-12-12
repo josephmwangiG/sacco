@@ -14,7 +14,8 @@
                 <div class="add-img-user profile-img-edit">
                   <img
                     class="profile-pic img-fluid"
-                    src="/images/user/11.png"
+                    style="height: 100px; width: 100px;"
+                    src="/images/user/01.jpg"
                     alt="profile-pic"
                   />
                   <div class="p-image">
@@ -36,32 +37,65 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label>User Role:</label>
-                <select class="form-control" id="selectuserrole">
-                  <option>Select</option>
-                  <option>Admin</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="furl">Website:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="furl"
-                  placeholder="Website Url"
-                />
-              </div>
-              <div class="form-group">
-                <label for="lurl">Linkedin Url:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lurl"
-                  placeholder="Linkedin Url"
-                />
-              </div>
+            
             </form>
+
+          <form @submit.prevent="changePass">
+            <hr />
+            <h5 class="mb-3">Change Password</h5>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="old_password">Old Password:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  v-model="passForm.old_password"
+                  id="old_password"
+                  placeholder="Old Password"
+                />
+                <div class="text-danger" v-if="passForm.errors.old_password">
+                  <small>{{ passForm.errors.old_password }}</small>
+                </div>
+              </div>
+              <div class="form-group col-md-12">
+                <label for="password">New Password:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                  v-model="passForm.password"
+                  placeholder="New Password"
+                />
+                <div class="text-danger" v-if="passForm.errors.password">
+                  <small>{{ passForm.errors.password }}</small>
+                </div>
+              </div>
+              <div class="form-group col-md-12">
+                <label for="rpass">Repeat Password:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="rpass"
+                  required
+                  v-model="passForm.password_confirmation"
+                  placeholder="Repeat Password "
+                />
+              </div>
+            </div>
+            <div class="checkbox collapse">
+              <label
+                ><input
+                  v-model="form.two_factor"
+                  class="mr-2"
+                  type="checkbox"
+                />Enable Two-Factor-Authentication</label
+              >
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">
+              Change Password
+            </button>
+          </form>
           </div>
         </div>
       </div>
@@ -197,66 +231,10 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary mt-3">
                 {{ action }} Organization
               </button>
             </div>
-          </form>
-          <form @submit.prevent="changePass">
-            <hr />
-            <h5 class="mb-3">Change Password</h5>
-            <div class="row">
-              <div class="form-group col-md-12">
-                <label for="old_password">Old Password:</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  v-model="passForm.old_password"
-                  id="old_password"
-                  placeholder="Old Password"
-                />
-                <div class="text-danger" v-if="passForm.errors.old_password">
-                  <small>{{ passForm.errors.old_password }}</small>
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="password">New Password:</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  required
-                  v-model="passForm.password"
-                  placeholder="New Password"
-                />
-                <div class="text-danger" v-if="passForm.errors.password">
-                  <small>{{ passForm.errors.password }}</small>
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="rpass">Repeat Password:</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="rpass"
-                  required
-                  v-model="passForm.password_confirmation"
-                  placeholder="Repeat Password "
-                />
-              </div>
-            </div>
-            <div class="checkbox collapse">
-              <label
-                ><input
-                  v-model="form.two_factor"
-                  class="mr-2"
-                  type="checkbox"
-                />Enable Two-Factor-Authentication</label
-              >
-            </div>
-            <button type="submit" class="btn btn-primary">
-              Change Password
-            </button>
           </form>
         </div>
       </div>

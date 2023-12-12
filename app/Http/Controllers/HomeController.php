@@ -7,8 +7,6 @@ use App\Models\Loan;
 use App\Models\LoanApplication;
 use App\Models\Payment;
 use App\Models\Withdrawal;
-use Faker\Provider\ar_EG\Payment as Ar_EGPayment;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {

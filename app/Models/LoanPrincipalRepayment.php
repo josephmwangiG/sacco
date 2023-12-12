@@ -12,11 +12,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class LoanPrincipalRepayment extends Model
 {
-    use SearchableTrait;
+
 
     /**
      * The database table used by the model.

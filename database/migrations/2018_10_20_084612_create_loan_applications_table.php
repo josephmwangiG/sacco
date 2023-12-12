@@ -44,6 +44,14 @@ class CreateLoanApplicationsTable extends Migration
             $table->string('witness_email')->nullable();
             $table->string('witness_postal_address')->nullable();
             $table->string('witness_residential_address')->nullable();
+            $table->string('approver_1')->nullable();
+            $table->string('approver_2')->nullable();
+            $table->string('approver_3')->nullable();
+            $table->string('approver_4')->nullable();
+            $table->string('approver_1_status')->nullable();
+            $table->string('approver_2_status')->nullable();
+            $table->string('approver_3_status')->nullable();
+            $table->string('approver_4_status')->nullable();
             $table->integer('disburse_method_id');
             //mpesa fields
             $table->string('mpesa_number')->nullable();

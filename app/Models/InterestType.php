@@ -13,7 +13,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class InterestType extends Model
 {

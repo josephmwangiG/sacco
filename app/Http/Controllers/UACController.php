@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AddUser;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\RolePermission;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UACController extends Controller
 {
@@ -53,6 +55,8 @@ class UACController extends Controller
             "phone" => "",
         ]);
 
+        $password = uniqid();
+
         User::create([
             "first_name" => $data['first_name'],
             "last_name" => $data['last_name'],
@@ -62,8 +66,16 @@ class UACController extends Controller
             "user_type" => "user",
             "branch_id" => Auth::user()->branch_id,
             "organization_id" => Auth::user()->organization_id,
-            "password" => Hash::make("password"),
+            "password" => Hash::make($password),
         ]);
+
+        $user = User::where('email', $data['email'])->first();
+
+        $data['url'] = route('login');
+        $data['email'] = $data['email'];
+        $data['password'] = $password;
+
+        Mail::to($user)->send(new AddUser($data));
 
         return back()->with('success', "User Added Successfully");
     }

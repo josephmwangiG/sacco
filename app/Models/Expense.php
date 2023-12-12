@@ -12,13 +12,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\BranchFilterScope;
-use App\Traits\BranchScope;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
+
 
 class Expense extends Model
 {
-    use SearchableTrait, BranchScope, BranchFilterScope;
+
 
     /**
      * The database table used by the model.

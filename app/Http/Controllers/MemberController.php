@@ -151,7 +151,8 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member = Member::where("id", $id)->with("user")->first();
-        return inertia("Components/Members/Details", compact('member'));
+        $users = User::where('user_type', '!=', 'member')->where("organization_id", Auth::user()->organization_id)->get();
+        return inertia("Components/Members/Details", compact('member', 'users'));
     }
 
     /**
@@ -189,6 +190,10 @@ class MemberController extends Controller
             'next_of_kin_postal_address' => '',
             'next_of_kin_phone_number' => '',
             'next_of_kin_email' => '',
+            'approver_1' => 'required',
+            'approver_2' => '',
+            'approver_3' => '',
+            'approver_4' => '',
         ]);
 
 
@@ -196,8 +201,6 @@ class MemberController extends Controller
 
         $member = Member::where("id", $id)->with("user")->first();
         $member->update([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
             'date_of_birth' => $data['date_of_birth'],
             'date_became_member' => $data['date_became_member'],
             'nationality' => $data['nationality'],
@@ -218,13 +221,28 @@ class MemberController extends Controller
             'next_of_kin_postal_address' => $data['next_of_kin_postal_address'],
             'next_of_kin_phone_number' => $data['next_of_kin_phone_number'],
             'next_of_kin_email' => $data['next_of_kin_email'],
+            'approver_1' => $data['approver_1'],
+            'approver_2' => $data['approver_2'],
+            'approver_3' => $data['approver_3'],
+            'approver_4' => $data['approver_4'],
         ]);
 
         $member->user->update([
             'postal_address' => $data['postal_address'],
             'physical_address' => $data['physical_address'],
-            'city' => $data['city'],
             'country' => $data['nationality'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'date_of_birth' => $data['date_of_birth'],
+            'nationality' => $data['nationality'],
+            'city' => $data['city'],
+            'id_number' => $data['id_number'],
+            'kra_pin' => $data['kra_pin'],
+            'passport_number' => $data['passport_number'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'employer_name' => $data['employer_name'],
+            'residence' => $data['residence'],
         ]);
 
         return  back()->with('success', "Member Details Updated Successfully");
@@ -292,7 +310,7 @@ class MemberController extends Controller
         $accounts->delete();
         $member->delete();
 
-        return back()->with('success', "Member Details eleted Successfully");
+        return back()->with('success', "Member Details Deleted Successfully");
     }
 
     // User

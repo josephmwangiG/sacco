@@ -184,3 +184,56 @@ table .btn{
     padding: 0px 10px;
 }
 
+
+
+div.iq-sidebar {
+    background-color: #51B495;
+    padding-left: 10px;
+    color: white;
+    
+  }
+  
+  
+  .iq-sidebar-menu li a{
+    color:white !important  ;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .iq-sidebar-menu li.active a{
+    background-color: #308D70;
+    color:white !important;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  div.iq-sidebar ul li {
+    background-color: #51B495;
+    padding-left: 10px;
+    color: white;
+  }
+  
+  div.content-page {
+    background-color: white;
+  }
+  
+  div.iq-top-navbar {
+    background-color: white;
+  }
+  
+  span.active {
+    color:#308D70
+  }
+  
+  thead tr th {
+    background-color: #e3f1f4;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  nav.navbar.navbar-expand-lg.navbar {
+    border-radius: 0px !important;
+    background-color: white !important;
+  }
+

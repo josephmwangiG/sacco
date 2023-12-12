@@ -11,10 +11,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\BranchFilterScope;
-use App\Traits\BranchScope;
+
 use Carbon\Carbon;
-use Nicolaslopezj\Searchable\SearchableTrait;
+
 
 class Payment extends Model
 {

@@ -28,6 +28,8 @@ class CreateLoansTable extends Migration
             $table->integer('loan_status_id')->nullable();
             $table->string('approved_by_user_id')->nullable();
             $table->string('amount_approved');
+            $table->double('current_balance');
+            $table->double('interest_due');
             $table->string('disburse_amount');
             $table->double('service_fee')->default(0);
             $table->integer('penalty_type_id')->nullable();

@@ -12,18 +12,26 @@ use App\Models\Payment;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     public function dashboard()
     {
+        $today = Carbon::now();
+        $oneYearAgo = $today->copy()->subYear();
         $branches = Branch::where("organization_id", Auth::user()->organization_id)->get();
         $members = Member::where("organization_id", Auth::user()->organization_id)->get();
         $leads = Lead::where("organization_id", Auth::user()->organization_id)->get();
         $loans = Loan::where("organization_id", Auth::user()->organization_id)->with('member.user')->get();
         $loans_total = Loan::where("organization_id", Auth::user()->organization_id)->sum("amount_approved");
         $applications = LoanApplication::where("organization_id", Auth::user()->organization_id)
+            ->with("member.user", "loanType")->latest()->take(10)
+            ->get();
+        $all_applications = LoanApplication::where("organization_id", Auth::user()->organization_id)
+            ->whereBetween('application_date', [$oneYearAgo, $today])
             ->with("member.user", "loanType")
+            ->latest()
             ->get();
         $deposits = Payment::where("organization_id", Auth::user()->organization_id)->get();
         $deposits_total = Payment::where("organization_id", Auth::user()->organization_id)->sum("amount");
@@ -32,7 +40,7 @@ class DashboardController extends Controller
         $payments = LoanPayment::where("organization_id", Auth::user()->organization_id)->get();
 
 
-        return inertia('Dashboard', compact("branches", 'members', "leads", "loans", "loans_total", "applications", "payments", "withdrawals", "deposits", "withdrawals_total", "deposits_total"));
+        return inertia('Dashboard', compact("branches", 'members', "leads", "loans", "loans_total", "applications",  "all_applications", "payments", "withdrawals", "deposits", "withdrawals_total", "deposits_total"));
     }
 
     public function udashboard()

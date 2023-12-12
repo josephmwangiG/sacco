@@ -59,67 +59,30 @@
                   <th>Amount</th>
                   <th>Activity Description</th>
                   <th>Principle Bal</th>
-                  <th>Interest / Fee</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{{ activeLoan.start_date }}</td>
+                <tr v-for="obj in activeLoan.statements" :key="obj.id">
+                  <td>{{ formatDate(obj.posting_date) }}</td>
                   <td>
                     {{
-                      activeLoan.amount_approved.toLocaleString("en-US", {
+                      Math.round(obj.debit_amount, 2).toLocaleString("en-US", {
                         minimumFractionDigits: 1,
                         maximumFractionDigits: 1,
                       }) + "0"
                     }}
                   </td>
-                  <td>Opening Loan Balance</td>
+                  <td>{{obj.description}}</td>
                   <td>
                     {{
-                      activeLoan.amount_approved.toLocaleString("en-US", {
+                      Number(obj.loan_balance).toLocaleString("en-US", {
                         minimumFractionDigits: 1,
                         maximumFractionDigits: 1,
                       }) + "0"
                     }}
                   </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>{{ activeLoan.start_date }}</td>
-                  <td>
-                    {{
-                      pays.payments[0].interest_amount.toLocaleString("en-US", {
-                        minimumFractionDigits: 1,
-                        maximumFractionDigits: 1,
-                      }) + "0"
-                    }}
-                  </td>
-                  <td>Opening Interest</td>
-                  <td></td>
-                  <td>
-                    {{
-                      pays.payments[0].interest_amount.toLocaleString("en-US", {
-                        minimumFractionDigits: 1,
-                        maximumFractionDigits: 1,
-                      }) + "0"
-                    }}
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>Interest from {{ activeLoan.start_date }} to Date B</td>
-                  <td></td>
-                  <td>2000</td>
                 </tr>
 
-                <tr>
-                  <td>2021</td>
-                  <td>1000</td>
-                  <td>Closing Balance</td>
-                  <td></td>
-                  <td>2000</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -179,10 +142,13 @@
 
 <script setup>
 import { ref } from "vue";
+import {formatDate} from "@/composables/utils";
 
 const props = defineProps({
   activeLoan: Object,
 });
+
+console.log(props.activeLoan);
 
 let pays = ref("");
 
