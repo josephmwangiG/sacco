@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $item->account->account_number }}</td>
                     <td>{{ $item->first_name }} {{ $item->last_name }}</td>
-                    <td>{{ $item->branch->name }}</td>
+                    <td>{{ optional($item->branch)->name }}</td>
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->residential_address }}</td>
                     <td>{{ $item->date_became_member }}</td>

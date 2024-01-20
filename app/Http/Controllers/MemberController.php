@@ -113,10 +113,7 @@ class MemberController extends Controller
         $data["organization_id"] = $user->organization_id;
         $data["password"] = Hash::make("password");
 
-        $new_user = User::create($data);
-        $data["user_id"] = $new_user->id;
-
-        $member = Member::create($data);
+        $member = User::create($data)->member;
 
         Account::create([
             'branch_id' => $branch_id,
@@ -253,7 +250,7 @@ class MemberController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * 
+     *
      */
 
 
