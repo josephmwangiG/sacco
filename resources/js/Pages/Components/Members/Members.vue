@@ -80,7 +80,7 @@
                                             {{ member.first_name }}
                                             {{ member.last_name }}
                                         </td>
-                                        <td>{{ member.branch.name }}</td>
+                                        <td>{{ member.branch?.name }}</td>
                                         <td>{{ member.phone }}</td>
                                         <td>
                                             {{ member.city }},

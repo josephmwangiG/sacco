@@ -1,24 +1,16 @@
 <template>
-    <EditApplication :loanApplication="loanApplication" :active="'guarantors'">
+      <Main>
+    <div class="iq-card">
+      <div class="iq-card-body">
+       
         <div class="row justify-content-between">
             <div class="col-sm-5 col-md-4">
-                <h4 class="card-title">Guarantors</h4>
+                <h4 class="card-title">Requests</h4>
             </div>
             <div class="col-sm-7 col-md-6">
                 <div class="user-list-files d-flex float-right">
                     <a class="iq-bg-primary" href="javascript:void();">
                         Print
-                    </a>
-
-                    <a
-                        class="iq-bg-primary"
-                        data-toggle="modal"
-                        data-target="#formModal"
-                        @click="create"
-                        v-if="loanApplication.approved_on == null"
-                        href="javascript:void();"
-                    >
-                        New
                     </a>
                 </div>
             </div>
@@ -32,12 +24,13 @@
             >
                 <thead>
                     <tr>
-                        <th>Member</th>
-                        <th>Ac Number</th>
+                        <th>Loan</th>
+                        <th>Loan Number</th>
+                        <th>Applicant</th>
+                        <th>Applicant AC No.</th>
+                        <th>Applicant Phone</th>
                         <th>Amount</th>
                         <th>Confirmed Amount</th>
-                        <th>Address</th>
-                        <th>Phone</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -45,14 +38,14 @@
                 <tbody>
                     <tr v-for="(obj, index) in guarantors" :key="index">
                         <td>
-                            {{ obj.member.user.first_name }}
-                            {{ obj.member.user.last_name }}
+                            {{ obj.loan_application.loan_type.name }}
                         </td>
-                        <td>{{ obj.member.account.account_number }}</td>
+                        <td>{{ obj.loan_application.application_ref_number }}</td>
+                        <td>{{ obj.loan_application.member.user.first_name }} {{ obj.loan_application.member.user.last_name }}</td>
+                        <td>{{ obj.loan_application.member.account.account_number }}</td>
+                        <td>{{ obj.loan_application.member.user.phone }}</td>
                         <td>{{ Number(obj.guarantee_amount).toLocaleString() }}</td>
                         <td>{{ Number(obj.guarantee_amount).toLocaleString() }}</td>
-                        <td>{{ obj.member.user.residential_address }}</td>
-                        <td>{{ obj.member.user.phone }}</td>
                         <td>
                             <span class="active">{{obj.status}}</span>
                         </td>
@@ -98,7 +91,10 @@
             :item="item"
             :id="id"
         />
-    </EditApplication>
+      
+        </div>
+        </div>
+        </Main>
 </template>
 <script setup>
 import { useForm, usePage } from "@inertiajs/inertia-vue3";
@@ -111,7 +107,6 @@ import debounce from "lodash/debounce";
 const props = defineProps({
     loanApplication: Object,
     guarantors: Object,
-    id: Number,
 });
 
 console.log(props.guarantors);

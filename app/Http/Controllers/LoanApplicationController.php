@@ -581,6 +581,15 @@ class LoanApplicationController extends Controller
         return inertia('User/Applications/Guarantors', compact("id", "guarantors", "loanApplication", "totalSum"));
     }
 
+    public function guarantorRequests()
+    {
+        $loanApplication = LoanApplication::where("id", 40)->firstOrFail();
+        $guarantors = Guarantor::where("member_id", auth()->user()->member->id)
+            ->with('loanApplication.LoanType', "loanApplication.Member.User", "loanApplication.Member.Account")->get();
+
+        return inertia('User/Applications/GuarantorsRequest', compact("guarantors", "loanApplication"));
+    }
+
     public function uCollaterals($id)
     {
         $loanApplication = LoanApplication::where("id", $id)->firstOrFail();
