@@ -326,7 +326,7 @@ class LoansController extends Controller
     }
 
 
-    // Users 
+    // Users
 
     public function uLoans()
     {

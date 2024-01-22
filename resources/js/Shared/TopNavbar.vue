@@ -243,14 +243,14 @@
                                 <div class="iq-card-body p-0">
                                     <div class="bg-primary p-3">
                                         <h5 class="mb-0 text-white line-height">
-                                            Hello Nik jone
+                                            {{ user.first }}
                                         </h5>
                                         <span class="text-white font-size-12"
                                             >Available</span
                                         >
                                     </div>
-                                    <a
-                                        href="#"
+                                    <Link
+                                        :href="'/edit'"
                                         class="iq-sub-card iq-bg-primary-hover"
                                     >
                                         <div class="media align-items-center">
@@ -269,9 +269,9 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a
-                                        href="#"
+                                    </Link>
+                                    <Link
+                                        :href="'/edit'"
                                         class="iq-sub-card iq-bg-primary-hover"
                                     >
                                         <div class="media align-items-center">
@@ -290,8 +290,8 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a
+                                    </Link>
+                                    <!-- <a
                                         href="#"
                                         class="iq-sub-card iq-bg-primary-hover"
                                     >
@@ -313,8 +313,8 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a
+                                    </a> -->
+                                    <!-- <a
                                         href="#"
                                         class="iq-sub-card iq-bg-primary-hover"
                                     >
@@ -334,7 +334,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </a>
+                                    </a> -->
                                     <div
                                         class="d-inline-block w-100 text-center p-3"
                                     >
