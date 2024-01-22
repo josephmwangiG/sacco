@@ -25,7 +25,7 @@ class MemberController extends Controller
         $members = Member::where("members.organization_id", Auth::user()->organization_id)
             ->when(Request()->input('search'), function ($query, $search) {
 
-                $query->with('account')->join("users", "users.id", "=", "members.user_id")->where("users.user_type", "member")->where('users.first_name', "LIKE", "%{$search}%")->orWhere('users.last_name', "LIKE", "%{$search}%");
+                $query->with('account')->join("users", "users.id", "=", "members.user_id")->where("users.user_type", "member")->where('users.first_name', "LIKE", "%{$search}%")->orWhere('users.last_name', "LIKE", "%{$search}%")->orWhere('users.phone', "LIKE", "%{$search}%")->orWhere('users.email', "LIKE", "%{$search}%")->orWhere('members.id_number', "LIKE", "%{$search}%");
             })
             ->latest("members.created_at")
             ->paginate(10)->through(fn ($item) => [

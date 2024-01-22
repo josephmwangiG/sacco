@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ $item->loan_reference_number }}</td>
                     <td>{{ $item->loanType->name }}</td>
-                    <td>{{ $item->member->first_name }} {{ $item->member->last_name }}</td>
+                    <td>{{ $item->member->user->first_name }} {{ $item->member->user->last_name }}</td>
                     <td>{{ $item->member->account->account_number }}</td>
                     <td>{{ $item->interest_rate }}</td>
                     <td>{{ $item->amount_approved }}</td>
