@@ -113,13 +113,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>facebook: {{ $organization->business_name }}</td>
+                        <td>Email: {{ $organization->email }}</td>
                     </tr>
                     <tr>
-                        <td>IG: {{ $organization->business_name }}</td>
+                        <td>Phone: {{ $organization->phone }}</td>
                     </tr>
                     <tr>
-                        <td>twitter: {{ $organization->business_name }}</td>
+                        <td>Address: {{ $organization->address }}</td>
                     </tr>
                 </table>
             </td>
@@ -138,10 +138,7 @@
                         <td>{{ $items_name }}</td>
                         <td>{{ $items_count }}</td>
                     </tr>
-                    <tr>
-                        <td>Loan Details</td>
-                        <td>Loan Details</td>
-                    </tr>
+                   
                 </table>
             </td>
         </tr>

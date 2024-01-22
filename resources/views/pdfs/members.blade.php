@@ -15,10 +15,10 @@
             @foreach ($members as $item)
                 <tr>
                     <td>{{ $item->account->account_number }}</td>
-                    <td>{{ $item->first_name }} {{ $item->last_name }}</td>
-                    <td>{{ optional($item->branch)->name }}</td>
-                    <td>{{ $item->phone }}</td>
-                    <td>{{ $item->residential_address }}</td>
+                    <td>{{ $item->user->first_name }} {{ $item->user->last_name }}</td>
+                    <td>{{ $item->branch ? $item->branch->name : "" }}</td>
+                    <td>{{ $item->user->phone }}</td>
+                    <td>{{ $item->user->residential_address }}</td>
                     <td>{{ $item->date_became_member }}</td>
                 </tr>
             @endforeach

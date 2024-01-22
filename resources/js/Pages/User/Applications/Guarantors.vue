@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive" v-if="guarantors.length == 0">
+        <div class="table-responsive" v-if="guarantors.length > 0">
             <table
                 id="user-list-table"
                 class="table table-striped table-borderless mt-2"
@@ -35,6 +35,7 @@
                         <th>Member</th>
                         <th>Ac Number</th>
                         <th>Amount</th>
+                        <th>Confirmed Amount</th>
                         <th>Address</th>
                         <th>Phone</th>
                         <th>Status</th>
@@ -48,11 +49,12 @@
                             {{ obj.member.user.last_name }}
                         </td>
                         <td>{{ obj.member.account.account_number }}</td>
-                        <td>{{ obj.guarantee_amount }}</td>
+                        <td>{{ Number(obj.guarantee_amount).toLocaleString() }}</td>
+                        <td>{{ Number(obj.guarantee_amount).toLocaleString() }}</td>
                         <td>{{ obj.member.user.residential_address }}</td>
                         <td>{{ obj.member.user.phone }}</td>
                         <td>
-                            <span class="active">Active</span>
+                            <span class="active">{{obj.status}}</span>
                         </td>
                         <td>
                             <div

@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-4 mt-3" v-if="options != null">
+        <div class="col-md-4 mt-3 collapse" v-if="options != null">
             <apexchart
                 width="100%"
                 type="bar"
@@ -9,7 +9,7 @@
                 :series="series"
             ></apexchart>
         </div>
-        <div class="col-md-4 mt-3">
+        <div class="col-md-6 mt-3">
             <apexchart
                 width="100%"
                 height="380"
@@ -18,7 +18,7 @@
                 :series="columnSeries"
             ></apexchart>
         </div>
-        <div class="col-md-4 mt-3">
+        <div class="col-md-6 mt-3">
             <apexchart
                 width="100%"
                 class=""
