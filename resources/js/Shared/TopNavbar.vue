@@ -44,13 +44,13 @@
                             ></Link>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <Link
                                 :href="route('member.statements')"
                                 class="nav-link router-link-exact-active router-link-active"
                                 ><i class="ri-file-list-line"></i
                             ></Link>
-                        </li>
+                        </li> -->
 
                         <!-- <li>
                             <a href="#" class="nav-link"
