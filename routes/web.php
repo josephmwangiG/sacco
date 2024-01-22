@@ -184,6 +184,9 @@ Route::group(["middleware" => ["auth", "user"], 'prefix' => "/u"], function () {
     Route::get('/loanApplications/confirm/{loan_id}', [LoanApplicationController::class, 'uConfirm'])->name('u.loanApplications.confirm');
     Route::get('/loanApplications/reject/{loan_id}', [LoanApplicationController::class, 'uReject'])->name('u.loanApplications.reject');
 
+
+    Route::get('/guarantors/requests', [LoanApplicationController::class, 'guarantorRequests'])->name('u.guarantors.requests');
+
     Route::post('/loanApplications', [LoanApplicationController::class, 'store'])->name('u.loanApplications.store');
     Route::post('/loanApplications/{id}', [LoanApplicationController::class, 'update'])->name('u.loanApplications.update');
 

@@ -105,7 +105,7 @@
             >
           </li>
           <li>
-            <Link :href="route('loanApplications.index')" preserve-state
+            <Link :href="route('u.guarantors.requests')" preserve-state
               ><i class="ri-checkbox-line"></i>Guarantee Requests</Link
             >
           </li>

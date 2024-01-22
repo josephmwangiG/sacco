@@ -49,6 +49,7 @@ class GuaranteeRequest extends Mailable
             with: [
                 'url' => $this->data['url'],
                 'loan' => $this->data['loan'],
+                'guarantor' => $this->data['guarantor'],
             ],
         );
     }
