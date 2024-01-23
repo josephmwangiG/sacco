@@ -20,7 +20,7 @@
   <!-- Wrapper END -->
   <!-- Footer -->
   <Footer />
-  <nav class="iq-float-menu">
+  <!-- <nav class="iq-float-menu">
     <input
       type="checkbox"
       href="#"
@@ -60,7 +60,7 @@
     >
       <i class="ri-palette-line"></i>
     </button>
-  </nav>
+  </nav> -->
 </template>
 <script>
 export default {};

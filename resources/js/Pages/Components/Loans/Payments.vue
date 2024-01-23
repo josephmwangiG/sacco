@@ -25,7 +25,7 @@
             <th>Payment Date</th>
             <th>Method</th>
             <th>Amount</th>
-            <th>Action</th>
+            <!-- <th>Action</th> -->
           </tr>
         </thead>
         <tbody>
@@ -38,8 +38,8 @@
             <td>{{ formatDate(obj.payment_date) }}</td>
             <td>{{ obj.method_id }}</td>
             <td>{{ Number(obj.amount).toLocaleString() }}</td>
-           
-            <td>
+
+            <!-- <td>
               <div class="flex align-items-center list-user-action">
                 <a class="iq-bg-primary" data-placement="top" @click="getObject(obj)" data-toggle="modal"
                   data-target="#formModal" href="javascript:void();"><i class="ri-pencil-line"></i></a>
@@ -47,7 +47,7 @@
                   @click="url = route('activeLoans.delete.payments', obj.id)" data-original-title="Delete"
                   href="#confirm"><i class="ri-delete-bin-line"></i></a>
               </div>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

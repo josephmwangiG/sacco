@@ -104,7 +104,7 @@
                                                     @click="getObject(lead)"
                                                     data-toggle="modal"
                                                     data-target="#formModal"
-                                                    href="javascript:void();"
+                                                    href=";"
                                                     ><i
                                                         class="ri-pencil-line"
                                                     ></i

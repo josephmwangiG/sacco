@@ -132,7 +132,7 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::put('/activeLoans/payments/{p_id}', [LoansController::class, 'updatePayments'])->name('activeLoans.update.payments');
     Route::delete('/activeLoans/payments/{p_id}', [LoansController::class, 'deletePayments'])->name('activeLoans.delete.payments');
 
-    // Member Statements 
+    // Member Statements
     Route::get("/statements/member", [StatementsController::class, 'statements'])->name('member.statements');
     Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('loans.statements');
     Route::get("/statements/savings", [StatementsController::class, 'savings'])->name('savings.statements');
@@ -140,7 +140,7 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::get("/statements/guarantees", [StatementsController::class, 'guarantees'])->name('guarantees.statements');
 
 
-    // Reports 
+    // Reports
     Route::get("/reports/deposits", [ReportController::class, 'deposits'])->name('deposits.reports');
     Route::get("/reports/loans", [ReportController::class, 'loans'])->name('loans.reports');
     Route::get("/reports/applications", [ReportController::class, 'applications'])->name('applications.reports');
@@ -155,7 +155,7 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
 
 
 Route::group(["middleware" => ["auth"], 'prefix' => "/u"], function () {
-    // Member Statements 
+    // Member Statements
     Route::get("/statements/member", [StatementsController::class, 'statements'])->name('u.member.statements');
     Route::get("/statements/loans", [StatementsController::class, 'loans'])->name('u.loans.statements');
     Route::get("/statements/savings", [StatementsController::class, 'savings'])->name('u.savings.statements');

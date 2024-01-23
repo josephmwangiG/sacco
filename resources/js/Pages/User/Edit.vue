@@ -478,7 +478,7 @@ Zip Code: 85001
   <!-- Wrapper END -->
   <!-- Footer -->
   <Footer />
-  <nav class="iq-float-menu">
+  <!-- <nav class="iq-float-menu">
     <input
       type="checkbox"
       href="#"
@@ -486,7 +486,7 @@ Zip Code: 85001
       name="menu-open"
       id="menu-open"
     />
-    <label class="iq-float-menu-open-button" for="menu-open">
+    <label class="iq-float-menu-open-button " for="menu-open">
       <span class="lines line-1"></span>
       <span class="lines line-2"></span>
       <span class="lines line-3"></span>
@@ -518,7 +518,7 @@ Zip Code: 85001
     >
       <i class="ri-palette-line"></i>
     </button>
-  </nav>
+  </nav> -->
 </template>
 <script>
 export default {};

@@ -73,8 +73,8 @@
                                     >
                                         <td>{{ obj.receipt_number }}</td>
                                         <td>
-                                            {{ obj.member.user.first_name }}
-                                            {{ obj.member.user.last_name }}
+                                            {{ obj.member?.user.first_name }}
+                                            {{ obj.member?.user.last_name }}
                                         </td>
                                         <td>
                                             {{ formatDate(obj.payment_date) }}
