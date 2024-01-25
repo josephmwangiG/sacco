@@ -108,6 +108,30 @@
           ><i class="ri-login-circle-line"></i><span>Deposits</span></Link
         >
       </li>
+      <li :class="usePage().url.value.startsWith('/deposits') ? 'active' : ''">
+        <Link
+          href="#"
+          class="iq-waves-effect"
+          aria-expanded="false"
+          ><i class="ri-login-circle-line"></i><span>Dividends</span></Link
+        >
+      </li>
+      <li :class="usePage().url.value.startsWith('/deposits') ? 'active' : ''">
+        <Link
+          href="#"
+          class="iq-waves-effect"
+          aria-expanded="false"
+          ><i class="ri-login-circle-line"></i><span>Shares</span></Link
+        >
+      </li>
+      <li :class="usePage().url.value.startsWith('/deposits') ? 'active' : ''">
+        <Link
+          href=""
+          class="iq-waves-effect"
+          aria-expanded="false"
+          ><i class="ri-login-circle-line"></i><span>Savings</span></Link
+        >
+      </li>
 
       <li class="collapse" :class="usePage().url.value.startsWith('/dividends') ? 'active' : ''">
         <Link :href="'#'" class="iq-waves-effect" aria-expanded="false"
@@ -185,20 +209,41 @@
           >
             <Link :href="route('deposits.reports')"><i class="ri-login-circle-line"></i>Deposits</Link>
           </li>
-          <!-- <li
+          <li
             :class="
               usePage().url.value.startsWith('/reports/dividends') ? 'active' : ''
             "
           >
-            <Link :href="route('dividends.reports')"><i class="ri-bar-chart-line"></i>Dividends</Link>
+            <Link href=""><i class="ri-bar-chart-line"></i>Dividends</Link>
           </li>
           <li
             :class="
               usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
             "
           >
-            <Link :href="route('applications.reports')"><i class="ri-checkbox-line"></i>Applications</Link>
-          </li> -->
+            <Link href=""><i class="ri-checkbox-line"></i>Members</Link>
+          </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
+            "
+          >
+            <Link href="#"><i class="ri-checkbox-line"></i>Member Balances</Link>
+          </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
+            "
+          >
+            <Link href="#"><i class="ri-checkbox-line"></i>Interest</Link>
+          </li>
+          <li
+            :class="
+              usePage().url.value.startsWith('/reports/applications') ? 'active' : ''
+            "
+          >
+            <Link href="#"><i class="ri-checkbox-line"></i>Savings</Link>
+          </li>
           <li
             :class="
               usePage().url.value.startsWith('/reports/loans') ? 'active' : ''
@@ -213,9 +258,9 @@
           >
             <Link :href="route('payments.reports')"><i class="ri-money-pound-circle-line"></i>Payments</Link>
           </li> -->
-         
-        
-          
+
+
+
           <!-- <li :class="usePage().url.value.startsWith('/dashboard') ? 'active' : ''">
             <a href="#"><i class="ri-login-circle-line"></i>Expenses</a>
           </li> -->
@@ -337,8 +382,8 @@
         </ul>
       </li>
 
-    
-    
+
+
 
       <div class="py-5"></div>
     </ul>
