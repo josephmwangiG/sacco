@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepositController;
+use App\Http\Controllers\ShareTypeController;
 use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\LeadsController;
 use App\Http\Controllers\LoanApplicationController;
@@ -75,6 +76,8 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/branches', BranchController::class);
     Route::resource('/leads', LeadsController::class);
+    // shares
+    Route::resource('/shares-types', ShareTypeController::class);
     Route::resource('/members', MemberController::class);
     Route::resource('/assets', AssetController::class);
     Route::get('/users', [UACController::class, "getUsers"])->name('get-users');
@@ -87,6 +90,8 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
 
     Route::get('/members/assets/{m_id}', [MemberController::class, 'assets'])->name('members.assets');
     Route::get('/members/deposits/{m_id}', [MemberController::class, 'deposits'])->name('members.deposits');
+    //link for the shares part
+    // Route::get('/members/Shares/{m_id}', [ShareTypeController::class, ''])->name('members.shares');
     Route::get('/members/withdrawals/{m_id}', [MemberController::class, 'withdrawals'])->name('members.withdrawals');
     Route::get('/members/loans/{m_id}', [MemberController::class, 'loans'])->name('members.loans');
     Route::get('/members/applications/{m_id}', [MemberController::class, 'applications'])->name('members.applications');

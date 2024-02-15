@@ -289,6 +289,7 @@ class MemberController extends Controller
         $deposits = $member->payments;
         return inertia("Components/Members/Deposits", compact('member', "deposits"));
     }
+    
 
 
 

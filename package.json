@@ -11,6 +11,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.202",
         "axios": "^0.25",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",

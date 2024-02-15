@@ -67,6 +67,7 @@ class StatementsController extends Controller
         } else {
             $loans = Loan::where("member_id", Auth::user()->member->id)
                 ->latest()->get();
+        
         }
 
         $data = [

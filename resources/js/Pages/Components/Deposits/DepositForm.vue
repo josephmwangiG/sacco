@@ -223,7 +223,7 @@
               Close
             </button>
             <button type="submit" class="btn btn-primary">
-              {{ action }} Deposit
+              {{ action }} Share
             </button>
           </div>
         </form>
@@ -267,7 +267,7 @@ const paymentM = (event) => {
 
 function saveForm() {
   if (props.action == "Edit") {
-    props.form.put(route("deposits.update", props.item), {
+    props.form.put(route("deposits.update", props.item ), {
       onSuccess: () => {
         props.form.reset();
         document.getElementById("closeModal").click();
