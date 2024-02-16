@@ -80,6 +80,28 @@ class PDFController extends Controller
         return $pdf->stream("deposits.pdf");
     }
 
+    // pdf logic for shares
+    public function shares()
+    {
+        $shareTypes = ShareType::where("organization_id", Auth::user()->organization_id)
+            ->latest()->get();
+
+        $data = [
+            "organization" => Auth::user()->organization,
+            "title" => "share report",
+            "deposits" => $deposits,
+            "items_name" => "ShareTypes",
+            "items_count" => count($shareTypes),
+        ];
+        $pdf = Pdf::loadView('pdfs.deposits', $data)
+            ->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf->set_option('javascript-delay', 30000);
+        $pdf->set_option('isHtml5ParserEnabled', true);
+        $pdf->set_option('isRemoteEnabled', true);
+
+        return $pdf->stream("shareTypes.pdf");
+    }
+
 
     public function withdrawals()
     {

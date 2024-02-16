@@ -72,11 +72,17 @@
                                         v-for="(obj, index) in sharetypes.data"
                                         :key="index"
                                     >
-                                        <td>{{ obj.receipt_number }}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{ obj.method_id }}</td>
-                                        <td></td>
+                                        <td>{{ obj.category }}</td>
+                                        <td>
+                                            {{ obj.has_recurrent_contribution }}
+                                        </td>
+                                        <td>{{ obj.contribution_period }}</td>
+                                        <td>{{ obj.dividend_percentage }}</td>
+                                        <td>{{ obj.can_be_withdrawn }}</td>
+                                        <td>{{ obj.max_amount }}</td>
+                                        <td>{{ obj.min_amount }}</td>
+                                        <td>{{ obj.can_be_transferred }}</td>
+
                                         <td>
                                             <div
                                                 class="flex align-items-center list-user-action"
@@ -85,6 +91,8 @@
                                                     class="iq-bg-primary"
                                                     data-placement="top"
                                                     @click="getItem(obj)"
+                                                    data-toggle="modal"
+                                                    data-target="#formModal"
                                                     href="javascript:void();"
                                                     ><i
                                                         class="ri-pencil-line"
@@ -125,7 +133,10 @@
                                 >
                             </div>
                             <div class="col-md-6">
-                                <nav aria-label="Page navigation example">
+                                <nav
+                                    aria-label="Page navigation example"
+                                    v-if="sharetypes && sharetypes.links"
+                                >
                                     <ul
                                         class="pagination justify-content-end mb-0"
                                     >
@@ -197,11 +208,6 @@ const openModal = () => {
 const getItem = (obj) => {
     action.value = "Edit";
     item.value = obj.id;
-    members.filter((item) => {
-        if (obj.member_id == item.id && obj.id) {
-            return item;
-        }
-    });
     // Populate the form fields with data from the selected item
     form.value = useForm({
         category: obj.category,
@@ -214,6 +220,35 @@ const getItem = (obj) => {
         can_be_transferred: obj.can_be_transferred,
     });
 };
+
+// const getBranch = (branch) => {
+//     action.value = "Edit";
+//     item.value = branch.id;
+//     form.value = useForm({
+//         name: branch.name,
+//         description: branch.description,
+//         location: branch.location,
+//         country: branch.country,
+//         town: branch.town,
+//         address: branch.address,
+//         branch_code: branch.branch_code,
+//     });
+// };
+
+// const getShare = (share) => {
+//     action.value = "Edit";
+//     item.value = share.id;
+//     form.value = useForm({
+//         category: share.category,
+//         has_recurrent_contribution: share.has_recurrent_contribution,
+//         contribution_period: share.contribution_period,
+//         dividend_percentage: share.dividend_percentage,
+//         can_be_withdrawn: share.can_be_withdrawn,
+//         min_amount: share.min_amount,
+//         max_amount: share.max_amount,
+//         can_be_transferred: share.can_be_transferred,
+//     });
+// };
 
 watch(
     search,

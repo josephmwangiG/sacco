@@ -62,7 +62,7 @@ class SharetypeController extends Controller
         Sharetype::create($validatedData);
 
         // Redirect to the index page with success message
-        return Redirect::route('sharetypes.index')->with('success', 'Share type created successfully!');
+        return back()->with('success', 'Share type created successfully!');
     }
 
     /**
@@ -109,7 +109,7 @@ class SharetypeController extends Controller
         $sharetype->update($validatedData);
 
         // Redirect to the index page with success message
-        return Redirect::route('sharetypes.index')->with('success', 'Share type updated successfully!');
+        return back()->with('success', 'Share type updated successfully!');
     }
 
     /**
@@ -125,6 +125,6 @@ class SharetypeController extends Controller
         $sharetype->delete();
 
         // Redirect to the index page with success message
-        return Redirect::route('sharetypes.index')->with('success', 'Share type deleted successfully!');
+        return back()->with("success", "Deposit delete successfully");
     }
 }

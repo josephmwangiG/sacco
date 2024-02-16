@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string("category");
             $table->string("has_recurrent_contribution");
             $table->string("contribution_period");
-            $table->decimal("divinded_percentage",3,2);
+            $table->decimal("dividend_percentage",20,2);
             $table->string('can_be_withdrawn');
             $table->integer('min_amount')->nullable();
             $table->integer('max_amount')->nullable();
-            $table->integer('can_be_transferred')->nullable();
+            $table->string('can_be_transferred')->nullable();
             $table->timestamps();
         });
     }

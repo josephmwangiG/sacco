@@ -212,13 +212,13 @@
 </template>
 <script setup>
 // Import the necessary functions from @inertiajs/inertia
-import { post, route } from "@inertiajs/inertia";
+// import { post, route } from "@inertiajs/inertia";
 import { defineProps, ref } from "vue";
 
 // Define form fields and methods
 const props = defineProps({
     form: Object,
-    item: Number,
+    item: Object,
     action: String,
 });
 
@@ -229,14 +229,14 @@ const action = ref("");
 const saveForm = async () => {
     try {
         if (action === "Edit") {
-            await props.form.post(route("shares-types.update"), {
+            await props.form.put(route("shares-types.update", props.items), {
                 onSuccess: () => {
                     props.form.reset();
                     document.getElementById("closeModal").click();
                 },
             });
         } else {
-            await post(route("shares-types.store", props.items), {
+            await props.form.post(route("shares-types.store"), {
                 onSuccess: () => {
                     props.form.reset();
                     document.getElementById("closeModal").click();
