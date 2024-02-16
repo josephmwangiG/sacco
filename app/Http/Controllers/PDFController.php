@@ -9,6 +9,8 @@ use App\Models\Member;
 use App\Models\Payment;
 use App\Models\Withdrawal;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ShareType;
+
 use Pdf;
 
 class PDFController extends Controller
@@ -81,19 +83,20 @@ class PDFController extends Controller
     }
 
     // pdf logic for shares
-    public function shares()
+    public function shareTypes()
     {
-        $shareTypes = ShareType::where("organization_id", Auth::user()->organization_id)
-            ->latest()->get();
+          // Retrieve share types based on the authenticated user's organization_id
+          $shareTypes = ShareType::where("organization_id", Auth::user()->organization_id)
+          ->latest()->get();
 
-        $data = [
-            "organization" => Auth::user()->organization,
-            "title" => "share report",
-            "deposits" => $deposits,
-            "items_name" => "ShareTypes",
-            "items_count" => count($shareTypes),
-        ];
-        $pdf = Pdf::loadView('pdfs.deposits', $data)
+      $data = [
+          "organization" => Auth::user()->organization,
+          "title" => "Share Types Report",
+          "ShareTypes" => $shareTypes,
+          "items_name" => "Share Types",
+          "items_count" => count($shareTypes),
+      ];
+        $pdf = Pdf::loadView('pdfs.shareTypes', $data)
             ->setOptions(['defaultFont' => 'sans-serif']);
         $pdf->set_option('javascript-delay', 30000);
         $pdf->set_option('isHtml5ParserEnabled', true);

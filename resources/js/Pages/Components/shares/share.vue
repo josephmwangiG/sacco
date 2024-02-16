@@ -33,7 +33,7 @@
                                 <div class="user-list-files d-flex float-right">
                                     <a
                                         class="iq-bg-primary"
-                                        :href="route('pdf.deposits')"
+                                        :href="route('pdf.shareTypes')"
                                     >
                                         Print
                                     </a>

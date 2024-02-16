@@ -14,9 +14,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($shares as $item)
+            @foreach ($shareTypes as $item)
                 <tr>
-                    <td>{{ $item->share->category }}</td>
+                    <td>{{ $item->shareTypes->category }}</td>
                     <td>{{ $item->member->user ? $item->member->user->first_name: "" }} {{ $item->member->user ? $item->member->user->last_name : ""}}</td>
                     <td>{{ $item->member->account->account_number }}</td>
                     <td>{{ $item->branch->name }}</td>

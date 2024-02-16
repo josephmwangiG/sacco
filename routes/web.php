@@ -57,6 +57,7 @@ Route::group(["middleware" => ["auth"]], function () {
     Route::get('/pdf/loans', [PDFController::class, 'loans'])->name("pdf.loans");
     Route::get('/pdf/loan-applications', [PDFController::class, 'loansApplications'])->name("pdf.loan.applications");
     Route::get('/pdf/downolad-pdf', [PDFController::class, 'downloadPDF'])->name("pdf.download");
+    Route::get('/pdf/shareTypes',[PDFController::class,'shareTypes'])->name("pdf.shareTypes");
 });
 
 
