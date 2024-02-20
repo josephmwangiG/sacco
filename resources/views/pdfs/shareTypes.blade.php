@@ -16,13 +16,13 @@
         <tbody>
             @foreach ($shareTypes as $item)
                 <tr>
-                    <td>{{ $item->shareTypes->category }}</td>
-                    <td>{{ $item->member->user ? $item->member->user->first_name: "" }} {{ $item->member->user ? $item->member->user->last_name : ""}}</td>
-                    <td>{{ $item->member->account->account_number }}</td>
-                    <td>{{ $item->branch->name }}</td>
-                    <td>{{ $item->payment_date }}</td>
-                    <td>{{ $item->method_id }}</td>
-                    <td>{{ $item->amount }}</td>
+                    <td>{{ $item->category }}</td>
+                    <td>{{ $item->has_recurrent_contribution}}</td>
+                    <td>{{ $item->dividend_percentage }}</td>
+                    <td>{{ $item->can_be_withdrawn }}</td>
+                    <td>{{ $item->max_amount }}</td>
+                    <td>{{ $item->min_amount }}</td>
+                    <td>{{ $item->can_be_transferred }}</td>
                 </tr>
             @endforeach
         </tbody>

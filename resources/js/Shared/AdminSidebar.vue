@@ -156,6 +156,7 @@
                     ><span>Dividends</span></Link
                 >
             </li>
+
             <li
                 :class="
                     usePage().url.value.startsWith('/deposits') ? 'active' : ''
@@ -163,6 +164,19 @@
             >
                 <Link
                     :href="route('shares-types.index')"
+                    class="iq-waves-effect"
+                    aria-expanded="false"
+                    ><i class="ri-login-circle-line"></i
+                    ><span>SharesTypes</span></Link
+                >
+            </li>
+            <li
+                :class="
+                    usePage().url.value.startsWith('/deposits') ? 'active' : ''
+                "
+            >
+                <Link
+                    :href="route('membersharecontribution.index')"
                     class="iq-waves-effect"
                     aria-expanded="false"
                     ><i class="ri-login-circle-line"></i

@@ -26,6 +26,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WitnessController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberShareContributionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +78,12 @@ Route::group(['middleware' => ["auth", "admin"]], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/branches', BranchController::class);
     Route::resource('/leads', LeadsController::class);
-    // shares
+
+
+    // the membershareconribution link
+    Route::resource('/membersharecontribution', MemberShareContributionController::class);
+
+    // sharestypes
     Route::resource('/shares-types', ShareTypeController::class);
     Route::resource('/members', MemberController::class);
     Route::resource('/assets', AssetController::class);

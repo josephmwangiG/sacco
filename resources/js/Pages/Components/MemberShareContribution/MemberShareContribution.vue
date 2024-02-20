@@ -5,12 +5,15 @@
                 <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Deposits</h4>
+                            <h4 class="card-title">
+                                Member Share Contributions
+                            </h4>
                         </div>
                     </div>
                     <div class="iq-card-body">
                         <div class="row justify-content-between">
                             <div class="col-sm-12 col-md-5">
+                                <!-- Search Form -->
                                 <div
                                     id="user_list_datatable_info"
                                     class="dataTables_filter"
@@ -30,25 +33,26 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-7">
+                                <!-- Buttons for Printing and Adding New Contribution -->
                                 <div class="user-list-files d-flex float-right">
                                     <a
                                         class="iq-bg-primary"
-                                        :href="route('pdf.deposits')"
+                                        href="{{ route('pdf.shareTypes') }}"
                                     >
                                         Print
                                     </a>
                                     <a
                                         class="iq-bg-primary"
+                                        @click="openModal"
                                         data-toggle="modal"
-                                        data-target="#formModal"
-                                        @click="create"
-                                        href="javascript:void();"
+                                        href="#formModal"
                                     >
                                         New
                                     </a>
                                 </div>
                             </div>
                         </div>
+                        <!-- Table to Display Contributions -->
                         <div class="table-responsive">
                             <table
                                 id="user-list-table"
@@ -58,101 +62,97 @@
                             >
                                 <thead>
                                     <tr>
-                                        <th>Receipt</th>
-                                        <th>Member</th>
-                                        <th>Payment Date</th>
-                                        <th>Method</th>
+                                        <th>Member ID</th>
+                                        <th>Payment Method ID</th>
                                         <th>Amount</th>
-                                        <th>Action</th>
+                                        <th>Date of Payment</th>
+                                        <th>Description</th>
+                                        <th>Share Type ID</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="(obj, index) in deposits.data"
+                                        v-for="(
+                                            contribution, index
+                                        ) in contributions.data"
                                         :key="index"
                                     >
-                                        <td>{{ obj.receipt_number }}</td>
+                                        <td>{{ contribution.member_id }}</td>
                                         <td>
-                                            {{ obj.member?.user.first_name }}
-                                            {{ obj.member?.user.last_name }}
+                                            {{ contribution.paymentmethod_id }}
                                         </td>
+                                        <td>{{ contribution.amount }}</td>
                                         <td>
-                                            {{ formatDate(obj.payment_date) }}
+                                            {{ contribution.date_of_payment }}
                                         </td>
-                                        <td>{{ obj.method_id }}</td>
-                                        <td>
-                                            {{
-                                                Number(
-                                                    obj.amount
-                                                ).toLocaleString("en-US")
-                                            }}
-                                        </td>
+                                        <td>{{ contribution.description }}</td>
+                                        <td>{{ contribution.sharetype_id }}</td>
                                         <td>
                                             <div
                                                 class="flex align-items-center list-user-action"
                                             >
                                                 <a
                                                     class="iq-bg-primary"
-                                                    data-placement="top"
-                                                    @click="getItem(obj)"
+                                                    @click="
+                                                        getItem(contribution)
+                                                    "
                                                     data-toggle="modal"
                                                     data-target="#formModal"
-                                                    href="javascript:void();"
-                                                    ><i
+                                                >
+                                                    <i
                                                         class="ri-pencil-line"
-                                                    ></i
-                                                ></a>
+                                                    ></i>
+                                                </a>
                                                 <a
                                                     class="iq-bg-primary"
-                                                    data-toggle="modal"
-                                                    data-placement="top"
                                                     @click="
-                                                        url = route(
-                                                            'deposits.destroy',
-                                                            obj.id
+                                                        confirmDelete(
+                                                            contribution.id
                                                         )
                                                     "
-                                                    data-original-title="Delete"
-                                                    href="#confirm"
-                                                    ><i
+                                                >
+                                                    <i
                                                         class="ri-delete-bin-line"
-                                                    ></i
-                                                ></a>
+                                                    ></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Pagination Section -->
                         <div class="row justify-content-between mt-3">
                             <div id="user-list-page-info" class="col-md-6">
-                                <span
-                                    >Showing 1 to
-                                    {{
-                                        deposits.total > 10
-                                            ? "10"
-                                            : deposits.total
-                                    }}
-                                    of {{ deposits.total }} entries</span
-                                >
+                                <span>
+                                    Showing {{ contributions.from }} to
+                                    {{ contributions.to }} of
+                                    {{ contributions.total }} entries
+                                </span>
                             </div>
                             <div class="col-md-6">
-                                <nav aria-label="Page navigation example">
+                                <nav
+                                    v-if="contributions && contributions.links"
+                                    aria-label="Page navigation example"
+                                >
                                     <ul
                                         class="pagination justify-content-end mb-0"
                                     >
                                         <li
-                                            class="page-item active"
                                             v-for="(
                                                 link, ind
-                                            ) in deposits.links"
+                                            ) in contributions.links"
                                             :key="ind"
+                                            class="page-item"
                                         >
-                                            <Link
+                                            <a
                                                 class="page-link"
-                                                :href="link.url"
+                                                @click.prevent="
+                                                    fetchData(link.url)
+                                                "
                                                 v-html="link.label"
-                                            ></Link>
+                                            ></a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -162,92 +162,86 @@
                 </div>
             </div>
         </div>
+        <!-- Modal for Add/Edit Contribution -->
+        <div
+            class="modal fade"
+            id="formModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <!-- Add your modal content here -->
+        </div>
+        <!-- Confirm Delete Modal -->
         <Confirm :url="url" />
-        <DepositForm :form="form" :action="action" :item="item" />
+        <MemberShareContributionForm
+            :form="form"
+            :action="action"
+            :item="item"
+        ></MemberShareContributionForm>
     </Main>
 </template>
+
 <script setup>
-import { useForm, usePage } from "@inertiajs/inertia-vue3";
-import { Inertia } from "@inertiajs/inertia";
+import { useForm } from "@inertiajs/inertia-vue3";
 import { ref, watch } from "vue";
-import DepositForm from "./DepositForm.vue";
 import debounce from "lodash/debounce";
-import { formatDate } from "@/composables/utils.js";
+
+import MemberShareContributionForm from "./MemberShareContributionForm.vue";
 
 const props = defineProps({
-    deposits: Object,
+    contributions: Object,
     filters: Object,
 });
-const members = usePage().props.value.members;
+
 let search = ref(props.filters.search);
 let url = ref("");
 
 let action = ref("Add");
-
-let item = ref(0);
+let item = ref({});
 
 let form = ref(
     useForm({
-        member: "",
+        member_id: "",
+        paymentmethod_id: "",
         amount: "",
-        payment_method: "",
-        payment_date: "",
+        date_of_payment: "",
         description: "",
-        account_number: "",
-        id_number: "",
-        bank_name: "",
-        bank_branch: "",
-        cheque_date: "",
-        cheque_number: "",
+        sharetype_id: "",
     })
 );
 
-const create = () => {
-    item.value = 0;
+const openModal = () => {
+    form.value.reset();
     action.value = "Add";
+};
+
+const getItem = (contribution) => {
+    action.value = "Edit";
+    item.value = contribution.id;
     form.value = useForm({
-        member: "",
-        amount: "",
-        payment_method: "",
-        payment_date: "",
-        description: "",
-        account_number: "",
-        id_number: "",
-        bank_name: "",
-        bank_branch: "",
-        cheque_date: "",
-        cheque_number: "",
+        member_id: contribution.member_id,
+        paymentmethod_id: contribution.paymentmethod_id,
+        amount: contribution.amount,
+        date_of_payment: contribution.date_of_payment,
+        description: contribution.description,
+        sharetype_id: contribution.sharetype_id,
     });
 };
 
-const getItem = (obj) => {
-    action.value = "Edit";
-    item.value = obj.id;
-    members.filter((item) => {
-        if (obj.member_id == item.id && obj.id) {
-            return item;
-        }
-    });
-    form.value = useForm({
-        member: obj.member_id,
-        amount: obj.amount,
-        id_number: obj.member.id_number,
-        account_number: obj.member.account.account_number,
-        payment_method: obj.method_id,
-        payment_date: obj.payment_date,
-        description: obj.notes,
-        bank_name: obj.bank_name,
-        bank_branch: obj.bank_branch,
-        cheque_date: obj.cheque_date,
-        cheque_number: obj.cheque_number,
-    });
+const confirmDelete = (contributionId) => {
+    // Set the URL for deleting contribution
+    url.value = route("contributions.destroy", contributionId);
 };
 
 watch(
     search,
+    // Debounce the search input to prevent excessive requests
     debounce((value) => {
+        // Perform an Inertia GET request to fetch filtered data
         Inertia.get(
-            route("deposits.index"),
+            route("shares-types.index"),
             { search: search.value },
             { preserveState: true, replace: true }
         );

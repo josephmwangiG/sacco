@@ -85,26 +85,32 @@ class PDFController extends Controller
     // pdf logic for shares
     public function shareTypes()
     {
-          // Retrieve share types based on the authenticated user's organization_id
-          $shareTypes = ShareType::where("organization_id", Auth::user()->organization_id)
-          ->latest()->get();
-
-      $data = [
-          "organization" => Auth::user()->organization,
-          "title" => "Share Types Report",
-          "ShareTypes" => $shareTypes,
-          "items_name" => "Share Types",
-          "items_count" => count($shareTypes),
-      ];
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            // Handle the case where the user is not authenticated
+            // Redirect to login or show an error message
+        }
+    
+        // Retrieve share types based on the authenticated user's organization_id
+        $shareTypes = ShareType::latest()->get();
+    
+        $data = [
+            "organization" => Auth::user()->organization,
+            "title" => "Share Types Report",
+            "shareTypes" => $shareTypes, // Fix the variable name here
+            "items_name" => "Share Types",
+            "items_count" => count($shareTypes),
+        ];
+    
         $pdf = Pdf::loadView('pdfs.shareTypes', $data)
             ->setOptions(['defaultFont' => 'sans-serif']);
         $pdf->set_option('javascript-delay', 30000);
         $pdf->set_option('isHtml5ParserEnabled', true);
         $pdf->set_option('isRemoteEnabled', true);
-
+    
         return $pdf->stream("shareTypes.pdf");
     }
-
+    
 
     public function withdrawals()
     {
