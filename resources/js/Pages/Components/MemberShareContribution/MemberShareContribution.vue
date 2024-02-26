@@ -62,12 +62,14 @@
                             >
                                 <thead>
                                     <tr>
-                                        <th>Member ID</th>
-                                        <th>Payment Method ID</th>
+                                        <th>AccountNumber</th>
+                                        <th>Member</th>
+                                        <th>PaymentMethod</th>
                                         <th>Amount</th>
                                         <th>Date of Payment</th>
                                         <th>Description</th>
-                                        <th>Share Type ID</th>
+                                        <th>Share Type</th>
+
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -78,7 +80,10 @@
                                         ) in contributions.data"
                                         :key="index"
                                     >
-                                        <td>{{ contribution.member_id }}</td>
+                                        <td>
+                                            {{ contribution.account_number }}
+                                        </td>
+                                        <td>{{ contribution.member.name }}</td>
                                         <td>
                                             {{ contribution.paymentmethod_id }}
                                         </td>
@@ -88,6 +93,7 @@
                                         </td>
                                         <td>{{ contribution.description }}</td>
                                         <td>{{ contribution.sharetype_id }}</td>
+
                                         <td>
                                             <div
                                                 class="flex align-items-center list-user-action"
@@ -162,23 +168,14 @@
                 </div>
             </div>
         </div>
-        <!-- Modal for Add/Edit Contribution -->
-        <div
-            class="modal fade"
-            id="formModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
-            <!-- Add your modal content here -->
-        </div>
-        <!-- Confirm Delete Modal -->
+
         <Confirm :url="url" />
         <MemberShareContributionForm
             :form="form"
             :action="action"
             :item="item"
+            :members="members"
+            :shareTypes="sharetypes"
         ></MemberShareContributionForm>
     </Main>
 </template>
@@ -189,7 +186,6 @@ import { ref, watch } from "vue";
 import debounce from "lodash/debounce";
 
 import MemberShareContributionForm from "./MemberShareContributionForm.vue";
-
 const props = defineProps({
     contributions: Object,
     filters: Object,
@@ -209,8 +205,12 @@ let form = ref(
         date_of_payment: "",
         description: "",
         sharetype_id: "",
+        account_number: "",
     })
 );
+
+// Define members and make it reactive
+let members = ref([]);
 
 const openModal = () => {
     form.value.reset();
@@ -227,6 +227,7 @@ const getItem = (contribution) => {
         date_of_payment: contribution.date_of_payment,
         description: contribution.description,
         sharetype_id: contribution.sharetype_id,
+        account_number: contribution.account_number,
     });
 };
 

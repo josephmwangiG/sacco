@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Member;
 use App\Models\MemberShareContribution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\ShareType;
 
 class MemberShareContributionController extends Controller
 {
@@ -17,12 +18,17 @@ class MemberShareContributionController extends Controller
     public function index()
     {
         // Fetch all member share contributions from the database
-        $contributions = MemberShareContribution::paginate();
+        // $contributions = MemberShareContribution::paginate();
+        $contributions = MemberShareContribution::with('member')->paginate();
+        $members = Member::with("user",'account')->get();
+        $sharetypes = ShareType::all();
 
         // Render Inertia view with member share contributions data
         return Inertia::render('Components/MemberShareContribution/MemberShareContribution', [
             'contributions' => $contributions,
+            'members' => $members,
             'filters' => ['search' => ''],
+            'sharetypes'=>$sharetypes,
         ]);
     }
 
@@ -44,23 +50,27 @@ class MemberShareContributionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
+
     {
+
         // Validate the request data
+
         $validatedData = $request->validate([
             // Define validation rules for member share contribution fields
-            'member_id' => 'required|exists:members,id',
-            'paymentmethod_id' => 'required|exists:payment_methods,id',
+            'member_id' => 'required',
+            'paymentmethod_id' => 'required',
             'amount' => 'required|numeric',
             'date_of_payment' => 'required|date',
             'description' => 'nullable|string',
-            'sharetype_id' => 'required|exists:share_types,id',
+            'sharetype_id' => 'required',
         ]);
+
 
         // Create a new member share contribution record
         MemberShareContribution::create($validatedData);
 
         // Redirect to the index page with success message
-        return redirect()->route('contributions.index')->with('success', 'Member share contribution created successfully!');
+        return back()->with('success', 'Share type created successfully!');
     }
 
     /**

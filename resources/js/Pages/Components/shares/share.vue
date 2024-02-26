@@ -58,13 +58,13 @@
                                 <thead>
                                     <tr>
                                         <th>Category</th>
-                                        <th>Has_recurrent_contribution</th>
-                                        <th>Contribution_period</th>
-                                        <th>Dividend_percentage</th>
-                                        <th>Can_be_withdrawn</th>
-                                        <th>Max_amount</th>
-                                        <th>Min_amount</th>
-                                        <th>Can_be_transferred</th>
+                                        <th>Contribution</th>
+                                        <th>Recurrent</th>
+                                        <th>DividendPpercentage</th>
+                                        <th>CanBeWithdrawn</th>
+                                        <th>MaxAmount</th>
+                                        <th>MinAmount</th>
+                                        <th>Transferred</th>
                                     </tr>
                                 </thead>
                                 <tbody>
