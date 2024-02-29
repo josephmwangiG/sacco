@@ -68,7 +68,7 @@
                                         <th>Amount</th>
                                         <th>Date of Payment</th>
                                         <th>Description</th>
-                                        <th>Share Type</th>
+                                        <th>Sharetype</th>
 
                                         <th>Actions</th>
                                     </tr>
@@ -81,18 +81,32 @@
                                         :key="index"
                                     >
                                         <td>
-                                            {{ contribution.account_number }}
+                                            {{
+                                                contribution.member.account
+                                                    .account_number
+                                            }}
                                         </td>
-                                        <td>{{ contribution.member.name }}</td>
                                         <td>
-                                            {{ contribution.paymentmethod_id }}
+                                            {{
+                                                contribution.member.user
+                                                    .first_name
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{
+                                                contribution.payment_method.name
+                                            }}
                                         </td>
                                         <td>{{ contribution.amount }}</td>
                                         <td>
                                             {{ contribution.date_of_payment }}
                                         </td>
                                         <td>{{ contribution.description }}</td>
-                                        <td>{{ contribution.sharetype_id }}</td>
+                                        <td>
+                                            {{
+                                                contribution.share_type.category
+                                            }}
+                                        </td>
 
                                         <td>
                                             <div

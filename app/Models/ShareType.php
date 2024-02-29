@@ -18,6 +18,6 @@ class ShareType extends Model
     'can_be_transferred',
    ];
    public function MemberShare(){
-    return this->hasMany(MemberShare::class);
+    return $this->hasMany(MemberShare::class);
    }
 }

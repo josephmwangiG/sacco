@@ -26,11 +26,11 @@ class MemberShareContribution extends Model
 
     public function paymentMethod()
     {
-        return $this->belongsTo(PaymentMethod::class);
+        return $this->belongsTo(PaymentMethod::class,"paymentmethod_id");
     }
 
     public function shareType()
     {
-        return $this->belongsTo(ShareType::class);
+        return $this->belongsTo(ShareType::class,"sharetype_id");
     }
 }

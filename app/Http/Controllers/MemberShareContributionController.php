@@ -19,7 +19,7 @@ class MemberShareContributionController extends Controller
     {
         // Fetch all member share contributions from the database
         // $contributions = MemberShareContribution::paginate();
-        $contributions = MemberShareContribution::with('member')->paginate();
+        $contributions = MemberShareContribution::with('member.account','member.user','paymentMethod',"shareType")->paginate();
         $members = Member::with("user",'account')->get();
         $sharetypes = ShareType::all();
 
